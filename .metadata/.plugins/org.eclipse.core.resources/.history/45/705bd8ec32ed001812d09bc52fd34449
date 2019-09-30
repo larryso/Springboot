@@ -1,0 +1,6 @@
+package com.larry.service;
+
+public interface UserService {
+	public void createUser();
+
+}

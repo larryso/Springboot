@@ -1,0 +1,6 @@
+package com.larry.aop.logger;
+@Aspect
+@Component
+public class LogAspect {
+
+}

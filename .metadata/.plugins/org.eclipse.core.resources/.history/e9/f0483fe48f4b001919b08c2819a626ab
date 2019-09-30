@@ -1,0 +1,18 @@
+package thread;
+
+public class ThreadTest {
+	private int i = 10;
+	private Object object;
+	public static void main(String[] args) {
+		
+	}
+}
+class MyThread1 extends Thread{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		super.run();
+	}
+	
+}

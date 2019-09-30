@@ -1,0 +1,5 @@
+package com.larry.bean;
+
+public class TextMessage extends BaseMessage{
+
+}

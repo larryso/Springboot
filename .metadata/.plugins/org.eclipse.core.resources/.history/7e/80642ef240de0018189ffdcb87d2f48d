@@ -1,0 +1,9 @@
+package com.larry.aop.security;
+
+public class CheckUserHolder {
+	public static final ThreadLocal<String> holder = new ThreadLocal<String>();
+	public static String get() {
+		return holder.get()==null? "unknow":holder.get();
+	}
+
+}

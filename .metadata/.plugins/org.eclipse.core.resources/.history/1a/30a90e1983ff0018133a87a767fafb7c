@@ -1,0 +1,21 @@
+package exception;
+
+import java.io.IOException;
+
+public class Test {
+	public static void main(String[] args) {
+		
+	}
+
+}
+class Father{
+	public void start() throws IOException {
+		throw new IOException("File not found");
+	}
+	
+}
+class Son extends Father{
+	public void start() {
+		
+	}
+}

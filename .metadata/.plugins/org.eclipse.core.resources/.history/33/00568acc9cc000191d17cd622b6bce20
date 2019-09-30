@@ -1,0 +1,13 @@
+package com.larry.java8Demo;
+
+import lombok.Data;
+
+public class StreamMapReduce {
+
+}
+
+@Data
+class Student {
+	private String name;
+	private int score;
+}

@@ -1,0 +1,11 @@
+package javaReflect;
+
+public abstract class FatherObject implements Runnable{
+
+	
+	public void doSomething() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

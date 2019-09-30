@@ -1,0 +1,37 @@
+package collection.map;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
+public class HashMapTest {
+	public static void main(String[] args){
+		Map<String, Object> hashMap = new HashMap<String, Object>();
+		Person p = new Person();
+		hashMap.put("1", p);
+		hashMap.put("2", "adsfs");
+		//Entryset entries = hashMap.entrySet();
+		Iterator<Entry<String, Object>> iterator = hashMap.entrySet().iterator();
+		while(iterator.hasNext()) {
+			Entry<String, Object> entry = iterator.next();
+			System.out.println(entry.getKey()+":"+entry.getValue());
+			if("1".equals(entry.getKey())) {
+				iterator.remove();
+			}
+		}
+		System.out.println(hashMap.size());
+//		Map<Person, Object> hashMap2 = new HashMap<Person, Object>();
+//		hashMap2.put(new Person(),"person1");
+//		hashMap2.put(new Person(),"person2");
+//		hashMap2.put(new Person(),"person3");
+		for(Iterator<Map.Entry<String, Object>> iterator:hashMap.entrySet().iterator()) {
+			
+		}
+		
+	}
+
+}
+class Person{
+	
+}

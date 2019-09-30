@@ -1,0 +1,7 @@
+package com.larry.domain;
+
+import java.io.Serializable;
+
+public class Log implements Serializable{
+
+}

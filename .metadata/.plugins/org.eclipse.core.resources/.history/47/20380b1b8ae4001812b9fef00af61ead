@@ -1,0 +1,17 @@
+package com.larry.aop.proxy;
+
+/**
+ * real subject should implement proxy interface
+ * 这是一个真实的对象，我们希望在不更改原有代码逻辑的基础上增强该类的sayHello方法，利用JDK动态代理技术需要我们实现InvocationHandler接口中的invoke方法：
+ * 
+ * @author larryso
+ *
+ */
+public class RealSubject implements Subject {
+
+	public void sayHellow() {
+		// TODO Auto-generated method stub
+		System.out.println("Hellow World");
+	}
+
+}

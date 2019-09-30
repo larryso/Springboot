@@ -1,0 +1,10 @@
+package singleTon;
+
+public enum SingletonEnum {
+	INSTANCE;
+	
+
+}
+class DataSource{
+	
+}

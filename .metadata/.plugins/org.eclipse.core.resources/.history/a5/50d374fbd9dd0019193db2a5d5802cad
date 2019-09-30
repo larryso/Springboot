@@ -1,0 +1,22 @@
+package thread.thinkInJava.c1;
+
+import java.util.concurrent.Callable;
+
+public class CallableTest {
+	public static void main(String[] args) {
+		ExecutorService service = new CachedThreadPool();
+	}
+}
+class TaskWithResult implements Callable<String>{
+	private int id;
+	public TaskWithResult(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String call() throws Exception {
+		// TODO Auto-generated method stub
+		return "Result of Task: "+this.id;
+	}
+	
+}

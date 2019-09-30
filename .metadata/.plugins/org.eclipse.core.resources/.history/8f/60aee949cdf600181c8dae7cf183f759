@@ -1,0 +1,16 @@
+package com.larry.config;
+
+import javax.sql.DataSource;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@MapperScan(basePackages = "com.larry.mapper", sqlSessionFactoryRef = "test1SqlSessionFactory")
+public class DataSourceConfiguration {
+	@Bean(name="testDataSource")
+	public DataSource testDataSource() {
+		
+	}
+}

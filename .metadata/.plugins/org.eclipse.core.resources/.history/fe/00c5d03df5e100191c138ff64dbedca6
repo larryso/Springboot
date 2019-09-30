@@ -1,0 +1,15 @@
+package com.larry.utils;
+
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import net.sf.json.JSONObject;
+
+public class WeixinUtils {
+	public static JSONObject doGetStr(String url){
+		DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(url);        JSONObject jsonObject = null;        try{            HttpResponse response = defaultHttpClient.execute(httpGet);            HttpEntity entity = response.getEntity();            if(entity != null){                String result = EntityUtils.toString(entity, "UTF-8");                jsonObject = JSONObject.fromObject(result);            }        } catch (ClientProtocolException e) {            e.printStackTrace();        } catch (IOException e) {            e.printStackTrace();        }        return jsonObject;
+		————————————————
+		版权声明：本文为CSDN博主「Cs_hnu_scw」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+		原文链接：https://blog.csdn.net/cs_hnu_scw/article/details/79103129
+	}
+}

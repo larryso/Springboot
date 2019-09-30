@@ -1,0 +1,9 @@
+package com.larry;
+
+import com.larry.modules.security.utils.VerificationCodeUtils;
+
+public class Test {
+	public static void main(String[] args) {
+		System.out.println(VerificationCodeUtils.generateVerifyCode(4));
+	}
+}

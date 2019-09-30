@@ -1,0 +1,5 @@
+package com.larry.bean;
+@Component
+public class WeixinUser {
+
+}

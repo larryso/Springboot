@@ -1,0 +1,15 @@
+package test;
+
+import java.math.BigInteger;
+import java.util.Random;
+
+public class Test2 {
+	public static void main(String[] args) {
+//		BigInteger b = new BigInteger("9999999999");
+//		System.out.println(new BigInteger(b.pow(2).toString()).longValueExact());
+		Random r = new Random();
+		System.out.println(r.nextInt());
+		
+	}
+
+}

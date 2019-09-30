@@ -1,0 +1,43 @@
+package com.larry.modules.security.rest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.larry.modules.security.security.ImgResult;
+import com.larry.modules.security.utils.VerificationCodeUtils;
+
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.IdUtil;
+
+@RestController
+@RequestMapping("auth")
+public class AuthenticationController {
+	@GetMapping(value = "vCode")
+	public ImgResult getCode(HttpServletResponse response) throws IOException {
+		System.out.println("#################test################");
+		// 生成随机字串
+		String verifyCode = VerificationCodeUtils.generateVerifyCode(4);
+		String uuid = IdUtil.simpleUUID();
+		System.out.println("#################"+uuid);
+		// 生成图片
+		int w = 111, h = 36;
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		VerificationCodeUtils.outputImage(w, h, stream, verifyCode);
+		try {
+			System.out.println(Base64.encode(stream.toByteArray()));
+			return new ImgResult(Base64.encode(stream.toByteArray()), uuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			stream.close();
+		}
+	}
+
+}

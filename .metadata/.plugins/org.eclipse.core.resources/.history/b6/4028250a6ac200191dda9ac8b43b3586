@@ -1,0 +1,15 @@
+package com.larry.java8Demo;
+
+/**
+ * 
+ * @author larryso 在lambda中我们遵循如下的表达式来编写： expression = (variable) -> action
+ *
+ */
+public class LambdaTest {
+	public static void main(String[] args) {
+		Runnable r = () -> System.out.println("Hellow World");
+		new Thread(r).run();;
+
+	}
+
+}

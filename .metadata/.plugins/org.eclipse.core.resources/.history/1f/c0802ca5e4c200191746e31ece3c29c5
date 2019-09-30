@@ -1,0 +1,5 @@
+package com.larry.java8Demo.lambda.function;
+
+public interface FunctionInterface {
+
+}

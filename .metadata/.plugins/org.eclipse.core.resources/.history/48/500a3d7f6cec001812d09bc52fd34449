@@ -1,0 +1,15 @@
+package com.larry.controller;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@EnableAutoConfiguration
+@Controller
+public class TestException {
+	@RequestMapping("/{id}")
+	public String testException(@PathVariable Integer id) {
+		return 1/id +"";
+	}
+}

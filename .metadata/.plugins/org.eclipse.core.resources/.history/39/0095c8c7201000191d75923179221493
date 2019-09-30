@@ -1,0 +1,11 @@
+package data.enumTest;
+
+import java.util.List;
+
+public class SingletonTest {
+	public static void main() {
+		List<Integer> list = Singleton.INSTANCE.init();
+		System.out.println(list);
+	}
+
+}

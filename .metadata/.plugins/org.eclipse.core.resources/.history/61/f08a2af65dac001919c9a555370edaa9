@@ -1,0 +1,5 @@
+package com.larry.restful;
+@RestControler
+public class CustomWebService {
+
+}

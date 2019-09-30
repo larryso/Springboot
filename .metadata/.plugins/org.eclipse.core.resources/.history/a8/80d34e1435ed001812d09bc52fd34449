@@ -1,0 +1,16 @@
+package com.larry.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.larry.service.UserService;
+import com.larry.service.impl.UserServiceImpl;
+
+@RestController
+public class UserController {
+	@RequestMapping("/createUser")
+	public String createUser() {
+		UserService us = new UserServiceImpl();
+		us.createUser("Larry", 23);
+	}
+}

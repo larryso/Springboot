@@ -1,0 +1,5 @@
+package com.larry.aop.proxy;
+
+public class ProxySubject implements InvocationHandler{
+
+}

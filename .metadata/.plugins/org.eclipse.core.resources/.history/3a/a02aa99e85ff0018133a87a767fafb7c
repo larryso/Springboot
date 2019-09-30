@@ -1,0 +1,46 @@
+package exception;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class Test {
+	public static void main(String[] args) {
+		Father[] f = new Father[2];
+		f[0] = new Father();
+		f[1] = new Son();
+		try {
+			for(Father ff:f) {
+				ff.start();
+			}
+		}catch(SQLException e) {
+			
+		}catch(Exception e) {
+			
+		}
+		finally {
+			
+		}
+	}
+
+}
+class Father{
+	public void start() throws Exception {
+		throw new IOException("File not found");
+	}
+	
+}
+class Son extends Father{
+	@Override
+	public void start() throws SQLException {
+		throw new SQLException("SQLException....");
+	}
+}
+class OBJ{
+	public int method() {
+		try {
+			return 5;
+		}finally {
+			System.out.println("finally.....");
+		}
+	}
+}

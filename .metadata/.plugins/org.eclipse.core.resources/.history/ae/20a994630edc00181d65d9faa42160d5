@@ -1,0 +1,5 @@
+package singleTon;
+
+public enum SingletonEnum {
+
+}

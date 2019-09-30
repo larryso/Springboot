@@ -1,0 +1,28 @@
+package com.larry.aop;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.larry.aop.security.CheckUserHolder;
+import com.larry.aop.service.ProductService;
+
+public class AOPTest2 {
+	public static void main(String[] args) {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		AOPInjection t = new AOPInjection();
+		t.adminDelete();
+	}
+
+}
+
+class AOPInjection {
+	@Autowired
+	private ProductService productService;
+
+	public void adminDelete() {
+		CheckUserHolder.set("admin");
+		productService.delete(1);
+	}
+
+}

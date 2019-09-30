@@ -1,0 +1,11 @@
+package com.larry.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWordController {
+	@RequestMaping("/index")
+	public String index() {
+		return "Success";
+	}
+}

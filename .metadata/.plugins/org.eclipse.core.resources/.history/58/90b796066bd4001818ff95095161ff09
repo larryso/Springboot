@@ -1,0 +1,11 @@
+package thread.deamonThread;
+
+public class DeamonThreadTest {
+	public static void main(String[] args) {
+		
+	}
+
+}
+class Deamon implements Runnable{
+	
+}

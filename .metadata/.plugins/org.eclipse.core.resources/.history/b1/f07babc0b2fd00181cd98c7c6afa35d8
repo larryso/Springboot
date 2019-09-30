@@ -1,0 +1,32 @@
+package thread;
+
+public class SynchronizedDemo2 implements Runnable {
+	private static int counter;
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 100000; i++) {
+			counter++;
+			System.out.println(Thread.currentThread().getName()+":"+counter);notifyAll();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Runnable r1 = new SynchronizedDemo2();
+		Runnable r2 = new SynchronizedDemo2();
+		Thread t1 = new Thread(r1);
+		Thread t2 = new Thread(r2);
+		t1.start();
+		t2.start();
+		System.out.println(counter);
+	}
+
+}

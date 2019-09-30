@@ -1,0 +1,13 @@
+package com.larry.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.RestController;
+import com.larry.pojo.Product;
+
+@RestController
+public class ProductServiceController {
+	private Map<String, Product> productRepo = new HashMap<String, Product>();
+
+}

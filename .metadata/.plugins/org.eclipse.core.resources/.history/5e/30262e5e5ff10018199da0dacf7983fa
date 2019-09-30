@@ -1,0 +1,18 @@
+package com.larry.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.larry.service.UserService;
+
+@Service("jpaService")
+public class UserServiceImpl2 implements UserService{
+	@Autowired
+	private UserDao dao;
+
+	public void createUser(String name, Integer age) {
+		System.out.println("DDD");
+		
+	}
+
+}

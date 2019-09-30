@@ -1,0 +1,10 @@
+package collection.map;
+
+import java.util.HashMap;
+
+public class MapTest {
+	public static void main(String[] args) {
+		private static Map<String, Object> hashMap = new HashMap<String, Object>();
+	}
+
+}

@@ -1,0 +1,18 @@
+package thread.deamonThread;
+
+public class DeamonThreadTest {
+	public static void main(String[] args) {
+		
+	}
+
+}
+class Deamon implements Runnable{
+	private Thread[] t = new Thread[10];
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

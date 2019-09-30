@@ -1,0 +1,10 @@
+package com.larry.java8Demo.lambda.function;
+/**
+ * 
+ * @author larryso
+ *
+ */
+@FunctionalInterface
+public interface FunctionalInterface{
+	
+}

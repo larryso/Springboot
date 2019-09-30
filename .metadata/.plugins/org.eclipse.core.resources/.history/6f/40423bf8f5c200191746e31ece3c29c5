@@ -1,0 +1,13 @@
+package com.larry.java8Demo.lambda.function;
+
+/*
+ * Function 接口中最主要的抽象方法为： R apply(T t) ，
+ * 根据类型T的参数获取类型R的结果。
+   Function 接口中有一个默认的andThen 方法，用来进行组合操作。
+ */
+public class FunctionTest {
+	public static void main(String[] args) {
+
+	}
+
+}

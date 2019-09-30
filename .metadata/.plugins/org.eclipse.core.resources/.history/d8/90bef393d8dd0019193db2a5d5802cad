@@ -1,0 +1,9 @@
+package thread.thinkInJava.c1;
+
+public class CallableTest {
+
+}
+class TaskWithResult implements Callable<String>{
+	private int id;
+	
+}

@@ -1,0 +1,8 @@
+package com.larry.java8Demo.lambda.function;
+
+public class FunctionTest {
+	public static void main(String[] args) {
+		
+	}
+
+}

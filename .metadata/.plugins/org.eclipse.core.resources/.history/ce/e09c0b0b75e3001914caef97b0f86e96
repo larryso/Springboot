@@ -1,0 +1,21 @@
+package com.larry.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="AUTH_USERS")
+public class UserPO {
+	@Id
+	private Integer id;
+	private String weixin_openId;
+	private int weixin_subscribe;
+	private String weixin_subscribeTime;
+	private String weixin_nickname;
+	private int sex;
+	private String country;
+	private String province;
+	private String city;
+	private String language;
+	private String weixin_headImgUrl;
+}

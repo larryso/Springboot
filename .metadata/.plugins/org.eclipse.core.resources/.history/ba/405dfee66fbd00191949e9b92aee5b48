@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.larry</groupId>
+		<artifactId>eladmin_v2_parent</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>eladmin_v2_system</artifactId>
+	<packaging>jar</packaging>
+
+	<name>eladmin_v2_system</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.larry</groupId>
+			<artifactId>eladmin_v2_generator</artifactId>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.larry</groupId>
+					<artifactId>eladmin_v2_common</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+</project>

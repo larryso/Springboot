@@ -1,0 +1,9 @@
+package com.larry.advice;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+@ControllerAdvice // 不指定包默认加了@Controller和@RestController都能控制
+//@ControllerAdvice(basePackages ="com.example.demo.controller")
+public class MyControllerAdvice {
+
+}

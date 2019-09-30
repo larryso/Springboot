@@ -1,0 +1,6 @@
+package com.larry.config;
+@Configuration
+@MapperScan(basePackages="com.larry.mapper")
+public class DataSourceConfiguration {
+
+}

@@ -1,0 +1,5 @@
+package data.threadLocal;
+
+public class ThreadId {
+
+}

@@ -1,0 +1,32 @@
+package thread;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+	public static void main(String[] args){
+		for(int i = 0;i<5;i++) {
+			Thread t = new Thread(new RunningMachine());
+			t.start();
+		}
+		System.out.println("thread started...");
+	}
+
+}
+class TestIn{
+	{
+		String classPath = this.getClass().getClassLoader().getResource("").getFile();
+		System.out.println(classPath);
+	}
+}
+class RunningMachine implements Runnable{
+
+	@Override
+	public void run() {
+		while(true) {
+			System.out.print(Thread.currentThread());
+		}
+		
+	}
+	
+}

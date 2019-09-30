@@ -1,0 +1,13 @@
+package com.larry.aop.security;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+import com.larry.aop.service.AuthService;
+
+@Aspect
+@Component
+public class SecurityAspect {
+	@AutoWrite
+	private AuthService authService;
+}

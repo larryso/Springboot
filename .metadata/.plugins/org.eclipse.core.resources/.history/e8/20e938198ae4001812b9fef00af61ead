@@ -1,0 +1,14 @@
+package com.larry.aop.proxy;
+/**
+ * real subject should implement proxy interface
+ * @author larryso
+ *
+ */
+public class RealSubject implements Subject{
+
+	public void sayHellow() {
+		// TODO Auto-generated method stub
+		System.out.println("Hellow World");
+	}
+
+}

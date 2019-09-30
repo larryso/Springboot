@@ -1,0 +1,5 @@
+package com.larry.aop.service;
+
+public class AuthService {
+
+}

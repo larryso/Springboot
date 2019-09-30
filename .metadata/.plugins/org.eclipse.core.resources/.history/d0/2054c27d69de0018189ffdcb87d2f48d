@@ -1,0 +1,6 @@
+package com.larry.aop;
+
+@RunWith(SpringRunner.class)
+public class AOPTest {
+
+}

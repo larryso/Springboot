@@ -1,0 +1,18 @@
+package com.larry.domain;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import me.zhengjie.domain.Log;
+@Entity
+@Data
+@Table(name = "log")
+@NoArgsConstructor
+public class Log implements Serializable{
+
+}

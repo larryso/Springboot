@@ -1,0 +1,5 @@
+package com.larry.interceptor;
+@Component
+public class ProductServiceInterceptor implements HandlerInterceptor{
+
+}

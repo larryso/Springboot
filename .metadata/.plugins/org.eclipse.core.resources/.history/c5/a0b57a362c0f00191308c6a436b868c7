@@ -1,0 +1,37 @@
+package collection.map;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class MapTest {
+	private static Map<String, Object> hashMap = new HashMap<String, Object>();
+	private static Map<String, Object> hashTable = new Hashtable<String, Object>();
+	private static Map<String, Object> syncMap = Collections.synchronizedMap(new HashMap<String, Object>());
+	private static Map<String, Object> concurrentHashMap = new ConcurrentHashMap<String, Object>();
+	public static void main(String[] args) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}).start();
+		
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		}).start();
+		
+	}
+
+}

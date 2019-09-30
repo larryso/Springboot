@@ -1,0 +1,11 @@
+package com.larry.java8Demo.stream;
+
+enum Status{
+	OPEN,CLOSE
+}
+public class StreamTest2 {
+	public static void main(String...args) {
+		
+	}
+
+}

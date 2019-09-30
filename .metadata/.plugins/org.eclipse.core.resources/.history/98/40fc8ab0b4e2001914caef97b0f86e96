@@ -1,0 +1,9 @@
+package com.larry.utils;
+
+public enum WeixinMessage {
+	private final String messageType;
+	WeixinMessage(String messageType) {
+		
+	}
+
+}

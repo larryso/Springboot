@@ -1,0 +1,21 @@
+package test;
+
+public class Test {
+	public static void main(String[] args) {
+		OBJ1 o = new OBJ1() {
+			public void method1() {
+				System.out.println("overrid method");
+			}
+			public void methodNew() {
+				
+			}
+		};
+		o.method1();
+	}
+
+}
+class OBJ1{
+	public void method1() {
+		System.out.println("original method");
+	}
+}

@@ -1,0 +1,7 @@
+package com.larry.service.dto;
+
+import java.io.Serializable;
+@Data
+public class LogErrorDTO implements Serializable{
+
+}

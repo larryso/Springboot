@@ -1,0 +1,5 @@
+package com.larry.mapper;
+
+public interface UserMapper {
+
+}

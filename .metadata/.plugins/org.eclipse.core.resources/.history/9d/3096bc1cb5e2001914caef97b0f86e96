@@ -1,0 +1,10 @@
+package com.larry.utils;
+
+public enum WeixinMessage {
+	MSGTYPE_EVENT("event"),
+	private final String messageType;
+	WeixinMessage(String messageType) {
+		
+	}
+
+}

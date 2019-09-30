@@ -1,0 +1,11 @@
+package com.larry.action;
+
+import com.larry.framework.annotation.GPControler;
+import com.larry.framework.annotation.GPRequestMapping;
+
+@GPControler
+@GPRequestMapping("/demo")
+public class DemoAction {
+	//private 
+
+}

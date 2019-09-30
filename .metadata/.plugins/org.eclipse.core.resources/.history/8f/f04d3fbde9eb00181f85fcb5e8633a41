@@ -1,0 +1,28 @@
+package com.larry.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+@EnableAutoConfiguration
+@Controller
+public class HelloWordController {
+	@RequestMapping("/index")
+	public String index() {
+		return "index";
+	}
+	@RequestMapping("getMap")
+	public HashMap<String, Object> getMap() {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("errorCode", 200);
+		result.put("errorMessage", "Success...");
+		return result;
+	}
+//	public static void main(String[] args) {
+//		SpringApplication.run(HelloWordController.class, args);
+//	}
+}

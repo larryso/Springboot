@@ -1,0 +1,49 @@
+package test;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+
+public class DateTest {
+	public static void main(String[] args) {
+		/*
+		System.out.println(System.currentTimeMillis());
+		Date date = new Date();
+		System.out.println(date.getYear()+1900);
+		System.out.println(date.getMonth()+1);
+		System.out.println(date.getDate());
+		System.out.println(date.toString());
+		System.out.println(date.toGMTString());
+		System.out.println(date.toLocaleString());
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
+		System.out.println(format.format(date));
+		Calendar calendar = Calendar.getInstance();
+		int y = calendar.get(calendar.YEAR);
+		int m = calendar.get(Calendar.MONTH)+1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		int week = calendar.get(Calendar.DAY_OF_WEEK);
+		int WeekMonth = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+		int hh = calendar.get(Calendar.HOUR_OF_DAY);
+        int mm = calendar.get(Calendar.MINUTE);
+        int ss = calendar.get(Calendar.SECOND);
+        int ms = calendar.get(Calendar.MILLISECOND);
+        
+        System.out.println(y +"-"+m+"-"+day+"-"+week+"-"+WeekMonth+"-"+hh+":"+mm+":"+ss+" "+ms);
+        calendar.clear();
+        calendar.set(Calendar.YEAR, 2018);
+        calendar.set(Calendar.MONTH, 8);
+        calendar.set(Calendar.DAY_OF_MONTH, 26);
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));
+        */
+		LocalDate localdate = LocalDate.now();
+		LocalTime localTime = LocalTime.now();
+		LocalDateTime localDateTime = LocalDateTime.now();
+        
+
+		
+	}
+
+}

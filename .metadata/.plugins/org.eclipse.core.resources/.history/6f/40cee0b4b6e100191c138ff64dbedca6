@@ -1,0 +1,10 @@
+spring.thymeleaf.cache=false
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.mode=HTML5
+spring.thymeleaf.encoding=UTF-8
+weixin.user.url=
+page.users.url=
+webauth.url=
+weixinpage.code=
+access.token.url=

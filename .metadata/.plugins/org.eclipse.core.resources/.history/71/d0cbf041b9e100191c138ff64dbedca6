@@ -1,0 +1,17 @@
+package com.larry;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+@Component
+public class AppConst {
+	@Value("${weixin.user.url}")
+	public static final String GET_WEIXIN_USER_URL = "";
+	@Value("${page.users.url}")
+	public static final String GET_PAGE_USERS_URL = "";
+	@Value("${webauth.url}")
+	public static final String GET_WEBAUTH_URL = "";
+	@Value("${weixinpage.code}")
+	public static final String GET_WEIXINPAGE_CODE ="";
+	@Value("${access.token.url}")
+	public static final String ACCESS_TOKEN_URL = "";
+}

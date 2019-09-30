@@ -1,0 +1,34 @@
+package singleTon;
+
+import java.io.Serializable;
+
+public class Singleton implements Serializable {
+	private volatile static Singleton instance = null;
+
+	private Singleton() {
+	}
+
+	public Singleton getInstance() {
+		if (instance == null) {
+			synchronized (Singleton.class) {
+				if (instance == null) {
+					instance = new Singleton();
+				}
+			}
+		}
+		return instance;
+	}
+
+	private Object readResolve() {
+		return instance;
+	}
+
+	private Object writeReplace() {
+		return instance;
+	}
+
+	private Object clone()throw CloneNotSupportedException{
+		throw new CloneNotSupportedException("singleton cannot be cloned")
+	}
+
+}

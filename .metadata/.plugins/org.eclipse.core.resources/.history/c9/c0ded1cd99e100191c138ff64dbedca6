@@ -1,0 +1,11 @@
+package com.larry;
+
+public interface AppConst {
+	public static final String GET_WEIXIN_USER_URL="";
+	public static final String GET_PAGE_USERS_URL="";
+	public static final String GET_WEBAUTH_URL="";
+	public static final String GET_WEIXINPAGE_CODE = "";
+	public static final String ACCESS_TOKEN_URL="";
+	
+
+}

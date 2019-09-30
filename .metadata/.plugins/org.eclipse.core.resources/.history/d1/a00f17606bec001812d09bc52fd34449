@@ -1,0 +1,5 @@
+package com.larry.controller;
+@Controller
+public class TestException {
+
+}

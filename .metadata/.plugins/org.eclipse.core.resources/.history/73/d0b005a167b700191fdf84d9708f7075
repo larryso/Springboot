@@ -1,0 +1,15 @@
+package com.larry;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.larry.springBootDemo.SpringBootDemoApplication;
+
+@SpringBootApplication
+@EnableScheduling
+public class APP {
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootDemoApplication.class, args);
+	}
+}

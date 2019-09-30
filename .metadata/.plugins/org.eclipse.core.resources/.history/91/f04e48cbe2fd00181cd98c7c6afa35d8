@@ -1,0 +1,47 @@
+package test;
+
+public class Test {
+	static class OBJ4{
+		public void method() {
+			
+		}
+	}
+	public static void main(String[] args) {
+		OBJ1 o = new OBJ1() {
+			public void method1() {
+				System.out.println("overrid method");
+			}
+			public void methodNew() {
+				
+			}
+		};
+		o.method1();
+		OBJ2.method1();
+		
+		OBJ2 o2 = new OBJ2();
+		o2.method1();
+		o2.method2();
+		
+		OBJ4 o4 = new OBJ4();
+		o4.method();
+	}
+
+}
+class OBJ1{
+	public void method1() {
+		System.out.println("original method");
+	}
+}
+class OBJ2{
+	public static void method1() {
+		
+	}
+	public void method2() {
+		
+	}
+}
+class OBJ3{
+	public void method1() {
+		
+	}
+}

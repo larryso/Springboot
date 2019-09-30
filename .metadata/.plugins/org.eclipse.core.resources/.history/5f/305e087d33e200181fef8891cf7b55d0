@@ -1,0 +1,15 @@
+package com.larry.aop;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.larry.aop.security.AOPMain;
+
+public class AOPTest2 {
+	public static void main(String[] args) {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		AOPMain t = new AOPMain();
+		t.adminDelete();
+	}
+
+}

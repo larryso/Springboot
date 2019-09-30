@@ -1,0 +1,19 @@
+package collection.map;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapTest {
+	public static void main(String[] args){
+		Map hashMap = new HashMap();
+		Person p = new Person();
+		hashMap.put("1", p);
+		hashMap.put("2", "adsfs");
+		Entryset entries = hashMap.entrySet();
+		
+	}
+
+}
+class Person{
+	
+}

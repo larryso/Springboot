@@ -1,0 +1,11 @@
+package javaReflect;
+
+public class ClassTest {
+	public static void classTest(Object obj) {
+		Class clazz = obj.getClass();
+	}
+	public static void main(String[] args) {
+		
+	}
+
+}

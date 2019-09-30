@@ -1,0 +1,9 @@
+package com.larry.java8Demo.lambda.function;
+/**
+ * 供给型接口
+ * @author larryso
+ *
+ */
+public class SupplierTest {
+
+}

@@ -1,0 +1,18 @@
+package com.larry.java8Demo.lambda.function;
+
+/**
+ * Predicate 接口中包含一个抽象方法： boolean test(T t) 。用于条件判断的场景 
+ * 默认方法: default Predicate
+ * and(Predicate<? super T> other) : 将两个Predicate 条件使用“与”逻辑连接起来实现“并且”的效果 default
+ * Predicate or(Predicate<? super T> other) : or 实现逻辑关系中的“或” 
+ * default Predicate negate() : 取反
+ * 
+ * @author larryso
+ *
+ */
+public class PredicateTest {
+	public static void main(String[] args) {
+
+	}
+
+}

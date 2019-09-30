@@ -1,0 +1,27 @@
+package test;
+
+import java.util.Random;
+
+public class RandomTest {
+	public static void main(String[] args) {
+		
+		
+		for(int i=0;i<5;i++) {
+			Random r = new Random();
+			for(int j = 0;j<10;j++) {
+				System.out.print(r.nextInt(100)+", ");
+			}
+			System.out.println();
+		}
+		System.out.println("#############################");
+		for(int i=0;i<5;i++) {
+			Random r2 = new Random(100);
+			for(int j = 0;j<10;j++) {
+				System.out.print(r2.nextInt(100)+", ");
+			}
+			System.out.println();
+		}
+		
+	}
+
+}

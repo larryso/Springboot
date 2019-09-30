@@ -1,0 +1,6 @@
+package singleTon;
+
+public class SingletonEager {
+	public static SingletonEager = new SingletonEager();
+
+}

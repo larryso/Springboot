@@ -1,0 +1,40 @@
+package thread;
+
+public class SynchronizedDemo implements Runnable {
+
+	private static int counter = 0;
+
+	// private synchronized void increase(){
+	/*
+	public void increase() {
+	 synchronized(this){
+	 counter ++;
+	 }
+	
+	 }
+	 */
+
+	private void increase() {
+		synchronized (SynchronizedDemo.class) {
+			counter++;
+		}
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		increase();
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+		for (int i = 0; i < 1000000; i++) {
+			Thread t = new Thread(new SynchronizedDemo());
+			System.out.println(t.getName());
+			t.start();
+			Thread.sleep(1000);
+		}
+		Thread.sleep(300);
+		System.out.println(counter);
+	}
+
+}

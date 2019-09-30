@@ -1,0 +1,11 @@
+package com.larry;
+
+public interface AppConst {
+	@Value(${"weixin.user.url"})
+	public static final String GET_WEIXIN_USER_URL = "";
+	public static final String GET_PAGE_USERS_URL = "";
+	public static final String GET_WEBAUTH_URL = "";
+	public static final String GET_WEIXINPAGE_CODE = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=toselfURL&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+	public static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+
+}

@@ -1,0 +1,6 @@
+package com.larry.mapper;
+
+public interface UserMapper {
+	@Insert("INSERT INTO USER (NAME, AGE) VALUES(#{name},#{age}")
+	public void createUser(@Param("name") String name, @Param("age") Integer age);
+}

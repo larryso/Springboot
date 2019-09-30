@@ -1,0 +1,5 @@
+package com.larry.aop.log;
+
+public @interface Log {
+
+}

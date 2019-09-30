@@ -1,0 +1,7 @@
+package com.larry.modules.security.security;
+@Data
+public class ImgResult {
+	private String img;
+
+    private String uuid;
+}

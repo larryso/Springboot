@@ -1,0 +1,13 @@
+package singleTon;
+
+public enum SingletonEnum {
+	INSTANCE;
+	private SingletonEnum() {
+		System.out.println("SingletonEnum cration..");
+	}
+	
+
+}
+final class DataSource{
+	
+}

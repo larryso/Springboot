@@ -1,0 +1,6 @@
+package com.larry.bean;
+
+public class AccessToken {
+	private String token;
+	private int expireIn;
+}

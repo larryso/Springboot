@@ -1,0 +1,5 @@
+package com.larry.interceptor;
+
+public class ProductServiceInterceptorAppConfig {
+
+}

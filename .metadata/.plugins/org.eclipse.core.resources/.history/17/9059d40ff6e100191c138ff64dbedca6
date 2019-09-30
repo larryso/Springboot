@@ -1,0 +1,46 @@
+package com.larry.utils;
+
+import java.io.IOException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import net.sf.json.JSONObject;
+
+public class WeixinUtils {
+	public static JSONObject doGetStr(String url) {
+		DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(url);
+		JSONObject jsonObject = null;
+		try {
+			HttpResponse response = defaultHttpClient.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				String result = EntityUtils.toString(entity, "UTF-8");
+				jsonObject = JSONObject.fromObject(result);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return jsonObject;
+
+	}
+
+	public static AccessToken getAccessToken() {
+		AccessToken accessToken = new AccessToken();
+		String url = ACCESS_TOKEN_URL.replace("APPID", APPID).replace("APPSECRET", APPSECRET);
+		JSONObject jsonObject = doGetStr(url);
+		if (jsonObject != null) {
+			accessToken.setToken(jsonObject.getString("access_token"));
+			accessToken.setExpireIn(jsonObject.getInt("expires_in"));
+		}
+		return accessToken;
+	}
+
+}
