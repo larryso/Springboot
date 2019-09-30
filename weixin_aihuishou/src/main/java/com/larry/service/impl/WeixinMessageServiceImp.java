@@ -1,10 +1,10 @@
 package com.larry.service.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.larry.service.WeixinMessageService;
 import com.larry.utils.WeixinUtils;
-@Component
+@Service
 public class WeixinMessageServiceImp implements WeixinMessageService{
 
 	public String subscribeForText(String toUserName, String fromUserName, String msgContent) {

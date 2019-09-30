@@ -1,0 +1,5 @@
+package com.larry.dao;
+
+public interface UserDAO extends JpaRepository<UserPO, Integer>{
+
+}

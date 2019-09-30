@@ -30,18 +30,37 @@ public class MainController {
 		} else {
 			String code = request.getParameter("code");
 			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
-			weiXinUser=getWeixinUseer(session,code);
+			weiXinUser=getWeixinUser(session,code);
+			session.setAttribute("currentUser", weiXinUser);
 			System.out.println(weiXinUser.getHeadImgUrl());
-			model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
-			model.addAttribute("nickName", weiXinUser.getNickname());
+			
 
 		}
-
+		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
+		model.addAttribute("nickName", weiXinUser.getNickname());
 		return "index";
 
 	}
+	@RequestMapping("/point_shop")
+	public String pointShopPage(HttpServletRequest request, HttpSession session, Model model) {
+		WeixinUser weiXinUser = null;
+		if (session.getAttribute("currentUser") != null) {
+			weiXinUser = (WeixinUser) session.getAttribute("currentUser");
+		} else {
+			String code = request.getParameter("code");
+			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
+			weiXinUser=getWeixinUser(session,code);
+			session.setAttribute("currentUser", weiXinUser);
+			System.out.println(weiXinUser.getHeadImgUrl());
+			
 
-	private WeixinUser getWeixinUseer(HttpSession session, String code) {
+		}
+		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
+		model.addAttribute("nickName", weiXinUser.getNickname());
+		return "point_shop";
+	}
+
+	private WeixinUser getWeixinUser(HttpSession session, String code) {
 		Map<String, String> authInfo = new HashMap<String, String>();
 		String openId = "";
 		if (code != null) {

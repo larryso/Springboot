@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.larry.AppConf;
+import com.larry.bean.WeixinUser;
+import com.larry.entity.UserPO;
+import com.larry.service.AuthUserService;
 import com.larry.service.WeixinMessageService;
+import com.larry.service.WeixinUserService;
 import com.larry.utils.CheckUtil;
 import com.larry.utils.WeixinMessage;
 import com.larry.utils.WeixinUtils;
@@ -24,6 +28,10 @@ public class WeixinServlet extends HttpServlet {
 	private WeixinMessageService wxMsgService;
 	@Autowired
 	private AppConf appConf;
+	@Autowired
+	private AuthUserService userService;
+	@Autowired
+	private WeixinUserService weixinUserService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,6 +71,14 @@ public class WeixinServlet extends HttpServlet {
 			if(WeixinMessage.MSGTYPE_EVENT.getMessageType().equals(msgType)) {
 				if(WeixinMessage.MESSAGE_SUBSCIBE.getMessageType().equals(eventType)) {
 					message = wxMsgService.subscribeForText(toUserName, fromUserName, appConf.getWeixinSubscribMsg());
+					WeixinUser weixinUser = weixinUserService.getUserInfo(weixinUserService.getAccessToken().getToken(), fromUserName);
+					UserPO user = new UserPO();
+					user.setWeixin_openId(weixinUser.getOpenId());
+					user.setWeixin_nickname(weixinUser.getNickname());
+					user.setProvince(weixinUser.getProvince());
+					user.setCountry(weixinUser.getCountry());
+					//user.setCity(weixinUser.getCity());
+					userService.save(user);
 				}
 				
 					

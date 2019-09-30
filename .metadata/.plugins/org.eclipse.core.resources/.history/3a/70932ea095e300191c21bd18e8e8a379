@@ -1,0 +1,13 @@
+package com.larry.service.impl;
+
+import com.larry.entity.UserPO;
+import com.larry.service.AuthUserService;
+
+public class AuthUserServiceImpl implements AuthUserService{
+
+	public UserPO save(UserPO user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

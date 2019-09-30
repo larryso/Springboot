@@ -1,0 +1,9 @@
+package com.larry.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.larry.entity.UserPO;
+
+public interface UserDAO extends JpaRepository<UserPO, Integer>{
+
+}
