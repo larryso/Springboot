@@ -1,0 +1,27 @@
+package com.larry.cache;
+
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
+
+public class EhCacheUtil {
+	private static CacheManager cacheManager = null;
+	private static Cache cache = null;
+	static {
+
+	}
+
+	public static CacheManager initCacheManager() {
+
+	}
+
+	public static CacheManager initCacheManager(String path) {
+
+	}
+
+	public static Cache initCache(String cacheName) {
+
+	}
+
+	public static void put(Object key, Object value) {		checkCache();		// 创建Element,然后放入Cache对象中		Element element = new Element(key, value);		cache.put(element);	}
+	
+}

@@ -1,6 +1,8 @@
 package com.larry.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.larry.AppConf;
+import com.larry.bean.PaperRecFormBean;
+import com.larry.bean.ProductBean;
 import com.larry.bean.WeixinUser;
+import com.larry.cache.EhCacheUtil;
+import com.larry.entity.ProductPO;
+import com.larry.entity.UserPO;
+import com.larry.service.AuthUserService;
 import com.larry.service.WeixinUserService;
 import com.larry.utils.WeixinUtils;
 
@@ -20,6 +28,8 @@ import com.larry.utils.WeixinUtils;
 public class MainController {
 	@Autowired
 	private WeixinUserService weixinUserService;
+	@Autowired
+	private AuthUserService userService;
 
 	@RequestMapping("/index")
 	public String indexPage(HttpServletRequest request, HttpSession session, Model model) {
@@ -35,6 +45,10 @@ public class MainController {
 			System.out.println(weiXinUser.getHeadImgUrl());
 			
 
+		}
+		if(session.getAttribute("authUser") == null) {
+			UserPO user = userService.getUser(weiXinUser.getOpenId());
+			session.setAttribute("authUser", user);
 		}
 		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
 		model.addAttribute("nickName", weiXinUser.getNickname());
@@ -57,7 +71,74 @@ public class MainController {
 		}
 		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
 		model.addAttribute("nickName", weiXinUser.getNickname());
+		
 		return "point_shop";
+	}
+	@RequestMapping("/my_order")
+	public String orderCenter(HttpServletRequest request, HttpSession session, Model model) {
+		WeixinUser weiXinUser = null;
+		if (session.getAttribute("currentUser") != null) {
+			weiXinUser = (WeixinUser) session.getAttribute("currentUser");
+		} else {
+			String code = request.getParameter("code");
+			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
+			weiXinUser=getWeixinUser(session,code);
+			session.setAttribute("currentUser", weiXinUser);
+			System.out.println(weiXinUser.getHeadImgUrl());
+			
+
+		}
+		if(session.getAttribute("authUser") == null) {
+			UserPO user = userService.getUser(weiXinUser.getOpenId());
+			session.setAttribute("authUser", user);
+		}
+		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
+		model.addAttribute("nickName", weiXinUser.getNickname());
+		return "order_manage";
+	}
+	@RequestMapping("/my_point")
+	public String PointCenter(HttpServletRequest request, HttpSession session, Model model) {
+		WeixinUser weiXinUser = null;
+		if (session.getAttribute("currentUser") != null) {
+			weiXinUser = (WeixinUser) session.getAttribute("currentUser");
+		} else {
+			String code = request.getParameter("code");
+			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
+			weiXinUser=getWeixinUser(session,code);
+			session.setAttribute("currentUser", weiXinUser);
+			System.out.println(weiXinUser.getHeadImgUrl());
+			
+
+		}
+		if(session.getAttribute("authUser") == null) {
+			UserPO user = userService.getUser(weiXinUser.getOpenId());
+			session.setAttribute("authUser", user);
+		}
+		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
+		model.addAttribute("nickName", weiXinUser.getNickname());
+		return "point_manage";
+	}
+	@RequestMapping("/paper")
+	public String paperReconciliate(HttpServletRequest request, HttpSession session, Model model) {
+		WeixinUser weiXinUser = (WeixinUser) session.getAttribute("currentUser");
+		if(session.getAttribute("authUser") == null) {
+			UserPO user = userService.getUser(weiXinUser.getOpenId());
+			session.setAttribute("authUser", user);
+		}
+		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
+		model.addAttribute("nickName", weiXinUser.getNickname());
+		List<ProductPO> productList = (List<ProductPO>) EhCacheUtil.get(EhCacheUtil.CACHE_KEY_PROD);
+		List<ProductPO> paperProduct= new ArrayList<ProductPO>();
+		for(ProductPO p: productList) {
+			System.out.println(p.getName());
+			System.out.println(p.getProductCat().getId());
+			if(1==p.getProductCat().getId()) {
+				System.out.println(p.getProductCat().getId());
+				paperProduct.add(p);
+			}
+		}
+		model.addAttribute("paperProducts",paperProduct);
+		return "paper_rec";
 	}
 
 	private WeixinUser getWeixinUser(HttpSession session, String code) {

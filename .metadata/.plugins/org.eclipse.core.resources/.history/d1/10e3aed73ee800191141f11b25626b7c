@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+    <title>广威再生资源有限公司</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><!--强制让文档与设备的宽度保持 1:1 ；
+    文档最大的宽度比列是1.0（ initial-scale 初始刻度值和 maximum-scale 最大刻度值）；user-scalable 定义用户是否可以手动缩放（ no 为不缩放），使页面固定设备上面的大小；-->
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
+    <link href="css/style.css" rel="stylesheet" type="text/css">  
+    <script src='js/hhSwipe.js' type="text/javascript"></script> 
+     <script src="jquery-1.11.2.min.js"></script>
+   
+    
+    <style>
+    /*banner开始*/
+.addWrap{ position:relative; width:100%;height:150px;background:#1dbcff;margin:0 auto; padding:0;}
+.addWrap .swipe{overflow: hidden;visibility: hidden;position:relative;background:#1dbcff;}
+.addWrap .swipe-wrap{overflow:hidden;position:relative;background:#1dbcff;}
+.addWrap .swipe-wrap > div {float: left;width: 100%;position:relative;}
+#position{ position:absolute; bottom:5%; right:0; padding-right:8px; margin:0;width:100%;text-align:center;}
+#position li{width:10px;height:10px;margin:0 2px;display:inline-block;-webkit-border-radius:5px;border-radius:5px;background-color:#AFAFAF;}
+#position li.cur{background-color:#005e11;}
+.img-responsive { display: block; width:100%;height: 150px;}
+/*banner结束*/
+
+input[type="checkbox"] {
+text-indent:0;
+margin: 0;
+width: 17px;
+height: 17px;
+text-align:center;
+display: inline-block;
+vertical-align: middle;
+line-height: 15px;
+position: relative;
+}
+input[type="checkbox"]::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+background: #fff;
+width: 100%;
+height: 100%; 
+border: 1px solid #bdbfc2;
+}
+input[type="checkbox"]:checked::before {
+content: "\2713";
+background-color: #37b048;
+color: #fff;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+font-size: 12px;
+font-weight: bold;
+outline: none;
+border-color:#ccc; 
+border: 1px solid #bdbfc2;
+}
+    </style>
+</head>
+<body>	
+		<div id="app">		
+			<header>
+			<!--banner图开始-->     
+<div class="addWrap">
+       <div class="swipe" id="mySwipe">
+             <div class="swipe-wrap">
+                  <div><a href="yu.html"><img class="img-responsive" src="images/banner1.jpg"/></a></div>
+                  <div><a href="liushi.html"><img class="img-responsive" src="images/banner2.jpg" /></a></div>
+                  <div><a href="shu.html"><img class="img-responsive" src="images/timg.jpg"/></a></div>
+             </div>
+            </div>
+	      <!--按转换按钮开始-->
+            <ul id="position">
+                   <li class="cur"></li>
+                   <li></li>
+                   <li></li>
+            </ul>
+          <!--按转换按钮结束-->  
+</div>
+<script type="text/javascript">
+	var bullets = document.getElementById('position').getElementsByTagName('li');
+	var banner = Swipe(document.getElementById('mySwipe'), {
+		auto: 4000,
+		continuous: true,
+		disableScroll:false,
+		callback: function(pos) {
+			var i = bullets.length;
+			while (i--) {
+				bullets[i].className = ' ';
+			}
+			bullets[pos].className = 'cur';
+		}
+     })
+</script>
+<!--banner结束-->
+				<div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;">当前用户：</p>
+				</div>
+				<div style="float:left;">
+				<img th:src="${headImg}" style="width: 50px;height: 50px; border-radius:250px;overflow: hidden;vertical-align:middle; float:left" />
+			    </div>
+			    <div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;" th:text="${nickName}"></p>
+				</div>
+			</header>		
+			<article>			
+				<div>	
+				<p style="font-size:15px;">选择纸质废品类型：</p>	
+				<br />
+				
+				<form>
+			
+				<div  th:each="product:${paperProducts}">
+					<div style="float:left; width:60%"><p style="font-size:15px;" th:text="${product.name}">废旧旧纸壳</p>
+					</div>
+					<div style="float:left; width:25%"> <p style="font-size:15px;" th:text="${product.price}">废旧旧纸壳</p>
+					</div>
+					<div style="float:left; width:15%">
+					<label><input name="productId" type="checkbox" th:value="${product.id}" /></label> 
+					</div>
+					<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				</div>	
+				<br />
+				<p style="font-size:15px;float:left;">选择上门时间：</p>	
+				<input type="text" id="date4" data-options="{'type':'YYYY-MM-DD hh:mm:ss','beginYear':2010,'endYear':2088}" style="width:170px;height:25px;vertical-align: middle;text-align: left;float:left;"></input>
+				<br />
+				<br />
+				<p style="font-size:15px;float:left;">选择上门地址：</p>	<a href="javascript:;" class="f12 green" id="area">点击选择地区...</a>
+				</form>
+				</div>	
+					
+			</article>		
+		<footer>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<pre>首页</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<pre>订单管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+		</div>
+		</footer>	
+		</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.date.js"></script>
+	<script>	
+		$.date('#date4');
+	</script>
+	 <script src="js/areapicker.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            /*不带默认值*/
+            $('#area').areapicker({}, function (areaArr) {
+                //确定时回调方法:
+                //areaArr:已经选择的地区
+                $('#area').text("已选择 省:" + areaArr[0] + " 市:" + areaArr[1] + " 区/县:" + areaArr[2]);
+            }, function (areaArr) {
+                //取消时回调方法:
+                //areaArr:上次选择的地区
+                $('#area').text("已取消 省:" + areaArr[0] + " 市:" + areaArr[1] + " 区/县:" + areaArr[2]);
+            });
+
+
+        });
+    </script>
+</body>
+</html>
+

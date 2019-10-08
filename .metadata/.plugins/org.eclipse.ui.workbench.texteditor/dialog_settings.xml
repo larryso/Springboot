@@ -2,12 +2,25 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="2" key="selection"/>
+		<item value="article" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="article"/>
+			<item value="addWrap"/>
+			<item value="logo"/>
+			<item value="footer"/>
+			<item value="swipe-wrap"/>
+			<item value="banner"/>
+			<item value="swipe"/>
+			<item value="img-responsive"/>
+			<item value="obj"/>
+			<item value="obj_box"/>
+			<item value="add"/>
+			<item value="add_w"/>
+			<item value="cga"/>
 			<item value="key2:"/>
 			<item value="2"/>
 		</list>

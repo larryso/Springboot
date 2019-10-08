@@ -10,80 +10,35 @@
     <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
     <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
     <link href="css/style.css" rel="stylesheet" type="text/css">  
-	<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
     <script type="text/javascript" src="js/jquery.dlmenu.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src='js/hhSwipe.js' type="text/javascript"></script> 
+    <style>
+    /*banner开始*/
+.addWrap{ position:relative; width:100%;height:150px;background:#1dbcff;margin:0 auto; padding:0;}
+.addWrap .swipe{overflow: hidden;visibility: hidden;position:relative;background:#1dbcff;}
+.addWrap .swipe-wrap{overflow:hidden;position:relative;background:#1dbcff;}
+.addWrap .swipe-wrap > div {float: left;width: 100%;position:relative;}
+#position{ position:absolute; bottom:5%; right:0; padding-right:8px; margin:0;width:100%;text-align:center;}
+#position li{width:10px;height:10px;margin:0 2px;display:inline-block;-webkit-border-radius:5px;border-radius:5px;background-color:#AFAFAF;}
+#position li.cur{background-color:#005e11;}
+.img-responsive { display: block; width:100%;height: 150px;}
+/*banner结束*/
+    </style>
 </head>
-<body>
-<div class="wrap_box">
-<!--头部部分开始-->
-<a class="logo" href="javascript:return false;"><img src="images/logo.png" /></a>
-<!--<a class="logo" href="javascript:return false;"><img th:src="${headImg}" style="width: 60px;height: 60px; border-radius:250px;overflow: hidden;" /></a>
--->
-<div class="nav_box">
-     <a class="back_but" href="javascript:return false;"><img th:src="${headImg}" style="width: 30px;height: 30px; border-radius:250px;overflow: hidden;" /></a>
-     <p class="nav_title" th:text="${nickName}"></p>
-     <div class="menu">
-          <!--<img class="menu_but" src="images/menu_icon.png"/>-->
-          <!--
-          <div id="dl-menu" class="dl-menuwrapper">
-                <button id="dl-menu-button">Open Menu</button>
-                <ul class="dl-menu">
-                    <li><a href="">网站首页</a></li>
-                    <li><a class="sub_menu" href="">关于华企</a>
-                        <ul class="dl-submenu">
-                            <li class="dl-back"><a href="#">返回上一级</a></li>
-                            <li><a href="">公司简介</a></li>
-                            <li><a href="">企业文化</a></li>
-                            <li><a href="">未来发展</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sub_menu" href="">业务介绍</a>
-                        <ul class="dl-submenu">
-                            <li class="dl-back"><a href="#">返回上一级</a></li>
-                            <li><a href="">公司简介</a></li>
-                            <li><a href="">企业文化</a></li>
-                            <li><a href="">未来发展</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sub_menu" href="">新闻中心</a>
-                        <ul class="dl-submenu">
-                            <li class="dl-back"><a href="#">返回上一级</a></li>
-                            <li><a href="">公司简介</a></li>
-                            <li><a href="">企业文化</a></li>
-                            <li><a href="">未来发展</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sub_menu" href="">成功案例</a>
-                        <ul class="dl-submenu">
-                            <li class="dl-back"><a href="#">返回上一级</a></li>
-                            <li><a href="">公司简介</a></li>
-                            <li><a href="">企业文化</a></li>
-                            <li><a href="">未来发展</a></li>
-                        </ul>  
-                    </li>
-                    <li><a href="">联系我们</a></li>
-                    <li><a href="">人才招聘</a></li>
-                    <li><a href="">留言板</a></li>
-                </ul>
-	    </div>
-		<script type="text/javascript">
-        $(function(){
-            $( '#dl-menu' ).dlmenu();
-        });
-        </script>   --> 
-     </div>
-</div>
-<!--头部部分结束-->     
-<!--banner图开始-->     
+<body>	
+		<div id="app">		
+			<header>
+			
+			<!--banner图开始-->     
 <div class="addWrap">
        <div class="swipe" id="mySwipe">
              <div class="swipe-wrap">
-                  <div><a href="yu.html"><img class="img-responsive" src="images/banner.jpg"/></a></div>
-                  <div><a href="liushi.html"><img class="img-responsive" src="images/banner.jpg" /></a></div>
-                  <div><a href="shu.html"><img class="img-responsive" src="images/banner.jpg"/></a></div>
+                  <div><a href="yu.html"><img class="img-responsive" src="images/banner1.jpg"/></a></div>
+                  <div><a href="liushi.html"><img class="img-responsive" src="images/banner2.jpg" /></a></div>
+                  <div><a href="shu.html"><img class="img-responsive" src="images/timg.jpg"/></a></div>
              </div>
             </div>
 	      <!--按转换按钮开始-->
@@ -110,69 +65,76 @@
      })
 </script>
 <!--banner结束-->
-<ul class="obj_box">
-    <li class="leftIn">
-       <a href=""><img src="images/obj_icon1.png"/></a>
-       <h1>纸质类废品</h1>
-       <P></P>
-    </li>
-    
-    <li class="leftIn">
-       <a href=""><img src="images/obj_icon2.png"/></a>
-       <h1>塑料类废品</h1>
-       <P></P>
-    </li>
-    
-    <li class="rightIn">
-       <a href=""><img src="images/obj_icon3.png"/></a>
-       <h1>金属类废品</h1>
-       <P></P>
-    </li>
-     
-     <li class="rightIn">
-       <a href=""><img src="images/obj_icon4.png"/></a>
-       <h1>其他种类废品</h1>
-       <P></P>
-    </li>
-</ul>
-<!--<img class="obj_pic leftIn1" src="images/title1.png"/>-->
-<a class="obj_box2 rightIn1" href="">
- 回收要求：</a>
-<!--<img class="obj_pic" src="images/title2.png"/>-->
-<div class="obj_box3">
-    <!-- <a href="">我的订单</a>   <a href="">我的积分</a>   <a href="">积分商城</a>-->
-    
-</div>
-
-<div class="footer_box">
-     <a href=""><img src="images/fot_icon1.png"/>首页</a>
-     <a href=""><img src="images/fot_icon2.png"/>订单管理</a>
-     <a href=""><img src="images/fot_icon3.png"/>积分管理</a>
-     <a href=""><img src="images/fot_icon4.png"/>积分商城</a>
-     
-</div>
-
-</div>
+			
+			
+			
+			
+			
+			
+			 <!-- <div style="height: 150px;width: 100%"><img style="height:150px;width: 100%" src="images/timg.jpg"/>
+			  </div>-->
+			  <div>
+				<div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;">当前用户：</p>
+				</div>
+				<div style="float:left;">
+				<img th:src="${headImg}" style="width: 50px;height: 50px; border-radius:250px;overflow: hidden;vertical-align:middle; float:left" />
+			    </div>
+			    <div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;" th:text="${nickName}"></p>
+				</div>
+				</div>
+			</header>		
+			<article>			
+				<div>				
+					<div style="float:left; width:33.3%">
+					<a href="http://aihuishou.nat300.top/paper" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/paper.jpg"/>
+					<pre style="font-size:15px;">纸质类废品</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/plastic.jpg"/>
+					<pre style="font-size:15px;">塑料类废品</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/metal.jpg"/>
+					<pre style="font-size:15px;">金属类废品</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/phone.jpg"/>
+					<pre style="font-size:15px;">废旧手机</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/elec.jpg"/>
+					<pre style="font-size:15px;">废旧家电</pre></a>
+					</div>
+						<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/furniture.jpg"/>
+					<pre style="font-size:15px;">废旧家具</pre></a>
+					</div>
+							<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:80px;width: 80px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/other.jpg"/>
+					<pre style="font-size:15px;">其他种类废品</pre></a>
+					</div>
+				</div>	
+					
+			</article>		
+		<footer>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<pre>首页</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<pre>订单管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+		</div>
+		</footer>	
+		</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

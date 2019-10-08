@@ -1,0 +1,32 @@
+package com.larry.service.impl;
+
+
+import java.util.List;
+
+import org.hibernate.criterion.Example;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.larry.dao.UserDAO;
+import com.larry.entity.UserPO;
+import com.larry.service.AuthUserService;
+@Service
+public class AuthUserServiceImpl implements AuthUserService{
+	@Autowired
+	private UserDAO userDao;
+
+	public UserPO save(UserPO user) {
+		// TODO Auto-generated method stub
+		return userDao.save(user);
+	}
+
+	public UserPO getUser(String weixinOpendID) {
+		// TODO Auto-generated method stub
+		UserPO user = new UserPO();
+		user.setWeixin_openId(weixinOpendID);
+		Example<UserPO> example = Example.of(user);
+		List<UserPO> userList = userDao.findAll(example);
+		return userList.get(1);
+	}
+
+}

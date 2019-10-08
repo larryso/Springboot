@@ -1,0 +1,12 @@
+package com.larry.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class OrderController {
+	@RequestMapping(value = "orderSubmit", method = RequestMethod.POST)
+	public String orderSubmit(@ModelAttribute Greeting greeting) {
+		return "result";
+	}
+}

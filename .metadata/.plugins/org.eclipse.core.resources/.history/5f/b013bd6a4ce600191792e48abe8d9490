@@ -1,0 +1,40 @@
+	*{
+			padding: 0;
+			margin: 0
+		}
+		html, body, #app, #home {
+		height: 100%;
+		width: 100%;
+		font-family: "microsoft yahei", 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		}
+		body, html {
+		  font-size: 11.25vw;
+		 
+		}
+		#app{			
+		display: flex;			
+		flex-direction: column;		
+		}		
+		header{			
+		height: 200px;											
+		}		
+		article{			
+		display: flex;			
+		flex: 1;			
+		overflow-y: auto;		
+		}
+		article>div{
+		flex: 1
+		}
+		article>div p{
+			font-size: 64px
+		}
+		footer{
+			display: flex;
+			height: 60px;
+			font-size: 15px;
+		}
+		footer>p{
+			flex: 1;
+			text-align: center;
+		}

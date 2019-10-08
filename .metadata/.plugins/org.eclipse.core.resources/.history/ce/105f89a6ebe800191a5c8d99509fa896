@@ -1,0 +1,8 @@
+package com.larry.bean;
+
+public class PaperRecOrderFormBean {
+	private String[] productId;
+	private String collectingDate;
+	
+
+}

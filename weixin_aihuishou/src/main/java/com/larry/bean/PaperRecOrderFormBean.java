@@ -1,0 +1,13 @@
+package com.larry.bean;
+
+import lombok.Data;
+
+@Data
+public class PaperRecOrderFormBean {
+	private String[] productId;
+	private String collectingDate;
+	private String city;
+	private String detail_address;
+	private String tel;
+
+}

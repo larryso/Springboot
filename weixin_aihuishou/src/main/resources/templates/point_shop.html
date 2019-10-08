@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"> 
 <head>
-  <title>广威再生资源有限公司</title>
+    <title>广威再生资源有限公司</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
     <meta name="viewport" content="width=device-width" />
@@ -10,42 +10,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
     <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
     <link href="css/style.css" rel="stylesheet" type="text/css">  
-	<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/modernizr.custom.js"></script>
     <script type="text/javascript" src="js/jquery.dlmenu.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src='js/hhSwipe.js' type="text/javascript"></script> 
-</head>
-<body>
-<div class="wrap_box">
-<!--头部部分开始-->
-<a class="logo" href=""><img src="images/logo.png"/></a>
-<div class="nav_box">
-     <a class="back_but" href="javascript:return false;"><img th:src="${headImg}" style="width: 30px;height: 30px; border-radius:250px;overflow: hidden;" /></a>
-     <p class="nav_title" th:text="${nickName}"></p>
-     <div class="menu">
-         
-     </div>
-</div>
-<!--头部部分结束-->     
-<!--banner图开始-->     
-<div class="addWrap">
-       <div class="swipe" id="mySwipe">
-             <div class="swipe-wrap">
-                  <div><a href="yu.html"><img class="img-responsive" src="images/banner.jpg"/></a></div>
-                  <div><a href="liushi.html"><img class="img-responsive" src="images/banner.jpg" /></a></div>
-                  <div><a href="shu.html"><img class="img-responsive" src="images/banner.jpg"/></a></div>
-             </div>
-            </div>
-	      <!--按转换按钮开始-->
-            <ul id="position">
-                   <li class="cur"></li>
-                   <li></li>
-                   <li></li>
-            </ul>
-          <!--按转换按钮结束-->  
-</div>
-<script type="text/javascript">
+    <script type="text/javascript">
 	var bullets = document.getElementById('position').getElementsByTagName('li');
 	var banner = Swipe(document.getElementById('mySwipe'), {
 		auto: 4000,
@@ -60,124 +30,74 @@
 		}
      })
 </script>
-<!--banner结束-->
-<!---内容开始-->
-<ul class="cgal_list">
-   <li class="show_box"><img src="images/cgal_pic1.jpg"/>
-       <div class="cgal_list_text">
-            <p></p>
-            <a href="">点击详情>></a>
-       </div>
-   </li>
-   <li class="show_box"><img src="images/cgal_pic1.jpg"/>
-       <div class="cgal_list_text">
-            <p></p>
-            <a href="">点击详情>></a>
-       </div>
-   </li>
-   <li class="show_box"><img src="images/cgal_pic1.jpg"/>
-       <div class="cgal_list_text">
-            <p></p>
-            <a href="">点击详情>></a>
-       </div>
-   </li>
-   <li class="show_box"><img src="images/cgal_pic1.jpg"/>
-       <div class="cgal_list_text">
-            <p></p>
-            <a href="">点击详情>></a>
-       </div>
-   </li>
-   
-  
-   <!--隐藏部分-->
-   <li class="hidden_box">
-      <ul class="hidden_box1">
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-          
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-          
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-          
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-          
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-          <li><img src="images/cgal_pic1.jpg"/>
-               <div class="cgal_list_text">
-                    <p></p>
-                    <a href="">点击详情>></a>
-               </div>
-          </li>
-      </ul>
-   </li>
-   <!--隐藏部分结束-->
-   <li id="more_but" onclick="javascript:this.innerHTML=(this.innerHTML=='显示更多'?'收起':'显示更多');">显示更多</li>
-    <script>
-      $("#more_but").click(function(){
-		   $(".hidden_box").slideToggle(1000);
-	  });
-   </script>
-</ul>
-<!--内容结束-->
-<!--页尾开始-->
-<div class="footer_box">
-     <a href=""><img src="images/fot_icon1.png"/>首页</a>
-     <a href=""><img src="images/fot_icon2.png"/>人才招聘</a>
-     <a href=""><img src="images/fot_icon3.png"/>留言板</a>
-     <a href=""><img src="images/fot_icon4.png"/>联系我们</a>
-</div>
-<!--页尾结束-->
-</div>
+</head>
+<body>	
+		<div id="app">		
+			<header>
+			  <div style="height: 150px;width: 100%"><img style="height:150px;width: 100%" src="images/timg.jpg"/>
+			  </div>
+				<div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;">当前用户：</p>
+				</div>
+				<div style="float:left;">
+				<img th:src="${headImg}" style="width: 50px;height: 50px; border-radius:250px;overflow: hidden;vertical-align:middle; float:left" />
+			    </div>
+			    <div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;" th:text="${nickName}"></p>
+				</div>
+			</header>		
+			<article>			
+				<div>		
+				<!--		
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/paper.jpg"/>
+					<pre style="font-size:15px;">纸质类废品</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/plastic.jpg"/>
+					<pre style="font-size:15px;">塑料类废品</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/metal.jpg"/>
+					<pre style="font-size:15px;">金属类废品</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/phone.jpg"/>
+					<pre style="font-size:15px;">废旧手机</pre></a>
+					</div>
+					<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/elec.jpg"/>
+					<pre style="font-size:15px;">废旧家电</pre></a>
+					</div>
+						<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/furniture.jpg"/>
+					<pre style="font-size:15px;">废旧家具</pre></a>
+					</div>
+							<div style="float:left; width:33.3%">
+					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/other.jpg"/>
+					<pre style="font-size:15px;">其他种类废品</pre></a>
+					</div>
+					-->
+				</div>	
+					
+			</article>		
+		<footer>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<pre>首页</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<pre>订单管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+		</div>
+		</footer>	
+		</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

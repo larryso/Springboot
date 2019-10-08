@@ -1,0 +1,5 @@
+package com.larry.entity;
+@Entiry
+public class ProductCatPO {
+
+}

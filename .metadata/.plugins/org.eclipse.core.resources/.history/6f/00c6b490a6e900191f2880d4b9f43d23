@@ -1,0 +1,13 @@
+package com.larry.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "t_rec")
+public class OrderPO {
+
+}

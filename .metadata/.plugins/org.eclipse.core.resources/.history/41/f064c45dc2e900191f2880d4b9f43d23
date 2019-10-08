@@ -1,0 +1,17 @@
+package com.larry.entity;
+
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "t_order_item")
+public class OrderItemsPO implements Serializable{
+
+}

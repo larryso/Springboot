@@ -1,0 +1,29 @@
+package com.larry.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.larry.bean.PaperRecOrderFormBean;
+import com.larry.bean.WeixinUser;
+
+@Controller
+public class OrderController {
+	@RequestMapping(value = "orderSubmit", method = RequestMethod.POST)
+	public String orderSubmit(HttpServletRequest request, HttpSession session, PaperRecOrderFormBean orderFormBean, Model model) {
+		WeixinUser weiXinUser = (WeixinUser) session.getAttribute("currentUser");
+		UserPO user = (UserPO)session.getAttribute("authUser");
+		String[] productsID = orderFormBean.getProductId();
+		String collectingDate = orderFormBean.getCollectingDate();
+		String city = orderFormBean.getCity();
+		String address= orderFormBean.getDetail_address();
+		String tel = orderFormBean.getTel();
+		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
+		model.addAttribute("nickName", weiXinUser.getNickname());
+		return "order_manage";
+	}
+}
