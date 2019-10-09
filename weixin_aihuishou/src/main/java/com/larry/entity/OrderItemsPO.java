@@ -16,12 +16,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
-
-@Data
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+@Getter
+@Setter
 @Entity
 @Table(name = "t_order_item")
 public class OrderItemsPO implements Serializable{
-	 @Id
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY) 
 	 @Column
 	 private int id;

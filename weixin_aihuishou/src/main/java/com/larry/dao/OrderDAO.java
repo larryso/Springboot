@@ -1,5 +1,17 @@
 package com.larry.dao;
 
-public interface OrderDAO {
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.larry.entity.OrderPO;
+import com.larry.entity.ProductPO;
+import com.larry.entity.UserPO;
+
+public interface OrderDAO extends JpaRepository<OrderPO, Integer>{
+	
+	@Query(value = "select * from t_order o where o.user_id=:id", nativeQuery = true)
+	public List<OrderPO> findOrdersByUserID(@Param("id")int userId);
 }

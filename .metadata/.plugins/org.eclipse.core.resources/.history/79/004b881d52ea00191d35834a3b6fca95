@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+    <title>广威再生资源有限公司</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><!--强制让文档与设备的宽度保持 1:1 ；
+    文档最大的宽度比列是1.0（ initial-scale 初始刻度值和 maximum-scale 最大刻度值）；user-scalable 定义用户是否可以手动缩放（ no 为不缩放），使页面固定设备上面的大小；-->
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
+    <link href="css/style.css" rel="stylesheet" type="text/css">  
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/jquery.dlmenu.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src='js/hhSwipe.js' type="text/javascript"></script> 
+    <script type="text/javascript">
+	var bullets = document.getElementById('position').getElementsByTagName('li');
+	var banner = Swipe(document.getElementById('mySwipe'), {
+		auto: 4000,
+		continuous: true,
+		disableScroll:false,
+		callback: function(pos) {
+			var i = bullets.length;
+			while (i--) {
+				bullets[i].className = ' ';
+			}
+			bullets[pos].className = 'cur';
+		}
+     })
+</script>
+<style type="text/css">
+
+}
+</style>
+<script type="text/javascript">  
+$(document).ready(function () {  
+  $('.tabs span').mouseover(function () {  
+    $('.tabs div').hide();
+    $(this).siblings('span')
+           .removeClass('active')
+           .end()
+           .addClass('active')
+           .next('div')
+           .show();
+  });  
+});  
+</script>
+</head>
+<body>	
+		<div id="app">		
+			<header>
+			  <div style="height: 150px;width: 100%"><img style="height:150px;width: 100%" src="images/timg.jpg"/>
+			  </div>
+				<div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;">当前用户：</p>
+				</div>
+				<div style="float:left;">
+				<img th:src="${headImg}" style="width: 50px;height: 50px; border-radius:250px;overflow: hidden;vertical-align:middle; float:left" />
+			    </div>
+			    <div style="float:left;text-align:center;height: 50px;line-height:50px">
+				<p style="font-size:15px;" th:text="${nickName}"></p>
+				</div>
+			</header>		
+			<article>	
+			<div id="order_content">		
+				<div style="position:fixed;width:100%;text-align:center; background-color:orange; float:left">订单列表</div>	
+				<div style="height:20px"></div>
+		
+				<div style="position:fixed;width:100%;">
+				<div style="float:left;width:33.3%;text-align:center;text-decoration:"><a id ="show_sub_id" href="javascript:void(0);" onclick="show_submit_order()" style="text-align:center;text-decoration: none;font-weight: bold;border-bottom:2px solid green;">已提交订单</a></div>	
+				<div style="float:left;width:33.3%;text-align:center;"><a id ="show_p_id" href="javascript:void(0);" onclick="show_processing_order()" style="text-align:center;text-decoration: none;">处理中订单</a></div>	
+				<div style="float:left;width:33.3%;text-align:center;"><a id="show_c_id" href="javascript:void(0);" onclick="show_closed_order()" style="text-align:center;text-decoration: none;">已完成订单</a></div>	
+				<div style="height:20px"></div>
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				</div>
+				<br />
+				<div style="height:20px"></div>
+				
+				<div id="sub_order_d" style="display:block">
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				dingdanbianhao:12
+				<br />
+				date:
+				<br />
+				dfasdfa
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				<br />
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				dingdanbianhao:12
+				<br />
+				date:
+				<br />
+				dfasdfa
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				<br />
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				dingdanbianhao:12
+				<br />
+				date:
+				<br />
+				dfasdfa
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				<br />
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				dingdanbianhao:12
+				<br />
+				date:
+				<br />
+				dfasdfa
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				<br />
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				dingdanbianhao:12
+				<br />
+				date:
+				<br />
+				dfasdfa
+				<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+				</div>
+				<div id="p_order_d" style="display:none">
+				</div>
+				<div id="c_order_d" style="display:none">
+				</div>
+			</div>
+			</article>		
+		<footer>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<pre>首页</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<pre>订单管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+		</div>
+		<div style="float:left; width:25%">
+			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+		</div>
+		</footer>	
+		</div>
+		
+		 <script type="text/javascript">
+    	 $(document).ready(function(){
+    	 	 $("#show_sub_id").click(function(){
+    	 	  $("#show_sub_id").attr("style","");
+    	 	  	 $("#show_sub_id").css({
+    	 	  	  "text-align":'center',
+    	 	 		"text-decoration": 'none',
+    	 	 		"font-weight": 'bold',
+    	 	 		"border-bottom":'2px solid green'
+    	 	 	});
+    	 	  $("#show_c_id").attr("style","");
+    	 	 $("#show_c_id").css({
+    	 	 		  "text-align":"center",
+    	 	 	 	 "text-decoration": "none"
+    	 	 	});
+    	 	 	 $("#show_p_id").attr("style","");
+    	 	 $("#show_p_id").css({
+    	 	 		  "text-align":"center",
+    	 	 	 	 "text-decoration": "none"
+    	 	 	});
+    	 	  
+    	 	 	$("#sub_order_d").show('slow');
+    	 	 	$("#p_order_d").hide();
+    	 	 	$("#c_order_d").hide();
+ 			 });
+ 			 $("#show_p_id").click(function(){
+ 			  	
+ 			  	 $("#show_sub_id").attr("style","");
+    	 	  	 $("#show_sub_id").css({
+    	 	  	   "text-align":"center",
+    	 	 	 	 "text-decoration": "none"
+    	 	 	});
+    	 	  $("#show_p_id").attr("style","");
+    	 	 $("#show_p_id").css({
+    	 	 		  "text-align":'center',
+    	 	 		"text-decoration": 'none',
+    	 	 		"font-weight": 'bold',
+    	 	 		"border-bottom":'2px solid green'
+    	 	 	});
+    	 	 	 $("#show_c_id").attr("style","");
+    	 	 $("#show_c_id").css({
+    	 	 		  "text-align":"center",
+    	 	 	 	 "text-decoration": "none"
+    	 	 	});
+ 			  	
+    	 	 	$('#sub_order_d').hide();
+    	 	 	$('#p_order_d').show('slow');
+    	 	 	$('#c_order_d').hide();
+ 			 });
+ 			 $("#show_c_id").click(function(){
+ 			  	
+ 			  	 $("#show_sub_id").attr("style","");
+    	 	  	 $("#show_sub_id").css({
+    	 	  	   "text-align":"center",
+    	 	 	 	 "text-decoration": "none"
+    	 	 	});
+    	 	  $("#show_p_id").attr("style","");
+    	 	 $("#show_p_id").css({
+    	 	 		  "text-align":"center",
+    	 	 	 	 "text-decoration": "none"
+    	 	 	});
+    	 	 	 $("#show_c_id").attr("style","");
+    	 	 $("#show_c_id").css({
+    	 	 		 "text-align":'center',
+    	 	 		"text-decoration": 'none',
+    	 	 		"font-weight": 'bold',
+    	 	 		"border-bottom":'2px solid green'
+    	 	 	});
+ 			  	
+    	 	 	$('#sub_order_d').hide();
+    	 	 	$('#p_order_d').hide();
+    	 	 	$('#c_order_d').show('slow');
+ 			 });
+    	 });
+    </script>
+</body>
+</html>
+

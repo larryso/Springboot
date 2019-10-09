@@ -1,6 +1,7 @@
 package com.larry.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,9 +19,12 @@ import com.larry.bean.PaperRecFormBean;
 import com.larry.bean.ProductBean;
 import com.larry.bean.WeixinUser;
 import com.larry.cache.EhCacheUtil;
+import com.larry.consts.OrderConst;
+import com.larry.entity.OrderPO;
 import com.larry.entity.ProductPO;
 import com.larry.entity.UserPO;
 import com.larry.service.AuthUserService;
+import com.larry.service.OrderService;
 import com.larry.service.WeixinUserService;
 import com.larry.utils.WeixinUtils;
 
@@ -30,6 +34,8 @@ public class MainController {
 	private WeixinUserService weixinUserService;
 	@Autowired
 	private AuthUserService userService;
+	@Autowired
+	private OrderService orderService;
 
 	@RequestMapping("/index")
 	public String indexPage(HttpServletRequest request, HttpSession session, Model model) {
@@ -40,13 +46,12 @@ public class MainController {
 		} else {
 			String code = request.getParameter("code");
 			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
-			weiXinUser=getWeixinUser(session,code);
+			weiXinUser = getWeixinUser(session, code);
 			session.setAttribute("currentUser", weiXinUser);
 			System.out.println(weiXinUser.getHeadImgUrl());
-			
 
 		}
-		if(session.getAttribute("authUser") == null) {
+		if (session.getAttribute("authUser") == null) {
 			UserPO user = userService.getUser(weiXinUser.getOpenId());
 			session.setAttribute("authUser", user);
 		}
@@ -55,6 +60,7 @@ public class MainController {
 		return "index";
 
 	}
+
 	@RequestMapping("/point_shop")
 	public String pointShopPage(HttpServletRequest request, HttpSession session, Model model) {
 		WeixinUser weiXinUser = null;
@@ -63,17 +69,17 @@ public class MainController {
 		} else {
 			String code = request.getParameter("code");
 			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
-			weiXinUser=getWeixinUser(session,code);
+			weiXinUser = getWeixinUser(session, code);
 			session.setAttribute("currentUser", weiXinUser);
 			System.out.println(weiXinUser.getHeadImgUrl());
-			
 
 		}
 		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
 		model.addAttribute("nickName", weiXinUser.getNickname());
-		
+
 		return "point_shop";
 	}
+
 	@RequestMapping("/my_order")
 	public String orderCenter(HttpServletRequest request, HttpSession session, Model model) {
 		WeixinUser weiXinUser = null;
@@ -82,20 +88,65 @@ public class MainController {
 		} else {
 			String code = request.getParameter("code");
 			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
-			weiXinUser=getWeixinUser(session,code);
+			weiXinUser = getWeixinUser(session, code);
 			session.setAttribute("currentUser", weiXinUser);
 			System.out.println(weiXinUser.getHeadImgUrl());
-			
 
 		}
-		if(session.getAttribute("authUser") == null) {
+		if (session.getAttribute("authUser") == null) {
 			UserPO user = userService.getUser(weiXinUser.getOpenId());
 			session.setAttribute("authUser", user);
 		}
 		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
 		model.addAttribute("nickName", weiXinUser.getNickname());
+		UserPO user = (UserPO) session.getAttribute("authUser");
+		List<OrderPO> orderList = orderService.getAllOrdersByUserID(user.getId());
+		List<OrderPO> newOrCancledOrders = new ArrayList<OrderPO>();
+		List<OrderPO> processingOrders = new ArrayList<OrderPO>();
+		List<OrderPO> closedOrders = new ArrayList<OrderPO>();
+		for (OrderPO order : orderList) {
+			int status = order.getStatus();
+			if (OrderConst.NEW_ORDER == status || OrderConst.CANCLED_ORDER == status) {
+				newOrCancledOrders.add(order);
+			} else if (OrderConst.PROCESSING_ORDER == status) {
+				processingOrders.add(order);
+			} else if (OrderConst.CLOSED_ORDER == status) {
+				closedOrders.add(order);
+			}
+		}
+		if (newOrCancledOrders.size() > 0) {
+			newOrCancledOrders.sort(new Comparator<OrderPO>() {
+
+				public int compare(OrderPO o1, OrderPO o2) {
+					return o2.getId() - o1.getId();
+				}
+
+			});
+		}
+		if (processingOrders.size() > 0) {
+			processingOrders.sort(new Comparator<OrderPO>() {
+
+				public int compare(OrderPO o1, OrderPO o2) {
+					return o2.getId() - o1.getId();
+				}
+
+			});
+		}
+		if (closedOrders.size() > 0) {
+			closedOrders.sort(new Comparator<OrderPO>() {
+
+				public int compare(OrderPO o1, OrderPO o2) {
+					return o2.getId() - o1.getId();
+				}
+
+			});
+		}
+		model.addAttribute("newOrCancledOrders", newOrCancledOrders);
+		model.addAttribute("processingOrders", newOrCancledOrders);
+		model.addAttribute("closedOrders", newOrCancledOrders);
 		return "order_manage";
 	}
+
 	@RequestMapping("/my_point")
 	public String PointCenter(HttpServletRequest request, HttpSession session, Model model) {
 		WeixinUser weiXinUser = null;
@@ -104,13 +155,12 @@ public class MainController {
 		} else {
 			String code = request.getParameter("code");
 			System.out.println("@@@@@@@@@@@@@@@@@TESTING@@@@@@@@@@@@@@@@");
-			weiXinUser=getWeixinUser(session,code);
+			weiXinUser = getWeixinUser(session, code);
 			session.setAttribute("currentUser", weiXinUser);
 			System.out.println(weiXinUser.getHeadImgUrl());
-			
 
 		}
-		if(session.getAttribute("authUser") == null) {
+		if (session.getAttribute("authUser") == null) {
 			UserPO user = userService.getUser(weiXinUser.getOpenId());
 			session.setAttribute("authUser", user);
 		}
@@ -118,26 +168,25 @@ public class MainController {
 		model.addAttribute("nickName", weiXinUser.getNickname());
 		return "point_manage";
 	}
+
 	@RequestMapping("/paper")
 	public String paperReconciliate(HttpServletRequest request, HttpSession session, Model model) {
 		WeixinUser weiXinUser = (WeixinUser) session.getAttribute("currentUser");
-		if(session.getAttribute("authUser") == null) {
+		if (session.getAttribute("authUser") == null) {
 			UserPO user = userService.getUser(weiXinUser.getOpenId());
 			session.setAttribute("authUser", user);
 		}
 		model.addAttribute("headImg", weiXinUser.getHeadImgUrl());
 		model.addAttribute("nickName", weiXinUser.getNickname());
 		List<ProductPO> productList = (List<ProductPO>) EhCacheUtil.get(EhCacheUtil.CACHE_KEY_PROD);
-		List<ProductPO> paperProduct= new ArrayList<ProductPO>();
-		for(ProductPO p: productList) {
-			System.out.println(p.getName());
-			System.out.println(p.getProductCat().getId());
-			if(1==p.getProductCat().getId()) {
-				System.out.println(p.getProductCat().getId());
+		List<ProductPO> paperProduct = new ArrayList<ProductPO>();
+		for (ProductPO p : productList) {
+
+			if (1 == p.getProductCat().getId()) {
 				paperProduct.add(p);
 			}
 		}
-		model.addAttribute("paperProducts",paperProduct);
+		model.addAttribute("paperProducts", paperProduct);
 		return "paper_rec";
 	}
 

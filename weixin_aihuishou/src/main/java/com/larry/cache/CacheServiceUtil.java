@@ -1,6 +1,8 @@
 package com.larry.cache;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,10 +20,14 @@ public class CacheServiceUtil implements CommandLineRunner{
 
 	public void run(String... args) throws Exception {
 		List<ProductPO> productList = productService.loadAllProducts();
-//		for(ProductPO p: productList) {
-//			System.out.println(p.getName());
-//		}
+		Map<String, ProductPO> productMap = new HashMap<String, ProductPO>();
+		
+		for(ProductPO p: productList) {
+			String prodID = Integer.toString(p.getId());
+			productMap.put(prodID, p);
+		}
 		EhCacheUtil.put(EhCacheUtil.CACHE_KEY_PROD, productList);
+		EhCacheUtil.put(EhCacheUtil.CACHE_KEY_HASHPROD, productMap);
 	}
 
 }

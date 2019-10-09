@@ -1,0 +1,12 @@
+package com.larry.consts;
+
+public class OrderConst {
+	enum OrderStatus{
+		NEW_SUB(0),PROCESSING(1),CLOSED(2);
+		private int status;
+		OrderStatus(int status){
+			this.status = status;
+		}
+	}
+
+}

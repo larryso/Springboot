@@ -16,8 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
-
-@Data
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+@Getter
+@Setter
 @Entity
 @Table(name = "t_order")
 public class OrderPO implements Serializable{
@@ -29,6 +32,8 @@ public class OrderPO implements Serializable{
 	 private String order_number ;
 	 @Column
 	 private int user_id;
+	 @Column
+	 private String product_type;
 	 @Column
 	 private String address;
 	 @Column
