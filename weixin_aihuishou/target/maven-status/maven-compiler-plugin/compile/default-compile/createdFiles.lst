@@ -1,5 +1,4 @@
-com/larry/utils/SecuritySHA1Util.class
-com/larry/utils/CheckUtil.class
-com/larry/controller/TestController.class
 com/larry/servlet/WeixinServlet.class
+com/larry/utils/CheckUtil.class
 com/larry/App.class
+com/larry/utils/SecuritySHA1Util.class

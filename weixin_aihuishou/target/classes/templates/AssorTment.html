@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="author" content="AUI, a-ui.com">
+	<title>回收e客网上商城</title>
+	<script src="themes/js/aui.js"></script>
+	<script type="text/javascript">
+        !function(J){function H(){var d=E.getBoundingClientRect().width;var e=(d/7.5>100*B?100*B:(d/7.5<42?42:d/7.5));E.style.fontSize=e+"px",J.rem=e}var G,F=J.document,E=F.documentElement,D=F.querySelector('meta[name="viewport"]'),B=0,A=0;if(D){var y=D.getAttribute("content").match(/initial\-scale=([\d\.]+)/);y&&(A=parseFloat(y[1]),B=parseInt(1/A))}if(!B&&!A){var u=(J.navigator.appVersion.match(/android/gi),J.navigator.appVersion.match(/iphone/gi)),t=J.devicePixelRatio;B=u?t>=3&&(!B||B>=3)?3:t>=2&&(!B||B>=2)?2:1:1,A=1/B}if(E.setAttribute("data-dpr",B),!D){if(D=F.createElement("meta"),D.setAttribute("name","viewport"),D.setAttribute("content","initial-scale="+A+", maximum-scale="+A+", minimum-scale="+A+", user-scalable=no"),E.firstElementChild){E.firstElementChild.appendChild(D)}else{var s=F.createElement("div");s.appendChild(D),F.write(s.innerHTML)}}J.addEventListener("resize",function(){clearTimeout(G),G=setTimeout(H,300)},!1),J.addEventListener("pageshow",function(b){b.persisted&&(clearTimeout(G),G=setTimeout(H,300))},!1),H()}(window);
+        if (typeof(M) == 'undefined' || !M){
+            window.M = {};
+        }
+	</script>
+	<link rel="stylesheet" href="themes/css/base.css">
+	<link rel="stylesheet" href="themes/css/home.css">
+	<link rel="stylesheet" href="themes/css/icon.css">
+</head>
+<body>
+<header class="mui-bar mui-bar-nav header">
+	<a class="mui-action-back mui-icon mui-pull-left" th:href="@{/shop_main}">
+		<i class="icon-aui icon-back"></i>
+	</a>
+	<h1 class="mui-title">回收e客网上商城</h1>
+	<a class="mui-action-back mui-icon mui-pull-right"  th:href="@{/My_info}">
+		<img th:src="${headImg}" style="width: 30px;height: 30px; border-radius:250px;overflow: hidden;vertical-align:middle; float:left"  />
+	</a>
+</header>
+<div class="mui-content">
+
+	<!--分类-->
+	<div class="title">
+		<img src="themes/img/class/title.png"/>
+	</div>
+	<ul class="mui-table-view mui-grid-view mui-grid-9 category">
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(0).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(0).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(0).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',categoryId=${categoryList.get(1).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(1).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(1).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(2).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(2).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(2).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(3).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(3).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(3).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(4).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(4).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(4).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(5).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(5).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(5).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(6).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(6).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(6).img_url}}"/>
+                </span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+			<a th:href="@{/find_products(operation='find_prods_byCategory',,categoryId=${categoryList.get(7).id})}">
+				<div class="mui-media-body" th:text="${categoryList.get(7).category_name}"></div>
+				<span>
+					<img th:src="@{${categoryList.get(7).img_url}}"/>
+                </span>
+			</a>
+		</li>
+	
+	</ul>
+</div>
+<!--底部导航-->
+<div class="jl"></div>
+<nav class="mui-bar mui-bar-tab">
+	<a class="mui-tab-item" th:href="@{/shop_main}">
+                <span class="mui-icon ">
+                    <i class="icon-aui icon-home"></i>
+                </span>
+		<span class="mui-tab-label">首页</span>
+	</a>
+	<a class="mui-tab-item mui-active" th:href="@{/category}">
+                <span class="mui-icon">
+                    <i class="icon-aui icon-class"></i>
+                </span>
+		<span class="mui-tab-label">分类</span>
+	</a>
+	<a class="mui-tab-item" th:href="@{/Shopping_Cart}">
+                <span class="mui-icon">
+                    <i class="icon-aui icon-car"></i>
+                </span>
+		<span class="mui-tab-label">购物车</span>
+	</a>
+	<a class="mui-tab-item" th:href="@{/My_info}">
+                <span class="mui-icon">
+                    <i class="icon-aui icon-my"></i>
+                </span>
+		<span class="mui-tab-label">我的</span>
+	</a>
+</nav>
+<script>
+    mui('body').on('tap', 'a', function() {
+        window.top.location.href = this.href;
+    });
+</script>
+</body>
+</html>

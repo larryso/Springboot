@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+		<title>回收e客网上商城</title>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="int_title"><a href="javascript:history.back(-1)"><img src="images/jifen/left.png"/></a><span class="int_pic"></span>收货地址</div>
+			<div class="m_pwd topline">
+				<div class="confirm">
+				<div th:each="userAddress:${allAddress}">
+					<ul>
+						<li class="fl addr_1 add_main">
+							<a th:href="@{/chooseAddress2(address_id=${userAddress.id})}"><img src="images/adress/addr.png" /></a>
+						</li>
+						<li class="fl addr_2 add_main">
+							<span class="add_txt add_color" th:text="${userAddress.name}+' '+${userAddress.tel}"></span>
+							<span class="add_txt"  th:text="${userAddress.address}"></span>
+						</li>
+						<li class="fr addr_3 add_main"><a th:href="@{/updateAddress2(address_id=${userAddress.id})}">编辑</a></li>
+					</ul>
+					<HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+					</div>
+				</div>
+				<div class="con_sub address">
+					<a th:href="@{/newAddress2}" class="con_ti address_ti">+ 新建地址</a>
+				</div>
+			</div>
+		</div>
+			<script type="text/javascript" src="js/rem.js" ></script>
+			<script type="text/javascript" src="js/swiper.min.js" ></script>
+			<script type="text/javascript" src="js/seasonal.js" ></script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>讯收侠-个人中心</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+   
+          <style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}		
+ 				.top{top:0;z-index:1; height:opx;}		
+ 				.con{top:0px; bottom:50px; overflow:auto;}		
+ 				.bottom{bottom:0;z-index:1; height:50px;} 	
+        </style>
+    </head>
+    <body>
+    <div class="con">
+     <div class="weui-panel">
+        <div class="weui-panel__hd">地址列表</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+          <div th:each="address:${allAddress}">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access" th:href="@{/selectedAddrFromManage(selected_address=${address.id})}">
+                
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h3 class="weui-media-box__title" th:text="${address.name} + ${address.tel}"></h3>
+                  <p th:text="${address.address}"></p>
+                </div>
+                <span class="weui-cell__ft"></span>
+              </a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="weui-btn-area">
+      	<a class="weui-btn weui-btn_primary" th:href="@{/addNewAddress(from_url='address_manage')}" id="add_new_address">+ 添加新地址</a>
+    	</div>
+</div>
+<!-- footer nav--> 
+	<div class="bottom"> 
+   <div class="weui-tabbar">
+        <a th:href="@{/index}" class="weui-tabbar__item">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_home.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">首页</p>
+        </a>
+        <a th:href="@{/my_order}" class="weui-tabbar__item">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_nav_form.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">订单管理</p>
+        </a>
+        <a th:href="@{/my_point}" class="weui-tabbar__item weui-bar__item--on">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_center.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">个人中心</p>
+        </a>
+      </div>
+    </div>
+        </div>
+<!--footer nav end-->
+ <script src="lib/jquery-2.1.4.js"></script>
+     <script src="lib/jquery-weui.js"></script>
+	<script type="text/javascript" th:if="${INFO_MSG == 'default_set'}" >
+    $.toptip('地址更新成功', 'success');
+    </script>
+    </body>
+</html>

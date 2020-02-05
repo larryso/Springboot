@@ -15,18 +15,28 @@ public class OrderServiceImpl implements OrderService {
 	private OrderDAO orderDao;
 
 	public PaperRecFormBean preparePaperRecForm() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public OrderPO save(OrderPO order) {
-		// TODO Auto-generated method stub
 		return orderDao.save(order);
 	}
 
 	public List<OrderPO> getAllOrdersByUserID(int userID) {
-		// TODO Auto-generated method stub
 		return orderDao.findOrdersByUserID(userID);
+	}
+
+	public OrderPO getOrderByID(int orderID) {
+		return orderDao.findOrdersByID(orderID);
+	}
+
+	public OrderPO updateOrder(OrderPO order) {
+		return orderDao.save(order);
+	}
+
+	public List<OrderPO> getAllNewOrders() {
+		// TODO Auto-generated method stub
+		return orderDao.getAllNewOrders();
 	}
 
 }

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+				<title>回收e客网上商城</title>
+	</head>
+	<body>
+		<div id="wrapper">
+			<!--头部搜索框 start-->
+			<div class="wf-search" id="search">
+				<header>
+					<div class="jd-logo">
+						<a th:href="@{/index}"><i class="sprite-icon"></i></a>
+					</div>
+					<div class="search">
+						<form>	
+							<span class="sprite-icon"></span>
+							<input type="search" placeholder="wwww 每满199减100！">
+						</form>
+					</div>
+					<div class="login">
+					<a th:href="@{/My_info}" id="loginmain">
+					<img th:src="${headImg}" style="width: 40px;height: 40px; border-radius:250px;overflow: hidden;vertical-align:middle; float:left"  />
+					</a>
+				
+					</div>
+				</header>
+			</div>
+			<!--头部搜索框 end-->
+			<div class="Integral_mall clearfix">
+				<div class="integ_box topline clearfix">
+					<div class="integ_left fl">
+						<ul class="integ_ul">
+							<li class="integ_li integ_back">
+								<span th:text="${categoryList.get(0).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(1).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(2).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(3).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(4).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(5).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(6).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<li class="integ_li topline">
+								<span th:text="${categoryList.get(7).category_name}"></span>
+								<p class="integ_border"></p>
+							</li>
+							<p class="integ_top topline"></p>
+						</ul>
+					</div>
+					<div class="integ_right clearfix fr">
+					<!--//// category 1---------->
+						<ul class="integ_main clearfix" style="display: block;">
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 1}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+
+						</ul>
+						<!-- ////category 2----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 2}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+						
+						<!-- ////category 3----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 3}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+						<!-- ////category 4----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 4}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+						<!-- ////category 5----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 5}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+						<!-- ////category 6----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 6}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+						<!-- ////category 7----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 7}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+						<!-- ////category 8----->
+						<ul class="integ_main clearfix" >
+						<div th:each="prod:${allProds}">
+						  <a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}"  th:if="${prod.category.id == 8}">
+								<li class="integ_con fl">
+									<img th:src="@{${prod.product_image}}">
+									<span class="integ_text" th:text="${prod.product_name}"></span>
+								</li>
+							</a>
+						</div>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+			<!--menu  start-->
+			<div id="menu">
+				<ul>
+						<li><a th:href="@{/shop_main}"><font class="iconfont">&#xe612;</font><span class="inco_txt">首页</span></a></li>
+						<li><a th:href="@{/category}" class="red"><font class="iconfont">&#xe660;</font><span class="inco_txt">分类</span></a></li>
+						<li><a th:href="@{/Shopping_Cart}"><font class="iconfont index">&#xe63e;</font><span class="inco_txt">购物车</span></a></li>
+						<li><a th:href="@{/My_info}"><font class="iconfont">&#xe62e;</font><span class="inco_txt">我的</span></a></li>
+					</ul>
+			</div> 
+			<!--menu  end-->
+			<script type="text/javascript" src="js/rem.js" ></script>
+			<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+			<script src="js/fill_name.js"></script>
+			<script type="text/javascript" src="js/menu.js" ></script>
+			<script type="text/javascript" src="js/top.js" ></script>
+	</body>
+</html>

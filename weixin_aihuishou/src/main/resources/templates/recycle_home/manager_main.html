@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>回收员后台系统</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+        <style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}		
+ 				.top{top:0;z-index:1; height:opx;}		
+ 				.con{top:0px; bottom:50px; overflow:auto;}		
+ 				.bottom{bottom:0;z-index:1; height:50px;} 	
+        </style>
+     
+     
+    </head>
+    <body>
+    <div class="wrap">
+    	<div class="con">
+  				<div class="weui-panel weui-panel_access">
+        		<div class="weui-panel__hd">所有已提交订单</div>
+			   	<div class="weui-panel__bd" th:each="order:${newOrders}">
+    
+                <a th:href="@{/manager_order_details/show(orderID=${order.id},from=manager)}" class="weui-media-box weui-media-box_appmsg">  
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" th:text="'订单编号：'+${order.order_number}"></h4>
+                        
+                       <p style="font-size:13px;" th:text="'订单提交时间:'+${order.created_date}"></p>
+                       <p style="font-size:13px;" th:text="'订单种类：'+${order.productCat.name}"></p>
+                       <p style="font-size:13px;" th:if="${order.status} ==0" >订单状态：<span style="color:green">已提交待处理...</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 2">订单状态：<span style="color:green">已完成</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 3">订单状态：<span style="color:red">已取消</span></p>
+                    </div>
+                </a>
+                <div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+        	</div>
+			</div>
+		</div>
+<!-- footer nav-->  
+			<div class="bottom">
+  				<div class="weui-tabbar">
+        		<a th:href="@{/manager_main}" class="weui-tabbar__item weui-bar__item--on">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_nav_form.png" alt="">
+          			</div>
+          			<p class="weui-tabbar__label">新订单</p>
+        		</a>
+        		<a th:href="@{/manager/my_center}" class="weui-tabbar__item">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_center.png" alt="">
+          			</div>
+         			<p class="weui-tabbar__label">我的菜单</p>
+        		</a>
+      		</div>
+      	</div>
+<!--footer nav end-->
+     </div>
+     <script src="lib/jquery-2.1.4.js"></script>
+     <script src="lib/jquery-weui.js"></script>
+ 	<script type="text/javascript" th:if="${INFO_MSG == 'pick_success'}" >
+    $.toptip('抢单成功', 'success');
+    </script>
+    </body>
+</html>

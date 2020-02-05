@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"> 
 <head>
-    <title>广威再生资源有限公司</title>
+    <title>回收客</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
     <meta name="viewport" content="width=device-width" />
@@ -48,53 +48,47 @@
 			</header>		
 			<article>			
 				<div>		
-				<!--		
-					<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/paper.jpg"/>
-					<pre style="font-size:15px;">纸质类废品</pre></a>
+					<div style="position:fixed;width:100%;background-color:orange; ">
+					<p style="font-size:15px;float:left;width: 23%;height: 20px;display: block;line-height: 20px;text-align: center;">我的积分：</P><p style="font-size:15px;float:left;width: 15%;height: 20px;display: block;line-height: 20px;text-align: center;" th:text="${payableScore}"></P>
+					<a th:href="@{/point_shop}" style=" color:green;text-align:right;display:block; vertical-align: middle;text-decoration:none;float:right;width:62%;font-size:15px">点击兑换>>></a>
 					</div>
-					<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/plastic.jpg"/>
-					<pre style="font-size:15px;">塑料类废品</pre></a>
+					<div style="height:20px"></div>
+			   <br />
+				<div><p style="font-size:15px;float:left;">积分变动记录：</p></div>
+				 <br /> <br />
+					<div>
+							<div style="float:left; width:40%;"> <p style="font-size:15px;">日期</p></div>
+							<div style="float:left; width:30%"> <p style="font-size:15px;">积分</p></div>
+							<div style="float:left; width:30%"> <p style="font-size:15px;" >原因描述</p></div>
 					</div>
-					<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/metal.jpg"/>
-					<pre style="font-size:15px;">金属类废品</pre></a>
+					<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+					<div  th:each="score:${displayableScore}">
+					<div>
+							<div style="float:left; width:40%;"> <p style="font-size:15px;" th:text="${score.create_time}"></p></div>
+							<div style="float:left; width:30%" th:if="${score.score_type == 0}"> <p style="font-size:15px;" th:text="'+'+${score.score}"></p></div>
+							<div style="float:left; width:30%" th:if="${score.score_type == 1}"> <p style="font-size:15px;"  th:text="'-'+${score.score}"></p></div>
+							<div style="float:left; width:30%" th:if="${score.score_type == 0}"> <p style="font-size:15px;" >积分增加</p></div>
+							<div style="float:left; width:30%" th:if="${score.score_type == 1}"> <p style="font-size:15px;" >兑换抵扣</p></div>
 					</div>
-					<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/phone.jpg"/>
-					<pre style="font-size:15px;">废旧手机</pre></a>
 					</div>
-					<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/elec.jpg"/>
-					<pre style="font-size:15px;">废旧家电</pre></a>
-					</div>
-						<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/furniture.jpg"/>
-					<pre style="font-size:15px;">废旧家具</pre></a>
-					</div>
-							<div style="float:left; width:33.3%">
-					<a href="" style=" text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:100px;width: 100px;vertical-align: middle;" src="images/other.jpg"/>
-					<pre style="font-size:15px;">其他种类废品</pre></a>
-					</div>
-					-->
-				</div>	
+				</div>
+				
 					
 			</article>		
 		<footer>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<a th:href="@{/index}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
 			<pre>首页</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<a th:href="@{/my_order}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
 			<pre>订单管理</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+			<a th:href="@{/my_point}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+			<a th:href="@{/point_shop}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
 		</div>
 		</footer>	
 		</div>

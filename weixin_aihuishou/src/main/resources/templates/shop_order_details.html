@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+		<title>回收e客网上商城</title>
+	</head>
+	<body>
+		<div id="wrapper" class="m_pwd">
+			<div class="int_title">订单详情</div>
+				<div class="fill_order clearfix">
+					<ul class="fill_box">
+						<li class="fill_left fill_list fl">
+							<span class="fill_span" th:text="${address.name}+ '     '+${address.tel}"></span>
+							<p class="fill_pic clearfix">
+								<span class="span_pic fl"><img src="images/ddxq/icon.png"></span>
+								<span class="span_text fr" th:text="${address.address}"></span>
+							</p>
+						</li>					
+					</ul>
+				</div>
+			<!--banner start-->	
+			<div class="order">
+				<p class="o_txt clearfix" th:text="${order.order_number}">
+				</p>
+			
+			  <p class="o_txt clearfix" th:if="${order.status == 0}">已支付，待发货</p>
+					<p class="o_txt clearfix" th:if="${order.status == 1}">待支付</p>
+					<p class="o_txt clearfix" th:if="${order.status == 2}">已发货,待确认</p>
+					<p class="o_txt clearfix" th:if="${order.status == 3}">已确认收货</p>
+				
+				<div th:each="shopOrderItem:${order.orderItems}">
+				<dl class="order_box topline clearfix">
+					<dt class="order_pic fl">
+						<img th:src="@{${shopOrderItem.product.product_image}}" />
+					</dt>
+					<dd class="order_txt fr">
+						<p class="order_con" th:text="${shopOrderItem.product.product_name}"></p>
+						<span class="order_line" th:text="'规格：'+${shopOrderItem.product.product_specification}"></span>
+						<p class="order_number clearfix" th:text="${shopOrderItem.product.point_price+' 积分 x'+shopOrderItem.number}"></p>
+					</dd>
+				</dl>
+				</div>
+			</div>
+			<div class="payment">
+				<p class="p_info">
+					支付信息
+				</p>
+				<p class="p_content topline">
+					<span class="p_c_txt">支付方式：积分兑换</span>
+					<span class="p_c_txt" th:text="'下单时间：'+${order.created_date}"></span>
+					<!--<span class="p_c_txt" th:if="${shopOrder.status == 2}" th:text="'发货时间：'+${order.end_date}"></span>-->
+					<span class="p_c_txt" th:text="'支付积分：'+${order.total_price_score}"></span>
+				</p>
+			</div>
+			</div>
+			<!--menu  end-->
+			<script type="text/javascript" src="js/rem.js" ></script>
+	</body>
+</html>

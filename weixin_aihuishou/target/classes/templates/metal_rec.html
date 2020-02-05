@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"> 
 <head>
-    <title>广威再生资源有限公司</title>
+    <title>回收客</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
     <meta name="viewport" content="width=device-width" />
@@ -83,18 +83,18 @@
 			</article>		
 		<footer>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<a th:href="@{/index}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
 			<pre>首页</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<a th:href="@{/my_order}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
 			<pre>订单管理</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+			<a th:href="@{/my_point}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+			<a th:href="@{/point_shop}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
 		</div>
 		</footer>	
 		</div>

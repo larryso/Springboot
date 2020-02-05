@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+         <title>回收员后台系统</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" th:href="@{/lib/weui.min.css}"/>
+        <link rel="stylesheet" th:href="@{/lib/jquery-weui.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/recycle_style.css}"/>
+    </head>
+    <body>
+ <header class='demos-header'>
+      <div style="background-color:orange;width:100%;height:40px; text-align:center;line-height:40px">订单详情</div>
+    </header>
+    <form id="handle_order_id" th:action="@{/handle_order}" method="post">	
+    <input id="order_rejected_reason_id" type="hidden" name="order_rejected_reason" > 
+    <input id="action_type_id" type="hidden" name="action_type" > 
+    <input id="orderId_id" type="hidden" name="orderId" th:value="${order.id}"> 
+    <div class="weui-form-preview">
+    <div class="weui-cells" th:if="${address} != null">
+  		
+  		<a class="weui-cell weui-cell_access" href="#" >
+    		<div class="weui-cell__hd">
+      			<img  th:src="@{/images/recycle_home/location.png}" alt="" style="width:30px;margin-right:5px;display:block">
+    		</div>
+    		 <div class="weui-cell__bd weui-cell_primary">
+    		 <h3 class="weui-media-box__title" th:text="${address.name} + ${address.tel}"></h3>
+                  <p th:text="${address.address}"></p>
+    		 </div>   
+    	
+  		</a>
+	</div>
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">付款金额（单位：元）:</label>
+          <em class="weui-form-preview__value" id="total_price_id">*</em>
+        </div>
+      </div>
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单编号：</label>
+          <span class="weui-form-preview__value" th:text="${order.order_number}"></span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单提交时间:</label>
+          <span class="weui-form-preview__value" th:text="${order.created_date}"></span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单种类：</label>
+          <span class="weui-form-preview__value" th:text="${order.productCat.name}"></span>
+        </div>
+         <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">预约回收时间：</label>
+          <span class="weui-form-preview__value"  th:text="${order.start_date}"></span>
+        </div>
+      
+         
+      </div>
+        <div class="weui-cells__title">明细：</div>
+        <div class="weui-cells">
+        <div th:each="item:${items}">
+          <div class="weui-cell">
+           
+            <div class="weui-cell__bd">
+              <p th:text="${item.product_name}+':'"></p>
+            </div>
+            <div class="weui-cell__ft"><input class="weui-input" type="number" pattern="[0-9]*" placeholder="输入金额（单位：元）"  th:name="${item.id}">
+</div>
+          </div>
+          </div>
+        </div>
+        
+         <div class="weui-cells__title">客户要求：</div>
+		<div class="weui-cells weui-cells_form">
+  			<div class="weui-cell">
+    			<div class="weui-cell__bd">
+     			 <textarea class="weui-textarea" rows="3" disabled th:text="${order.comments}"></textarea>
+   			 </div>
+  		</div>
+		</div>
+	</form>	
+      <div class="weui-form-preview__ft">
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" id="cancle_id" href="javascript:">取消订单</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" id="close_id" href="javascript:">关闭订单</a>
+      </div>
+    </div>
+  <script th:src="@{/lib/jquery-2.1.4.js}"></script>
+     <script th:src="@{/lib/jquery-weui.js}"></script>
+<script type="text/javascript">
+   $(document).ready(function(){
+   var total_price = 0;
+   var p_value = 0;
+   		
+        $("#close_id").click(function(){
+        	var submit_flag = true;
+            $(".weui-input").each(function(){
+				if($(this).val() == ''){
+  					$.alert("明细金额不可为空！");	
+  					submit_flag = false	
+  					return false;
+				}else{
+				}
+			
+			});
+			if(submit_flag==true){
+				$("#action_type_id").val("close_order");
+         	    $("#handle_order_id").submit();
+			}
+          
+        });
+         $("#cancle_id").click(function(){
+        $.prompt({
+          text: "输入取消订单原因",
+          title: "取消订单原因",
+          onOK: function(text) {
+           
+            $("#order_rejected_reason_id").val(text);
+            $("#action_type_id").val("reject_order");
+            $("#handle_order_id").submit();
+          },
+          onCancel: function() {
+            console.log("取消了");
+          },
+         
+        });
+         
+        });
+         
+        
+        
+    });
+</script>
+
+    </body>
+</html>

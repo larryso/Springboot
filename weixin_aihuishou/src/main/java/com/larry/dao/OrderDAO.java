@@ -14,4 +14,9 @@ public interface OrderDAO extends JpaRepository<OrderPO, Integer>{
 	
 	@Query(value = "select * from t_order o where o.user_id=:id", nativeQuery = true)
 	public List<OrderPO> findOrdersByUserID(@Param("id")int userId);
+	@Query(value = "select * from t_order o where o.id=:id", nativeQuery = true)
+	public OrderPO findOrdersByID(@Param("id")int id);
+	@Query(value = "select * from t_order o where o.status=0", nativeQuery = true)
+	public List<OrderPO> getAllNewOrders();
+	
 }

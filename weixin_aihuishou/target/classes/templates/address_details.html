@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+    <title>广威再生资源有限公司</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><!--强制让文档与设备的宽度保持 1:1 ；
+    文档最大的宽度比列是1.0（ initial-scale 初始刻度值和 maximum-scale 最大刻度值）；user-scalable 定义用户是否可以手动缩放（ no 为不缩放），使页面固定设备上面的大小；-->
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">  
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/modernizr.custom.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.dlmenu.js}"></script>
+     <link href="css/areapicker.css" rel="stylesheet" />
+    <script th:src="@{/js/hhSwipe.js}" type="text/javascript"></script> 
+</head>
+<body>		
+				<div>		
+				<div style="width:100%;background-color:green; text-align:center;"><p style="font-size:15px;">更新地址信息</p></div>
+					<form action="./addressUpdate" method="post">	
+					<input id="action_id" type="hidden" name="action_type" value=""> 
+					<input id="address_id_id" type="hidden" name="address_id" th:value="${useraddress.id}"> 
+				<p style="font-size:15px;float:left;">联系人地址：</p><p th:text="${useraddress.address}"></p>
+				
+				<br />
+				<p style="font-size:15px;float:left;">联系人电话：</p> <input type="text" id="tel_id" name="tel" style="float:left;"  th:value="${useraddress.tel}"/>
+				<br /><br />
+				<p style="font-size:15px;float:left;">联系人姓名：</p> <input type="text" id="name_id" name="name" style="float:left;"  th:value="${useraddress.name}"/>
+			<br /><br />
+			<br /><br />
+		<div>
+							<div style="float:left; width:50%"><input type="submit" id="address_update" style="background-color:orange;width:80px;height:36px; text-align:center" value="更新" /></div>
+							<div style="float:left; width:50%"><input type="submit" id="address_del" style="background-color:orange;width:80px;height:36px; text-align:center" value="删除" /></div>
+							
+						</div>
+				</form>
+				<div>
+				 	
+    <script type="text/javascript">
+    	 $(document).ready(function(){
+    	 	 $("#address_update").click(function(){
+    	 	 	 $("#action_id").val("modify");
+    	 	if($("#name_id").val() ==""){
+        			alert("请输入联系人姓名");
+        			return false;
+        		}else if($("#tel_id").val() ==""){
+        		alert("请输入联系电话");
+        		return false;
+        		}else if($("#tel_id").val() !=""){
+        		var value = $("#tel_id").val();
+        		 var rex = /^1[3-9]+\d{9}$/;
+        		  var rex2 = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+        		  if (rex.test(value) || rex2.test(value)) {
+        		  }else{
+        		  	alert("请输入正确格式的手机或电话号码");
+        		  	return false;
+        		  }
+        		}
+ 			 });
+ 			 $("#address_del").click(function(){
+ 			  $("#action_id").val("delete");
+ 			 });
+    	 });
+    </script>
+
+</body>
+
+</html>
+

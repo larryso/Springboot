@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" th:href="@{/css/reset.css}">
+		<link rel="stylesheet" th:href="@{/css/index.css}">
+				<title>回收e客网上商城</title>
+	</head>
+	<body>
+		<div id="shopp_cart">
+			<div class="s_title">
+				<h2 class="s_t_width">购物车</h2>
+			</div> 
+			<div th:each="item:${items}">
+			<div class="supplier clearfix">
+				<h2 class="supp_title"><input th:value="${item.product.proudct_brand}" readonly  unselectable="on"></input><span class="sprite-icon" th:onclick="'javascript: deleteItem('+${item.product.id}+')' "></span></h2>
+				<dl class="supp_main clearfix">
+					<dt class="supp_pic_t">
+						<img th:src="@{${item.product.product_image}}" />
+					</dt>
+					<dd class="supp_con">
+						<span class="supp_c_txt"  th:text="${item.product.product_name}"></span>
+						<span class="supp_c_money" th:text="'规格：'+${item.product.product_specification}"></span>
+						<div class="supp_c_price clearfix"><span class="supp_box" th:text="${item.product.point_price}+'积分'"></span><p class="supp_c_inpt" ><input type="button" value="-" id="plus"/><input type="text" id="txt" th:value="${item.ammount}"><input type="button" value="+" id="reduce"/></p></div>
+					</dd>
+				</dl>
+			</div>
+			</div>
+			<div th:if="${display_cart == false}" style="text-align:center;line-height:100px">
+			购物车空空如也，赶快去逛逛吧~~~
+			</div>
+			<div class="con_sub cart_che clearfix" th:if="${display_cart == true}">
+					<span class="con_color cart_main fl">
+						合计:<font th:text="${totalPrice}"></font>
+						<font class="cart_money">不含运费</font>
+					</span>
+					<a th:href="@{/fill_order}" class="con_ti fr">确认提交</a>
+			</div>
+		</div>
+		<!--menu  start-->
+		<div id="menu">
+		<ul>
+						<li><a th:href="@{/shop_main}" ><font class="iconfont">&#xe612;</font><span class="inco_txt">首页</span></a></li>
+						<li><a th:href="@{/category}"><font class="iconfont">&#xe660;</font><span class="inco_txt">分类</span></a></li>
+						<li><a th:href="@{/Shopping_Cart}" class="red"><font class="iconfont index">&#xe63e;</font><span class="inco_txt">购物车</span></a></li>
+						<li><a th:href="@{/My_info}"><font class="iconfont">&#xe62e;</font><span class="inco_txt">我的</span></a></li>
+					</ul>
+		</div> 
+		<!--menu  end-->
+		<script type="text/javascript" th:src="@{/js/rem.js}"></script>
+		<script type="text/javascript">
+function deleteItem(product_id)
+{
+	alert('确定删除该商品?');
+	location.href = "/shopping_cart/update?product_id=" + product_id;
+}
+</script> 
+	</body>
+</html>

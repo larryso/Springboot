@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+		<title>回收客网上商城</title>
+	</head>
+	<body>
+		<div id="wrapper" class="inner_style">
+			
+			<div class="int_title"><span class="int_pic"><a th:href="@{/shop_main}"><img src="images/jifen/left.png"/></a></span>积分商城</div>
+					
+				
+				<main>
+					<div class="best_Sellers best_top clearfix">
+						<ul style="display: block;" class="clearfix best_content">
+						<div th:each="prod:${basketProdList}">
+							<a th:href="@{/product_details(productId=${prod.id},categoryId=${categoryId})}">
+								<li class="border_right fl">
+									<img th:src="@{${prod.product_image}}" />
+									<span th:text="${prod.product_name}"></span>
+									<span class="int_color" th:text="${prod.point_price}+'积分'"></span>
+								</li>
+							</a>
+						</div>
+						</ul>			
+					</div>
+					<p class="notice">没有更多商品了！</p>
+			</main>
+		<div id="back_top">
+			<a href="#"><img src="images/xqq/the_top.png" /></a>
+		</div>
+		<script type="text/javascript" src="js/rem.js" ></script>
+		<script type="text/javascript" src="js/swiper.min.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="js/inner.js" ></script>
+		<script type="text/javascript" src="js/pay_success.js" ></script>
+	</body>
+</html>

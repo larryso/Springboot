@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+		<title>回收e客网上商城</title>
+	</head>
+	<body>
+	<div id="my">
+		<div class="my_info">
+			<img src="images/my/bj.png" />
+			<div class="my_mian">
+				<p class="my_pic">
+					<img style="width: 80px;height: 80px; border-radius:250px;overflow: hidden;vertical-align:middle;" th:src="${headImg}"  />
+				</p>
+				<span class="my_number" th:text="${nickName}">1234567809</span>
+				<span class="my_txt">余额：0.00积分</span>
+			</div>
+		</div>
+		<div class="my_content clearfix">
+			<ul>
+				<a th:href="@{/My_shop_order}">
+					<li class="my_border">
+						<span class="my_pic"><img src="images/my/main_04.png" /></span>
+						<span class="my_order">我的订单</span>
+						<span class="my_right"><img src="images/my/right.png"/></span>
+					</li>
+				</a>
+				<a th:href="@{/My_shop_receipt}">
+					<li class="my_border topline">
+						<span class="my_pic"><img src="images/my/main_11.png" /></span>
+						<span class="my_order">收货地址</span>
+						<span class="my_right"><img src="images/my/right.png"/></span>
+					</li>
+				</a>
+				<a th:href="@{/account_recharge}">
+					<li class="my_border topline">
+						<span class="my_pic"><img src="images/my/main_13.png" /></span>
+						<span class="my_order">账户充值</span>
+						<span class="my_right"><img src="images/my/right.png"/></span>
+					</li>
+				</a>
+				<a th:href="@{/balance_transfer}">
+					<li class="topline">
+						<span class="my_pic"><img src="images/my/main_15.png" /></span>
+						<span class="my_order">余额转移</span>
+						<span class="my_right"><img src="images/my/right.png"/></span>
+					</li>
+				</a>
+			</ul>
+		</div>
+		
+	</div>
+	<!--menu  start-->
+	<div id="menu">
+		<ul>
+						<li><a th:href="@{/shop_main}"><font class="iconfont">&#xe612;</font><span class="inco_txt">首页</span></a></li>
+						<li><a th:href="@{/category}"><font class="iconfont">&#xe660;</font><span class="inco_txt">分类</span></a></li>
+						<li><a th:href="@{/Shopping_Cart}"><font class="iconfont index">&#xe63e;</font><span class="inco_txt">购物车</span></a></li>
+						<li><a th:href="@{/My_info}"  class="red"><font class="iconfont">&#xe62e;</font><span class="inco_txt">我的</span></a></li>
+					</ul>
+	</div> 
+	<!--menu  end-->
+	<script type="text/javascript" src="js/rem.js" ></script>
+	<script type="text/javascript" src="js/menu.js" ></script>
+	</body>
+</html>

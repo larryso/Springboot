@@ -9,10 +9,13 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -33,11 +36,16 @@ public class OrderPO implements Serializable{
 	 @Column
 	 private int user_id;
 	 @Column
-	 private String product_type;
+	 private int address_id ;
+	// @Column
+	// private int rec_cat_id ;
+	 @OneToOne(targetEntity=ProductCatPO.class, fetch = FetchType.EAGER)
+	 @JoinColumn(name = "rec_cat_id", nullable = false, referencedColumnName = "id")
+	 private ProductCatPO productCat ;
 	 @Column
-	 private String address;
+	 private String comments ;
 	 @Column
-	 private String tel;
+	 private String rejected_reason ;
 	 @Column
 	 private int status;
 	 @Column

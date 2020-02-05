@@ -10,4 +10,7 @@ public interface OrderService {
 	public PaperRecFormBean preparePaperRecForm();
 	public OrderPO save(OrderPO order);
 	public List<OrderPO> getAllOrdersByUserID(int userID);
+	public OrderPO getOrderByID(int orderID);
+	public OrderPO updateOrder(OrderPO order);
+	public List<OrderPO> getAllNewOrders();
 }

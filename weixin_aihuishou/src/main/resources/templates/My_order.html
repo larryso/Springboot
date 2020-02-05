@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+		<title>回收e客网上商城</title>
+	</head>
+	<body>
+		<div id="wrapper" class="m_pwd">
+			<div class="int_title"><span class="int_pic"><a th:href="@{/My_info}"><img src="images/jifen/left.png"/></a></span>我的订单</div>
+			<!--banner start-->	
+			<div th:if="${allOrders.size() == 0}" style="text-align:center;line-height:100px">
+			查无任何订单~~
+			</div>
+			<div th:each="shopOrder:${allOrders}">
+			<div class="order">
+				<p class="o_txt clearfix">
+					<span th:text="${shopOrder.order_number}"></span>
+					<span class="fr" th:if="${shopOrder.status == 0}">已支付，待发货</span>
+					<span class="fr" th:if="${shopOrder.status == 1}">待支付</span>
+					<span class="fr" th:if="${shopOrder.status == 2}">已发货,待确认</span>
+					<span class="fr" th:if="${shopOrder.status == 3}">已确认收货</span>
+				</p>
+				<p class="o_txt clearfix" th:text="${'下单时间：'+shopOrder.created_date}">
+				
+				</p>
+				<div th:each="shopOrderItem:${shopOrder.orderItems}">
+				<dl class="order_box topline clearfix">
+					<dt class="order_pic fl">
+						<img th:src="@{${shopOrderItem.product.product_image}}" />
+					</dt>
+					<dd class="order_txt fr">
+						<p class="order_con" th:text="${shopOrderItem.product.product_name}"></p>
+						<span class="order_line" th:text="${shopOrderItem.product.point_price+' 积分 x'+shopOrderItem.number}"></span></br>
+						<span class="order_line"  th:text="'规格：'+${shopOrderItem.product.product_specification}"></span></br>
+					</dd>
+				</dl>
+				</div>
+				<div class="order_btn topline clearfix">
+					<p class="order_t_box clearfix fr">
+						<a th:href="@{/order_details(order_id=${shopOrder.id})}"  class="p_money order_border  fr" th:if="${shopOrder.status != 2}">订单详情</a>
+						<a th:href="@{/update_shop_order(order_id=${shopOrder.id})}" class="p_money order_border  fr"  th:if="${shopOrder.status == 2}">确认收货</a>
+					</p>
+				</div>
+			</div>
+			</div>
+				
+				<!--menu  start-->
+			</div>
+			<!--menu  end-->
+			<div id="back_top">
+				<a href="#"><img src="images/xqq/the_top.png" /></a>
+			</div>
+			<script type="text/javascript" src="js/rem.js" ></script>
+			<script type="text/javascript" src="js/pay_success.js" ></script>
+	</body>
+</html>

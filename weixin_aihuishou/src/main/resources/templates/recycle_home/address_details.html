@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>讯收侠-个人中心</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+        <link rel="stylesheet" href="css/recycle_style.css"/>
+          <style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}			
+ 				.con{bottom:50px; overflow:auto;}		
+ 				.bottom{bottom:0;z-index:1; height:50px;} 	
+        </style>
+    </head>
+    <body>
+   
+ <p style="color:red">地址管理只设置默认地址，不支持其他值的修改，如要修改其他值，请添加其他地址.</p>
+
+
+  <form id="address_form" th:action="@{/addressUpdate}" method="post">
+     <input  type="hidden" name="address_id" th:value="${address.id}"> 
+      <div class="weui-cells weui-cells_form">
+  		<div class="weui-cell">
+    		<div class="weui-cell__hd"><label class="weui-label">联系人姓名：</label></div>
+    		<div class="weui-cell__bd">
+      			<input class="weui-input" type="text" placeholder="请输入联系人姓名" id="name_id" name="name"  th:value="${address.name}" disabled="disabled">
+    		</div>
+  		</div>
+  		 <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">联系电话：</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入联系电话" id="tel_id" name="tel" th:value="${address.tel}" disabled="disabled">
+        </div>
+      </div>
+  		
+      <div class="weui-cell">
+      	<div class="weui-cell__hd"><label class="weui-label">地址：</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="text" name="detail_address" id="detail_address_id" th:value="${address.address}" disabled="disabled">
+        </div>
+      </div>
+      
+       <div class="weui-cell weui-cell_switch">
+        <div class="weui-cell__bd">设置为默认地址</div>
+        <div class="weui-cell__ft">
+          <label for="switchCP" class="weui-switch-cp">
+            <input id="switchCP" class="weui-switch-cp__input" type="checkbox" checked="checked" th:if="${address.set_defult == 1}"> 
+            <input id="switchCP" class="weui-switch-cp__input" type="checkbox" th:if="${address.set_defult == 0}" > 
+             <input id="default_address_id" type="hidden" name="default_address" value=""> 
+            <div class="weui-switch-cp__box"></div>
+          </label>
+        </div>
+      </div>
+ 
+</div>
+ </form>
+  <div class="footer"> 
+    	<div class="weui-btn-area">
+      	<a class="weui-btn weui-btn_primary" href="javascript:#" id="save_new_address">保存</a>
+    	</div>
+    </div>
+	
+<!-- footer nav--> 
+	<div class="bottom"> 
+   <div class="weui-tabbar">
+        <a th:href="@{/index}" class="weui-tabbar__item">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_home.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">首页</p>
+        </a>
+        <a th:href="@{/my_order}" class="weui-tabbar__item">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_nav_form.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">订单管理</p>
+        </a>
+        <a th:href="@{/my_point}" class="weui-tabbar__item weui-bar__item--on">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_center.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">个人中心</p>
+        </a>
+      </div>
+    </div>
+        </div>
+<!--footer nav end-->
+ <script src="lib/jquery-2.1.4.js"></script>
+   <script src="lib/jquery-weui.js"></script>
+     <script type="text/javascript">
+    	 $(document).ready(function(){
+    	 	 $("#save_new_address").click(function(){
+    	 	 if($("#switchCP").get(0).checked) { $("#default_address_id").val("true");}else{$("#default_address_id").val("false");}
+    	 	 		$("#address_form").submit();
+        				 });
+    	 });
+    </script>
+     <script src="lib/fastclick.js"></script>
+    
+   <script>
+  		$(function() {
+    		FastClick.attach(document.body);
+  		});
+   </script>
+
+    </body>
+    
+</html>

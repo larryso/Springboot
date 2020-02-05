@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>地址列表</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+        <style>       
+		body {padding-bottom: 70px;}         
+		.footer {position: fixed;            
+					left: 0px;            
+					bottom: 0px;            
+					width: 100%;            
+					height: 70px;            
+					background-color: #eee;           
+					z-index: 9999;        
+					 }    
+	</style>
+    </head>
+
+    <body>
+      <div class="weui-panel">
+        <div class="weui-panel__hd">地址列表</div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+          <div th:each="address:${allAddress}">
+            <div class="weui-cells">
+              <a class="weui-cell weui-cell_access" th:href="@{/afterSelectedAddr(selected_address=${address.id},from_url=${from_url})}">
+                <div class="weui-cell__hd"><img th:if="${addressId}==${address.id}" src="images/recycle_home/icon_nav_msg.png" alt="" style="width:20px;margin-right:5px;display:block">
+                <img th:if="${addressId}!=${address.id}" src="" alt="" style="width:20px;margin-right:5px;display:block">
+                </div>
+                <div class="weui-cell__bd weui-cell_primary">
+                  <h3 class="weui-media-box__title" th:text="${address.name} + ${address.tel}"></h3>
+                  <p th:text="${address.address}"></p>
+                </div>
+                <span class="weui-cell__ft"></span>
+              </a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+    <div class="footer"> 
+    	<div class="weui-btn-area">
+      	<a class="weui-btn weui-btn_primary" th:href="@{/addNewAddress(from_url=${from_url})}" id="add_new_address">+ 添加新地址</a>
+    	</div>
+    </div>
+    <script>
+      $("#showTooltips").click(function() {
+        var tel = $('#tel').val();
+        var code = $('#code').val();
+        if(!tel || !/1[3|4|5|7|8]\d{9}/.test(tel)) $.toptip('请输入手机号');
+        else if(!code || !/\d{6}/.test(code)) $.toptip('请输入六位手机验证码');
+        else $.toptip('提交成功', 'success');
+      });
+    </script>
+    <script src="lib/fastclick.js"></script>
+   <script>
+  		$(function() {
+    		FastClick.attach(document.body);
+  		});
+   </script>
+   <script src="lib/jquery-2.1.4.js"></script>
+   <script src="lib/jquery-weui.js"></script>
+    <script type="text/javascript">
+    	 $(document).ready(function(){
+    	 	 $("#submit_rec_order").click(function(){
+    	 	 	
+ 			 });
+    	 });
+    </script>
+    </body>
+</html>

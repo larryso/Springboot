@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+ 	<title>同城快送</title>   
+    <!--入 WeUI -->
+    <link rel="stylesheet"  th:href="@{/lib/weui.min.css}"/>
+    <link rel="stylesheet"  th:href="@{/lib/jquery-weui.min.css}"/>
+</head>
+<body>
+<div id="dingwei">
+ <a class="weui-cell weui-cell_access" href="javascript:;">
+            		<div class="weui-cell__hd"><img src="data:image/png;base64,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" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            	<div class="weui-cell__bd">
+              	<p id="to_address_id">送件到这里：</p>
+           		 </div>
+            	<div class="weui-cell__ft"></div>
+ </a>
+</div><!--dingwei div-->
+<div id="to_id">
+<form id="c_address_to" th:action="@{/tongcheng/confirmToAddress}" method="post">
+<div class="weui-cells">
+ 
+ <input type="hidden" id="to_address_name_id" name="to_address_name" value=""> 
+ <input type="hidden" id="to_address_lan_id" name="to_address_lan" value=""> 
+ <input type="hidden" id="to_address_lng_id" name="to_address_lng" value=""> 
+ 
+  <input type="hidden" name="from_address_name" th:value="${fromaddress}"> 
+ <input type="hidden" name="from_address_str" th:value="${fromaddressStr}"> 
+ <input type="hidden" name="from_address_lan" th:value="${fromaddress_lat}"> 
+ <input type="hidden" name="from_address_lng" th:value="${fromaddress_lng}"> 
+ <input type="hidden" name="deliver_name" th:value="${deliver_name}"> 
+ <input type="hidden" name="deliver_tel" th:value="${deliver_tel}"> 
+  <div class="weui-cell">
+	  	
+    	<div class="weui-cell__bd">
+      	 <input class="weui-input" type="text" placeholder="输入详细地址以便快递员精准定位" name="details_address">
+      	</div>
+    </div>
+    <div class="weui-cell">
+	  	<div class="weui-cell__hd"><label for="" class="weui-label">取件人姓名：</label></div>
+    	<div class="weui-cell__bd">
+      	 <input class="weui-input" id="receive_name_id" type="text" placeholder="请输入取件人姓名" name="receiver_name">
+      	 </div>
+    </div>
+      <div class="weui-cell">
+	  	<div class="weui-cell__hd"><label for="" class="weui-label">取件人电话：</label></div>
+    	<div class="weui-cell__bd">
+    	 <input class="weui-input" type="tel" id="receiver_tel_id" placeholder="请输入取件人电话" name="receiver_tel">
+      	 </div>
+    </div>
+</div> 
+
+</form>
+</div> <!--form div-->
+ <div class="footer" id="footer_id" style="position: fixed;            
+					left: 0px;            
+					bottom: 0px;            
+					width: 100%;            
+					height: 70px;            
+					background-color: #eee;           
+					z-index: 9999;  "> 
+    	<div class="weui-btn-area">
+      	<a class="weui-btn weui-btn_primary" href="javascript:#" id="c_address">确定</a>
+    	</div>
+    </div>
+<div id="test" style="height:100%;z-index: 1111;">
+    <iframe id="mapPage" width="100%" height="100%" frameborder="0" src=""></iframe>
+</div>
+</body>
+<script src="https://cdn.nikm.cn/js/jquery.js"></script>
+<script>
+$("#dingwei").click(function(){
+        $('#test').show();
+        $('#dingwei').hide();
+        $('#footer_id').hide();
+        $('#to_id').hide();
+        $('#test').css('height',window.screen.availHeight);
+        if($("iframe").attr("src") == ''){
+            $("iframe").attr("src","https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=4UGBZ-62SWP-HJRDU-V6Q4W-HS4XQ-5EFKG&referer=myapp");
+        }
+});
+window.addEventListener('message', function(event) {
+    // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+    var loc = event.data;
+    if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+        console.log(loc);
+        console.log(loc.latlng.lat);
+        console.log(loc.latlng.lng);
+        console.log(loc.poiaddress);
+        $('#test').hide();
+        $('#dingwei').show();
+        $('#footer_id').show();
+        $('#to_id').show();
+        $('#to_address_id').text(loc.poiaddress);
+        $('#to_address_name_id').val(loc.poiaddress);
+        $('#to_address_lan_id').val(loc.latlng.lat);
+        $('#to_address_lng_id').val(loc.latlng.lng);
+    }
+}, false);
+</script>
+ <script type="text/javascript">
+    	
+    	 	 $("#c_address").click(function(){
+    	 	 	
+    	 	 	if ($("#to_address_name_id").val() =="") {
+        			 alert("请选择送件地址");
+        			return false;
+        		}else if($("#receiver_name_id").val() ==""){
+        		 	alert("请输入取件人姓名");
+        			return false;
+        		}else if($("#receiver_tel_id").val() ==""){
+        		 	alert("请输入取件人电话");
+        			return false;
+        		}
+        		
+     			$("#c_address_to").submit();
+        				 });
+
+    </script>
+</html>

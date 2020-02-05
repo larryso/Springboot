@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>讯收侠-个人中心</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+        <link rel="stylesheet" href="css/recycle_style.css"/>
+          <style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}		
+ 				.top{top:0;z-index:1; height:180px;}		
+ 				.con{top:180px; bottom:50px; overflow:auto;}		
+ 				.bottom{bottom:0;z-index:1; height:50px;} 	
+        </style>
+    </head>
+    <body>
+    	<div class="top">
+   <header style=' padding: 35px 0;'>
+      <div class="memberbg">
+		<div class="member">
+			<img th:src="${headImg}"/>
+			<div th:text="'当前可用积分：'+${payableScore}"></div>
+		</div>
+	</div>
+    </header>
+	</div>
+	<div class="con">
+    <div class="bd">
+      <div class="page__bd">
+      <div class="weui-cells__title">积分变动记录：</div>
+      <div class="weui-cells">
+      
+		<div  th:each="score:${displayableScore}">
+          <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img src="images/recycle_home/score.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+              <p th:text="${score.create_time}"></p>
+            </div>
+            <div th:text="'+'+${score.score}"  th:if="${score.score_type == 0}"></div>
+             <div th:text="'-'+${score.score}"  th:if="${score.score_type == 1}"></div>
+          </a>
+        </div>
+         
+        </div>
+      </div>
+
+      </div>
+    </div>
+    </div>
+<!-- footer nav--> 
+	<div class="bottom"> 
+   <div class="weui-tabbar">
+        <a th:href="@{/index}" class="weui-tabbar__item">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_home.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">首页</p>
+        </a>
+        <a th:href="@{/my_order}" class="weui-tabbar__item">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_nav_form.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">订单管理</p>
+        </a>
+        <a th:href="@{/my_point}" class="weui-tabbar__item weui-bar__item--on">
+          <div class="weui-tabbar__icon">
+            <img src="images/recycle_home/icon_center.png" alt="">
+          </div>
+          <p class="weui-tabbar__label">个人中心</p>
+        </a>
+      </div>
+    </div>
+        </div>
+<!--footer nav end-->
+
+    </body>
+</html>

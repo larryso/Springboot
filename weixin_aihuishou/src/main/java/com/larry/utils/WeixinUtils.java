@@ -22,6 +22,7 @@ import org.dom4j.io.SAXReader;
 
 import com.larry.bean.AccessToken;
 import com.larry.bean.TextMessage;
+import com.larry.entity.OrderPO;
 import com.thoughtworks.xstream.XStream;
 
 import net.sf.json.JSONObject;
@@ -76,6 +77,15 @@ public class WeixinUtils {
 		text.setMsgType(WeixinMessage.MESSAGE_TEXT.getMessageType());
 		text.setCreateTime(new Date().getTime());
 		text.setContent(content);
+		return textMsgToxml(text);
+	}
+	public static String textMsgHD(String toUserName, String fromUserName, String content) {
+		TextMessage text = new TextMessage();
+		text.setFromUserName(toUserName);
+		text.setToUserName(fromUserName);
+		text.setMsgType("transfer_customer_service");
+		text.setCreateTime(new Date().getTime());
+		
 		return textMsgToxml(text);
 	}
 

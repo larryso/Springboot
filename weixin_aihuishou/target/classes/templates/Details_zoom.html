@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimum-scale=1.0">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/index.css">
+		<title>回收客网上商城</title>
+	</head>
+	<body>
+		<div id="wrapper">
+			
+			<div class="int_title"><span class="int_pic"><a href="javascript:history.back(-1)"><img src="images/jifen/left.png"/></a></span>商品详情</div>
+			<div class="video details_back">
+				<div class="deta_pic topline">
+					<p class="deta_box"><img th:src="@{${prod.product_image}}" /></p>
+					<p class="deta_con" th:text="${prod.product_name}"></p>
+					<p class="deta_con deta_line" th:text="${prod.point_price}+'积分'"></p>
+					
+				</div>
+			<div class="perform topline">
+				<div class="fill_name clearfix topline">
+					<ul>
+						<li class="fill fl name_color">详情</li>
+						<li class="addr_name fill fr">规格</li>
+					</ul>
+				</div>
+				<div class="name_perf details_padding">
+					<div class="name_box " style="display: block;">
+						<img th:src="@{${prod.product_details1}}" />
+						<img th:src="@{${prod.product_details2}}" />
+					</div>
+					<div class="name_box detail_width_con">
+						<span class="detail_main" th:text="'品牌及名称：'+${prod.proudct_brand}"></span>
+						<span class="detail_main" th:text="'型号：'+${prod.product_model}"></span>
+						<span class="detail_main" th:text="'规格：'+${prod.product_specification}"></span>
+						<span class="detail_main" th:text="'材质：'+${prod.product_material}"></span>
+						<span class="detail_main" th:text="'产地：'+${prod.produce_location}"></span>
+						<span class="detail_main">配送时间：我们会在您下单后的2-3个工作日内日发货</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form action="./productBuySubmit" method="post">
+	</form>
+	<div id="menu" class="detail_nav_main topline">
+		<ul class="m_nav clearfix">
+			<a th:href="@{/shop_main}"><li class="m_nav_1">
+				<span class="m_nav_pic_main">
+					<img src="images/xqq/nav_icon.png" />
+				</span>
+			</li></a>
+			<a th:href="@{/productBuySubmit(productId=${prod.id},categoryId=${categoryId},operation=add_to_cart)}"><li class="m_nav_2">加入购物车</li></a>
+			<a th:href="@{/productBuySubmit(productId=${prod.id},categoryId=${categoryId},operation=submit_to_buy)}"><li class="m_nav_2 m_nav_fr ">立即购买</li></a>
+		</ul>
+	</div>
+	<div id="back_top">
+		<a href="#"><img src="images/xqq/the_top.png" /></a>
+	</div>
+			<script type="text/javascript" src="js/rem.js" ></script>
+			<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+			<script type="text/javascript" src="js/fill_name.js" ></script>
+			<script type="text/javascript" src="js/pay_success.js" ></script>
+	</body>
+</html>

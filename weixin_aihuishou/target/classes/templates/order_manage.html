@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"> 
 <head>
-    <title>广威再生资源有限公司</title>
+    <title>回收客</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
     <meta name="viewport" content="width=device-width" />
@@ -15,6 +15,18 @@
     <script type="text/javascript" src="js/jquery.dlmenu.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src='js/hhSwipe.js' type="text/javascript"></script> 
+     <style>
+    /*banner开始*/
+.addWrap{ position:relative; width:100%;height:150px;background:#1dbcff;margin:0 auto; padding:0;}
+.addWrap .swipe{overflow: hidden;visibility: hidden;position:relative;background:#1dbcff;}
+.addWrap .swipe-wrap{overflow:hidden;position:relative;background:#1dbcff;}
+.addWrap .swipe-wrap > div {float: left;width: 100%;position:relative;}
+#position{ position:absolute; bottom:5%; right:0; padding-right:8px; margin:0;width:100%;text-align:center;}
+#position li{width:10px;height:10px;margin:0 2px;display:inline-block;-webkit-border-radius:5px;border-radius:5px;background-color:#AFAFAF;}
+#position li.cur{background-color:#005e11;}
+.img-responsive { display: block; width:100%;height: 150px;}
+/*banner结束*/
+    </style>
     <script type="text/javascript">
 	var bullets = document.getElementById('position').getElementsByTagName('li');
 	var banner = Swipe(document.getElementById('mySwipe'), {
@@ -30,10 +42,7 @@
 		}
      })
 </script>
-<style type="text/css">
 
-}
-</style>
 <script type="text/javascript">  
 $(document).ready(function () {  
   $('.tabs span').mouseover(function () {  
@@ -51,8 +60,39 @@ $(document).ready(function () {
 <body>	
 		<div id="app">		
 			<header>
-			  <div style="height: 150px;width: 100%"><img style="height:150px;width: 100%" src="images/timg.jpg"/>
-			  </div>
+			<!--banner图开始-->     
+<div class="addWrap">
+       <div class="swipe" id="mySwipe">
+             <div class="swipe-wrap">
+                  <div><a href="yu.html"><img class="img-responsive" src="images/banner1.jpg"/></a></div>
+                  <div><a href="liushi.html"><img class="img-responsive" src="images/banner2.jpg" /></a></div>
+                  <div><a href="shu.html"><img class="img-responsive" src="images/timg.jpg"/></a></div>
+             </div>
+            </div>
+	      <!--按转换按钮开始-->
+            <ul id="position">
+                   <li class="cur"></li>
+                   <li></li>
+                   <li></li>
+            </ul>
+          <!--按转换按钮结束-->  
+</div>
+<script type="text/javascript">
+	var bullets = document.getElementById('position').getElementsByTagName('li');
+	var banner = Swipe(document.getElementById('mySwipe'), {
+		auto: 4000,
+		continuous: true,
+		disableScroll:false,
+		callback: function(pos) {
+			var i = bullets.length;
+			while (i--) {
+				bullets[i].className = ' ';
+			}
+			bullets[pos].className = 'cur';
+		}
+     })
+</script>
+<!--banner结束-->
 				<div style="float:left;text-align:center;height: 50px;line-height:50px">
 				<p style="font-size:15px;">当前用户：</p>
 				</div>
@@ -82,7 +122,7 @@ $(document).ready(function () {
 						</div>
 						<div>
 							<div style="float:left; width:60%"><p style="font-size:15px;">订单ID：</p></div>
-							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.id}"></p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.order_number}"></p></div>
 						</div>
 						<div>
 							<div style="float:left; width:60%"><p style="font-size:15px;">订单种类：</p></div>
@@ -92,11 +132,13 @@ $(document).ready(function () {
 							<div style="float:left; width:60%"><p style="font-size:15px;">订单状态：</p></div>
 							<div style="float:left; width:40%" th:switch="${order.status}"> 
 									<p style="font-size:15px;color:green;" th:case="0">已提交待处理...</p>
+									<p style="font-size:15px;color:green;" th:case="1">订单处理中...</p>
+									<p style="font-size:15px;color:green;" th:case="2">订单已关闭</p>
 									<p style="font-size:15px;color:red;" th:case="3">已取消</p>
 							</div>
 						</div>
 						<div>
-							<div style="float:left; width:60%"><a href="" >点击查看详情...</a></div>
+							<div style="float:left; width:60%"><a th:href="@{/order_details/show(orderID=${order.id},from=user)}" >点击查看详情...</a></div>
 							<div style="float:left; width:40%"></div>
 						</div>
 						<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
@@ -106,25 +148,84 @@ $(document).ready(function () {
 					
 				</div>	
 				<div id="p_order_d" style="display:none">
+				<div th:each="order:${processingOrders}">
+						<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+						<div>
+							<div style="float:left; width:60%;"> <p style="font-size:15px;">订单提交时间:</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.created_date}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单ID：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.order_number}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单种类：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.product_type}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单状态：</p></div>
+							<div style="float:left; width:40%" th:switch="${order.status}"> 
+									<p style="font-size:15px;color:green;" th:case="0">已提交待处理...</p>
+									<p style="font-size:15px;color:green;" th:case="2">订单已关闭</p>
+									<p style="font-size:15px;color:green;" th:case="1">订单处理中...</p>
+									<p style="font-size:15px;color:red;" th:case="3">已取消</p>
+							</div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><a th:href="@{/order_details/show(orderID=${order.id},from=user)}" >点击查看详情...</a></div>
+							<div style="float:left; width:40%"></div>
+						</div>
+						<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+					<br />
+				</div>
 				</div>
 				<div id="c_order_d" style="display:none">
+				<div th:each="order:${closedOrders}">
+						<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+						<div>
+							<div style="float:left; width:60%;"> <p style="font-size:15px;">订单提交时间:</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.created_date}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单ID：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.order_number}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单种类：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.product_type}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单状态：</p></div>
+							<div style="float:left; width:40%" th:switch="${order.status}"> 
+									<p style="font-size:15px;color:green;" th:case="0">已提交待处理...</p>
+									<p style="font-size:15px;color:green;" th:case="2">订单已关闭</p>
+									<p style="font-size:15px;color:red;" th:case="3">已取消</p>
+							</div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><a th:href="@{/order_details/show(orderID=${order.id},from=user)}" >点击查看详情...</a></div>
+							<div style="float:left; width:40%"></div>
+						</div>
+						<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+					<br />
+					</div>
 				</div>
 			</div>
 			</article>		
 		<footer>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
+			<a th:href="@{/index}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon1.png"/>
 			<pre>首页</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
+			<a th:href="@{/my_order}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon2.png"/>
 			<pre>订单管理</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
+			<a th:href="@{/my_point}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="height:40px;width: 40px;vertical-align: middle;" src="images/fot_icon3.png"/><pre>积分管理</pre></a>
 		</div>
 		<div style="float:left; width:25%">
-			<a href="" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
+			<a th:href="@{/point_shop}" style=" color:white;text-align:center;display:block; vertical-align: middle;text-decoration:none"><img style="hheight:40px;width: 40px;vertical-align: middle;" src="images/shop.jpg"/><pre>积分商城</pre></a>
 		</div>
 		</footer>	
 		</div>

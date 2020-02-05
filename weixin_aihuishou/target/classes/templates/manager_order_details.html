@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+    <title>回收客</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><!--强制让文档与设备的宽度保持 1:1 ；
+    文档最大的宽度比列是1.0（ initial-scale 初始刻度值和 maximum-scale 最大刻度值）；user-scalable 定义用户是否可以手动缩放（ no 为不缩放），使页面固定设备上面的大小；-->
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">  
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/modernizr.custom.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.dlmenu.js}"></script>
+    <script th:src="@{/js/hhSwipe.js}" type="text/javascript"></script> 
+</head>
+<body>		
+				<div>		
+				<div style="width:100%;background-color:orange; text-align:center;"><p style="font-size:15px;">订单详情</p></div>
+				<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+						<div>
+							<div style="float:left; width:60%;"> <p style="font-size:15px;">订单提交时间:</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.created_date}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单ID：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.order_number}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单种类：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.product_type}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">预约回收时间：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.start_date}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">预留电话：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.tel}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">预留地址：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.address}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单总价：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${order.total_price}"></p></div>
+						</div>
+						<div th:each="item:${items}">
+							<div style="float:left; width:60%"><p style="font-size:15px;">明细：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;" th:text="${item.product_name}"></p></div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">订单状态：</p></div>
+							<div style="float:left; width:40%" th:switch="${order.status}"> 
+									<p style="font-size:15px;color:green;" th:case="0">已提交待处理...</p>
+									<p style="font-size:15px;color:red;" th:case="3">已取消</p>
+							</div>
+						</div>
+						
+						<div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+				
+					<div style="float:right;" th:if="${order.status == 0} and ${from=='manager'}" >
+					<form id="hidden_form"  th:action="@{/pick_order}" method="post">
+					<input id="order_id" type="hidden" name="orderId" th:value="${order.id}"> 
+					<input type="submit" id="submit_id" style="background-color:orange;width:80px;height:36px; text-align:center" value="我要抢单" />
+					</form>					
+					</div>
+					<div th:if="${order.status == 1} and ${from=='manager'}" >
+					<form id="hidden_form"  th:action="@{/handle_order}" method="post">
+					<input id="order_id" type="hidden" name="orderId" th:value="${order.id}"> 
+					<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">明细单价：</p></div>
+							<div style="float:left; width:40%"> <p style="font-size:15px;">重量（单位：千克）</p></div>
+						</div>
+						<div th:each="item:${items}">
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;" th:text="${item.product_name}+${productPriceMap[item.product_id]}"></p></div>
+							<div style="float:left; width:40%"><input type="text" th:name="${item.product_id}"  th:value="${productsWeight[item.product_id]}" size="5" /></div>
+						</div>
+						</div>
+						<div>
+							<div style="float:left; width:60%"><p style="font-size:15px;">总价格（单位：元）：</p></div>
+							<div style="float:left; width:40%"><p style="font-size:15px;" th:text="${totalPrice}"></p></div>
+						</div>
+						 <br />
+						 <div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+						 <!--  <div style="float:right;"  th:if="${order.status == 1} and ${from=='manager'}">
+					<input type="submit" id="calc_submit_id" style="background-color:orange;width:80px;height:36px; text-align:center" value="计算总价" />
+					</div>
+					  <div style="float:right;"  th:if="${order.status == 0} and ${from=='calc_controller'}">
+					<input type="submit" id="close_submit_id" style="background-color:orange;width:80px;height:36px; text-align:center" value="关闭订单" />
+					</div>-->
+					<input type="hidden" id= "actionType_id" name="action_type" /> 
+					<div>
+							<div style="float:left; width:33.3%"><input type="submit" id="calc_submit_id" style="background-color:orange;width:80px;height:36px; text-align:center" value="计算总价" /></div>
+							<div style="float:left; width:33.3%"><input type="submit" id="cancle_submit_id" style="background-color:orange;width:80px;height:36px; text-align:center" value="取消订单" /></div>
+							<div style="float:left; width:33.3%"><input type="submit" id="close_submit_id" style="background-color:orange;width:80px;height:36px; text-align:center" value="关闭订单" /></div>
+						</div>
+						
+					</form>					
+					</div>
+				   <br />
+				</div>	
+<script type="text/javascript">
+ $(document).ready(function(){			  	  
+  	 $("#calc_submit_id").click(function(){	
+  	  	   		 $("#actionType_id").val("calculate");			  	   
+  	 
+  	 });	
+  	 $("#cancle_submit_id").click(function(){			  	   			 			  	   
+  	  	  	   $("#actionType_id").val("cancle");		
+  	   });	
+  	 $("#close_submit_id").click(function(){			  	   			 			  	   
+  	   	  	   $("#actionType_id").val("close");		
+  	   });			  			  				  				  				  
+  });			 		
+</script>				
+
+</body>
+
+</html>
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+         <title>讯收侠-订单管理</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+ 		<style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}		
+ 				.top{top:0;z-index:1; height:60px;}		
+ 				.con{top:60px; bottom:50px; overflow:auto;}		
+ 				.bottom{bottom:0;z-index:1; height:50px;} 	
+        </style>
+    </head>
+   <body ontouchstart>
+    	<div class="wrap">
+    	<!--top banner or navigator-->
+    		<div class="top">
+    		<div class="weui-navbar">
+                <div id ="show_sub_id" class="weui-navbar__item weui-bar__item_on">已提交订单</div>
+                <div id="show_p_id" class="weui-navbar__item">处理中订单</div>
+                <div id="show_c_id" class="weui-navbar__item">已完成订单</div>
+            </div>
+           
+			</div>
+		<!--END top banner or navigator-->
+		
+			<div class="con">
+			  <div id="sub_order_d" style="display:block">
+			   	<div class="weui-panel weui-panel_access">
+        		<div class="weui-panel__hd">所有已提交订单</div>
+			   	<div class="weui-panel__bd" th:each="order:${newOrCancledOrders}">
+    
+                <a th:href="@{/order_details/show(orderID=${order.id},from=user)}" class="weui-media-box weui-media-box_appmsg">  
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" th:text="'订单编号：'+${order.order_number}"></h4>
+                        
+                       <p style="font-size:13px;" th:text="'订单提交时间:'+${order.created_date}"></p>
+                       <p style="font-size:13px;" th:text="'订单种类：'+${order.productCat.name}"></p>
+                       <p style="font-size:13px;" th:if="${order.status} ==0" >订单状态：<span style="color:green">已提交待处理...</span></p>
+                        <p style="font-size:13px;" th:if="${order.status} == 1">订单状态：<span style="color:green">处理中...</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 2">订单状态：<span style="color:green">已完成</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 3">订单状态：<span style="color:red">已取消</span></p>
+                    </div>
+                </a>
+                <div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+        	</div>
+           </div>
+           </div>
+
+			   
+			 <div id="p_order_d" style="display:none">
+			   <div class="weui-panel weui-panel_access">
+        		<div class="weui-panel__hd">处理中订单</div>
+			   	<div class="weui-panel__bd" th:each="order:${processingOrders}">
+    
+                <a th:href="@{/order_details/show(orderID=${order.id},from=user)}" class="weui-media-box weui-media-box_appmsg">  
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" th:text="'订单编号：'+${order.order_number}"></h4>
+                        
+                       <p style="font-size:13px;" th:text="'订单提交时间:'+${order.created_date}"></p>
+                       <p style="font-size:13px;" th:text="'订单种类：'+${order.productCat.name}"></p>
+                       <p style="font-size:13px;" th:if="${order.status} ==0" >订单状态：<span style="color:green">已提交待处理...</span></p>
+                         <p style="font-size:13px;" th:if="${order.status} == 1">订单状态：<span style="color:green">处理中...</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 2">订单状态：<span style="color:green">已完成</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 3">订单状态：<span style="color:red">已取消</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 4">订单状态：<span style="color:red">被取消</span></p>
+                    </div>
+                </a>
+                <div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+        	</div>
+           </div>
+			 </div>
+			   <div id="c_order_d" style="display:none">
+			   <div class="weui-panel weui-panel_access">
+        		<div class="weui-panel__hd">已完成订单</div>
+			   	<div class="weui-panel__bd" th:each="order:${closedOrders}">
+    
+                <a th:href="@{/order_details/show(orderID=${order.id},from=user)}" class="weui-media-box weui-media-box_appmsg">  
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" th:text="'订单编号：'+${order.order_number}"></h4>
+                        
+                       <p style="font-size:13px;" th:text="'订单提交时间:'+${order.created_date}"></p>
+                       <p style="font-size:13px;" th:text="'订单种类：'+${order.productCat.name}"></p>
+                       <p style="font-size:13px;" th:if="${order.status} ==0" >订单状态：<span style="color:green">已提交待处理...</span></p>
+                         <p style="font-size:13px;" th:if="${order.status} == 1">订单状态：<span style="color:green">处理中...</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 2">订单状态：<span style="color:green">已完成</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 3">订单状态：<span style="color:red">已取消</span></p>
+                       <p style="font-size:13px;" th:if="${order.status} == 4">订单状态：<span style="color:red">被取消</span></p>
+                    </div>
+                </a>
+                <div style="width:100%"><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1></div>
+        	</div>
+           </div>
+			  </div>
+			  
+			</div>
+<!-- footer nav-->  
+			<div class="bottom">
+  				<div class="weui-tabbar">
+        		<a th:href="@{/index}" class="weui-tabbar__item">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_home.png" alt="">
+          			</div>
+          			<p class="weui-tabbar__label">首页</p>
+        		</a>
+        		<a th:href="@{/my_order}" class="weui-tabbar__item weui-bar__item--on">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_nav_form.png" alt="">
+          			</div>
+          			<p class="weui-tabbar__label">订单管理</p>
+        		</a>
+        		<a th:href="@{/my_point}" class="weui-tabbar__item">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_center.png" alt="">
+          			</div>
+         			<p class="weui-tabbar__label">个人中心</p>
+        		</a>
+      		</div>
+      	</div>
+<!--footer nav end-->
+    	</div>
+    	 <script src="lib/fastclick.js"></script>
+   <script>
+  		$(function() {
+    		FastClick.attach(document.body);
+  		});
+   </script>
+   <script src="lib/jquery-2.1.4.js"></script>
+   <script src="lib/jquery-weui.js"></script>
+   <script type="text/javascript">
+    $(function(){
+    /*
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+        */
+         $('#show_sub_id').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            $('#sub_order_d').show('slow');
+    	 	$('#p_order_d').hide();
+    	 	$('#c_order_d').hide();
+        });
+         $('#show_p_id').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            $('#sub_order_d').hide();
+    	 	$('#p_order_d').show('slow');
+    	 	$('#c_order_d').hide();
+        });
+         $('#show_c_id').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            $('#sub_order_d').hide();
+    	 	$('#p_order_d').hide();
+    	 	$('#c_order_d').show('slow');
+        });
+        
+    });
+</script>
+    </body>
+</html>

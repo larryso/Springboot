@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="author" content="AUI, a-ui.com">
+	<title>回收e客网上商城</title>
+	<script src="themes/js/aui.js"></script>
+	<script type="text/javascript">
+        !function(J){function H(){var d=E.getBoundingClientRect().width;var e=(d/7.5>100*B?100*B:(d/7.5<42?42:d/7.5));E.style.fontSize=e+"px",J.rem=e}var G,F=J.document,E=F.documentElement,D=F.querySelector('meta[name="viewport"]'),B=0,A=0;if(D){var y=D.getAttribute("content").match(/initial\-scale=([\d\.]+)/);y&&(A=parseFloat(y[1]),B=parseInt(1/A))}if(!B&&!A){var u=(J.navigator.appVersion.match(/android/gi),J.navigator.appVersion.match(/iphone/gi)),t=J.devicePixelRatio;B=u?t>=3&&(!B||B>=3)?3:t>=2&&(!B||B>=2)?2:1:1,A=1/B}if(E.setAttribute("data-dpr",B),!D){if(D=F.createElement("meta"),D.setAttribute("name","viewport"),D.setAttribute("content","initial-scale="+A+", maximum-scale="+A+", minimum-scale="+A+", user-scalable=no"),E.firstElementChild){E.firstElementChild.appendChild(D)}else{var s=F.createElement("div");s.appendChild(D),F.write(s.innerHTML)}}J.addEventListener("resize",function(){clearTimeout(G),G=setTimeout(H,300)},!1),J.addEventListener("pageshow",function(b){b.persisted&&(clearTimeout(G),G=setTimeout(H,300))},!1),H()}(window);
+        if (typeof(M) == 'undefined' || !M){
+            window.M = {};
+        }
+	</script>
+	<link rel="stylesheet" href="themes/css/base.css">
+	<link rel="stylesheet" href="themes/css/home.css">
+	<link rel="stylesheet" href="themes/css/icon.css">
+</head>
+<body>
+<div class="mui-content">
+	<div class="memberbg">
+		<div class="member">
+			<img th:src="${headImg}"/>
+			<div th:text="${nickName}"></div>
+		</div>
+	</div>
+	<ul class="menu">
+		<li class="qianbao">
+			<a href="javascript:alert('功能暂未开通');">
+				<i class="icon-aui-my icon-qb"></i>
+				<p>钱包</p>
+			</a>
+		</li>
+		<li class="kaquan">
+			<a href="javascript:alert('功能暂未开通');">
+				<i class="icon-aui-my icon-kq"></i>
+				<p>卡券</p>
+			</a>
+		</li>
+		<li class="qian">
+			<a href="javascript:alert('功能暂未开通');">
+				<i class="icon-aui-my icon-qi"></i>
+				<p>签到</p>
+			</a>
+		</li>
+	</ul>
+	<div class="h10"></div>
+	<ul class="mymember">
+		<h2 class="b-line">
+			<span class="fl">我的订单</span>
+			<a th:href="@{/My_shop_order(action_type='all_orders')}" class="fr">全部订单 
+			</a>
+		</h2>
+		<li>
+			<a href="">
+				<i class="icon-aui-my icon-fk"></i>
+				<p>待付款</p>
+			</a>
+		</li>
+		<li>
+			<a href="">
+				<i class="icon-aui-my icon-fh"></i>
+				<p>待发货</p>
+			</a>
+		</li>
+		<li>
+			<a href="">
+				<i class="icon-aui-my icon-sh"></i>
+				<p>待收货</p>
+			</a>
+		</li>
+		<li>
+			<a href="">
+				<i class="icon-aui-my icon-pj"></i>
+				<p>确认收货</p>
+			</a>
+		</li>
+		<li>
+			<a href="tel:15821305840">
+				<i class="icon-aui-my icon-th"></i>
+				<p>退货/售后</p>
+			</a>
+		</li>
+	</ul>
+	<div class="h10"></div>
+	<ul class="list-menu">
+		<li class="b-line">
+			<a href="javascript:alert('功能暂未开通');">
+				<span class="fl">实名认证</span>
+				<i class="fr icon-aui icon-row"></i>
+			</a>
+		</li>
+		<li class="b-line">
+			<a th:href="@{/receipt_info3}">
+				<span class="fl">地址管理</span>
+				<i class="fr icon-aui icon-row"></i>
+			</a>
+		</li>
+		<li class="b-line">
+			<a href="javascript:alert('功能暂未开通');">
+				<span class="fl">账号充值</span>
+				<i class="fr icon-aui icon-row"></i>
+			</a>
+		</li>
+		<li class="b-line">
+			<a href="javascript:alert('功能暂未开通');">
+				<span class="fl">积分提现</span>
+				<i class="fr icon-aui icon-row"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<!--底部导航-->
+<div class="jl"></div>
+<nav class="mui-bar mui-bar-tab">
+	<a class="mui-tab-item "  th:href="@{/shop_main}">
+                <span class="mui-icon ">
+                    <i class="icon-aui icon-home"></i>
+                </span>
+		<span class="mui-tab-label">首页</span>
+	</a>
+	<a class="mui-tab-item" th:href="@{/category}">
+                <span class="mui-icon">
+                    <i class="icon-aui icon-class"></i>
+                </span>
+		<span class="mui-tab-label">分类</span>
+	</a>
+	<a class="mui-tab-item" th:href="@{/Shopping_Cart}">
+                <span class="mui-icon">
+                    <i class="icon-aui icon-car"></i>
+                </span>
+		<span class="mui-tab-label">购物车</span>
+	</a>
+	<a class="mui-tab-item mui-active" th:href="@{/My_info}">
+                <span class="mui-icon">
+                    <i class="icon-aui icon-my"></i>
+                </span>
+		<span class="mui-tab-label">我的</span>
+	</a>
+</nav>
+<script>
+    mui('body').on('tap', 'a', function() {
+        window.top.location.href = this.href;
+    });
+</script>
+</body>
+</html>

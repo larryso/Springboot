@@ -21,18 +21,20 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "t_rec_cat")
-public class ProductCatPO implements Serializable{
+public class ProductCatPO implements Serializable {
 
 	@Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY) 
-	 @Column
-	 private int id;
-	 @OneToMany(mappedBy="productCat",targetEntity=ProductPO.class,cascade=CascadeType.ALL)
-	 private Set<ProductPO> products = new HashSet<ProductPO>();
-	 @Column
-	 private String name;
-	 @Column
-	 private String description;
-	 @Column
-	 private String price;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private int id;
+	@OneToMany(mappedBy = "productCat", targetEntity = ProductPO.class, cascade = CascadeType.ALL)
+	private Set<ProductPO> products = new HashSet<ProductPO>();
+	@Column
+	private String name;
+	@Column
+	private String description;
+	@Column
+	private String price;
+	@Column
+	private String image_url;
 }

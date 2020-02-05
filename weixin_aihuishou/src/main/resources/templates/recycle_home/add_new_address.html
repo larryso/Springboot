@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>纸质类废品回收预约</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+        <style>       
+		body {padding-bottom: 70px;}         
+		.footer {position: fixed;            
+					left: 0px;            
+					bottom: 0px;            
+					width: 100%;            
+					height: 70px;            
+					background-color: #eee;           
+					z-index: 9999;        
+					 }    
+	</style>
+    </head>
+
+    <body>
+    <form id="new_address_form" th:action="@{/contactSubmit}" method="post">
+     <input  type="hidden" name="default_address2" value="22"> 
+      <div class="weui-cells weui-cells_form">
+  		<div class="weui-cell">
+    		<div class="weui-cell__hd"><label class="weui-label">联系人姓名：</label></div>
+    		<div class="weui-cell__bd">
+      			<input class="weui-input" type="text" placeholder="请输入联系人姓名" id="name_id" name="name">
+    		</div>
+  		</div>
+  		 <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">联系电话：</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入联系电话" id="tel_id" name="tel">
+        </div>
+      </div>
+  		 <div class="weui-cell">
+        	<div class="weui-cell__hd"><label for="name" class="weui-label">所在城区</label></div>
+        	<div class="weui-cell__bd">
+          		<input class="weui-input" id="city_id" name="city" type="text" value="">
+        	</div>
+      </div>
+  
+ 
+      <div class="weui-cell">
+      	<div class="weui-cell__hd"><label class="weui-label">详细地址：</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="text" placeholder="详细地址,如街道，小区" name="detail_address" id="detail_address_id">
+        </div>
+      </div>
+      
+       <div class="weui-cell weui-cell_switch">
+        <div class="weui-cell__bd">设置为默认地址</div>
+        <div class="weui-cell__ft">
+          <label for="switchCP" class="weui-switch-cp">
+            <input id="switchCP" class="weui-switch-cp__input" type="checkbox" checked="checked" >
+            <input id="default_address_id" type="hidden" name="default_address" value=""> 
+            <div class="weui-switch-cp__box"></div>
+          </label>
+        </div>
+      </div>
+ 
+</div>
+ <input type="hidden" name="from_url" th:value="${from_url}"> 
+ </form>
+   
+       
+    <div class="footer"> 
+    	<div class="weui-btn-area">
+      	<a class="weui-btn weui-btn_primary" href="javascript:#" id="save_new_address">保存</a>
+    	</div>
+    </div>
+
+   <script src="lib/jquery-2.1.4.js"></script>
+   <script src="lib/jquery-weui.js"></script>
+   <script type="text/javascript" src="lib/city-picker.min.js" charset="utf-8"></script>
+   <script>
+      $("#city_id").cityPicker({
+        title: "所在城区",
+        onChange: function (picker, values, displayValues) {
+          console.log(values, displayValues);
+        }
+      });
+    </script>
+     <script type="text/javascript">
+    	 $(document).ready(function(){
+    	 	 $("#save_new_address").click(function(){
+    	 	 	
+    	 	 	if ($("#name_id").val() =="") {
+        			 $.alert("请输入联系人姓名");
+        			return false;
+        		}else if($("#tel_id").val() ==""){
+        		 	$.alert("请输入联系电话");
+        			return false;
+        		}else if($("#city_id").val() ==""){
+        		 	$.alert("请输入所在城区");
+        			return false;
+        		}
+        		else if($("#detail_address_id").val() ==""){
+        			 $.alert("请输入详细地址街道");
+        			return false;
+        		}
+        		else if($("#tel_id").val() !=""){
+        			var value = $("#tel_id").val();
+        		 	var rex = /^1[3-9]+\d{9}$/;
+        		  	var rex2 = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+        		  	if (rex.test(value) || rex2.test(value)) {
+        		  	}else{
+        		  	 	$.alert("请输入正确格式的手机或电话号码");
+        		  	 	return false;
+        		  	}	
+     			}
+     			if($("#switchCP").get(0).checked) { $("#default_address_id").val("true");}else{$("#default_address_id").val("false");}
+     			$("#new_address_form").submit();
+        				 });
+    	 });
+    </script>
+     <script src="lib/fastclick.js"></script>
+    
+   <script>
+  		$(function() {
+    		FastClick.attach(document.body);
+  		});
+   </script>
+    </body>
+</html>

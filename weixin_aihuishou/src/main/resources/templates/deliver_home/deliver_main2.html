@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>同城快送</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet"  th:href="@{/lib/weui.min.css}"/>
+        <link rel="stylesheet"  th:href="@{/lib/jquery-weui.min.css}"/>
+        <style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}		
+ 				.top{top:0;z-index:1; height:opx;}		
+ 				.con{top:0px; bottom:200px; }		
+ 				.bottom{bottom:0;z-index:1; height:200px;overflow:auto;} 	
+        </style>
+   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=sAtBSzWxlKdA0wKhLwZfCVeyXsrieb7I"></script>
+    
+    </head>
+    <body>
+    <div class="wrap">
+    	<div class="con">
+			 <div id="l-map" style="width: 100%;height: 100%;"></div>
+		</div>
+<!-- footer nav-->  
+		<div class="bottom">
+  			<form>
+  				<div class="weui-cells weui-cells_form">
+  				 <div class="weui-cell">
+  				
+   					 <div class="weui-cell__bd">
+      					<input id="fromId" class="weui-input" type="text" name="from_addr"  placeholder="取件地址：*市*区(镇)*街道(小区)*号">
+    				</div>
+    				
+    			</div>
+    			  <div class="weui-cell">
+   					 <div class="weui-cell__bd">
+      					<input id="toId" class="weui-input" type="text"  name="to_addr" placeholder="送件地址：*市*区(镇)*街道(小区)*号">
+    				</div>
+  				</div>
+  				 <div class="weui-cell">
+  				  
+   					 <div class="weui-cell__bd">
+      					<input id="cargo_id" class="weui-input" type="text" name="cargo" placeholder="物品描述：文件，生鲜，等">
+    				</div>
+  				</div>
+  				 <div class="weui-cell">
+     				<div class="weui-cell__bd">
+      					<input id="from_name_id" class="weui-input" name="from_name" type="text" placeholder="寄件人姓名">
+    				</div>
+    				<div class="weui-cell__bd">
+      					<input id="from_tel_id" class="weui-input" type="tel" name="from_tel" placeholder="寄件人手机">
+    				</div>
+  				</div>
+  				<div class="weui-cell">
+     				<div class="weui-cell__bd">
+      					<input id="to_name_id" class="weui-input" type="text" name="to_name" placeholder="收件人姓名">
+    				</div>
+    				<div class="weui-cell__bd">
+      					<input class="weui-input" id="to_tel_id" type="tel" name="to_tel" placeholder="收件人手机">
+    				</div>
+  				</div>
+  				 <div class="weui-cell weui-cell_select weui-cell_select-after">
+        			<div class="weui-cell__hd">
+          			<label for="" class="weui-label">预估重量：</label>
+        			</div>
+        			<div class="weui-cell__bd">
+          				<select id="weight_id" class="weui-select" name="weight">
+            				<option value="0">0-10kg</option>
+            				<option value="10">10kg-50kg</option>
+            				<option value="50">50kg 以上</option>
+          				</select>
+        			</div>
+      			</div>
+  			     <div class="weui-cell weui-cell_warn">
+  			      <div class="weui-cell__hd"><label id="deliver_fee_id" for="" >运费</label></div>
+  			     
+  			     </div>
+
+  				</div>
+  				<div id="calculate_id" class="weui-btn-area">
+      			<a class="weui-btn weui-btn_primary" href="javascript:" id="calculate_deliver_id">计算运费</a>
+    			</div>
+    			<div id="submit_id" style="display:none;">
+    			<div class="weui-btn-area" >
+      			<a class="weui-btn weui-btn_primary" href="javascript:" id="submit_order_id">下单</a>
+    			</div>
+    			</div>
+  			</form>
+      	</div>
+<!--footer nav end-->
+     </div>
+     <script  th:src="@{/lib/jquery-2.1.4.js}"></script>
+     <script  th:src="@{/lib/jquery-weui.js}"></script>
+ 	<script type="text/javascript">
+	// 百度地图API功能
+	function G(id) {
+		return document.getElementById(id);
+	}
+
+
+	var map = new BMap.Map("l-map");
+	var point = new BMap.Point(116.331398,39.897445);
+	var from_marker=new BMap.Marker(point);
+    var to_marker=new BMap.Marker(point);
+    var from_point=point;
+    var to_point=point;
+    var polyline; 
+	map.centerAndZoom(point,12);
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			from_marker=mk;
+			to_marker=mk;
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			//alert('您的位置：'+r.point.lng+','+r.point.lat);
+		}
+		else {
+			alert('failed'+this.getStatus());
+		}        
+	},{enableHighAccuracy: true})
+
+</script>
+ 	<script type="text/javascript">
+  			$("#fromId").on('blur',function(){
+  			    map.removeOverlay(from_marker); 
+  				var from_address = $('#fromId').val();
+                var localSearch = new BMap.LocalSearch(map);
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+　　　　				var poi = searchResult.getPoi(0);
+　　　　              from_point=poi.point
+　　　　				map.centerAndZoom(poi.point, 12);
+					var marker = new BMap.Marker(poi.point);
+					from_marker = marker;
+					var label = new BMap.Label("取件地址",{offset:new BMap.Size(20,-10)});
+        			from_marker.setLabel(label);
+        			map.addOverlay(from_marker);
+　　				});
+　　				localSearch.search(from_address);
+            })
+      </script>
+      <script type="text/javascript">
+  			$("#toId").on('blur',function(){
+  			    map.removeOverlay(to_marker); 
+  				var to_address = $('#toId').val();
+                var localSearch = new BMap.LocalSearch(map);
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+　　　　				var poi = searchResult.getPoi(0);
+　　　　             to_point=poi.point;
+　　　　				map.centerAndZoom(poi.point, 12);
+					var marker = new BMap.Marker(poi.point);
+					to_marker = marker;
+					var label = new BMap.Label("送件地址",{offset:new BMap.Size(20,-10)});
+        			to_marker.setLabel(label);
+        			map.addOverlay(to_marker);
+　　				});
+　　				localSearch.search(to_address);
+            })
+      </script>
+        <script type="text/javascript">
+  			$("#calculate_deliver_id").on('click',function(){
+  			 map.removeOverlay(polyline); 
+  			 if ($("#fromId").val() =="") {
+        			 $.alert("请输入取件地址");
+        			return false;
+        		}else if($("#toId").val() ==""){
+        		 	$.alert("请输入送件地址");
+        			return false;
+        		}else if($("#cargo_id").val() ==""){
+        		 	$.alert("请输入物品描述");
+        			return false;
+        		}
+        		else if($("#from_name_id").val() ==""){
+        			 $.alert("请输入寄件人姓名");
+        			return false;
+        		}
+        		else if($("#from_tel_id").val() ==""){
+        			 $.alert("请输入寄件人手机");
+        			return false;
+        		}
+        		else if($("#to_name_id").val() ==""){
+        			 $.alert("请输入收件人姓名");
+        			return false;
+        		}
+        		else if($("#to_tel_id").val() ==""){
+        			 $.alert("请输入收件人手机");
+        			return false;
+        		}
+        		//alert('距离是：'+(map.getDistance(from_point,to_point)).toFixed(2)+' 米。'); 
+        		
+        		var dist = map.getDistance(from_point,to_point).toFixed(2);
+        	alert(dist);
+        		polyline = new BMap.Polyline([from_point,to_point], {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});  //定义折线
+	            map.addOverlay(polyline);     //添加折线到地图上
+	            	var weight = $("#weight_id").val();
+        		 $.ajax({ 
+     				type : "POST", //提交方式 
+     				url : "/tongcheng/calc_deliver_fee",//路径 
+     				 dataType : 'JSON',
+     				contentType: "application/json",
+     				
+     				 data:JSON.stringify({weight:weight,point_dist:dist}),
+     				success : function(result) {//返回数据根据结果进行相应的处理 
+     					 if ( result.statusCode== "200") { 
+       						$('#deliver_fee_id').text( '运费：'+result.total_price+' 元');
+       						$('#calculate_id').hide();
+       						$('#submit_id').show();
+     					 } else { 
+      							 $("#deliver_fee_id").text("运费计算异常，请联系客服"); 
+      					} 
+     				} 
+    			}); 
+            })
+      </script>
+      
+    </body>
+</html>

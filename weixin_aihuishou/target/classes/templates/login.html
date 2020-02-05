@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>回收员后台系统</title>
+         <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <link href="css/login.css" type="text/css" rel="stylesheet">
+        <link href="css/global.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="js/login.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+    </head>
+    <body>
+    <script type="text/javascript" th:if="${errorMsg == 'invalid username'}" >
+    alert("用户名不存在!");
+    </script>
+    <script type="text/javascript" th:if="${errorMsg == 'invalid password'}" >
+    alert("密码输不正确!");
+    </script>
+        <div class="login">
+            <div class="login-title"><p></p>
+                <i></i>
+            </div>
+           	<form action="./login_submit" method="post">
+            <div class="login-bar">
+                <ul>
+                    <li><img src="images/login_user.png"><input id="login_name_id" name="login_name" type="text" class="text" placeholder="请输入用户名" /></li>
+                    <li><img src="images/login_pwd.png"><input id="password_id" name="password" type="password" class="psd" placeholder="请输入确认密码" /></li>
+                </ul>
+            </div>
+            <div class="login-btn">
+                <button id="login_submit_id" class="submit" type="submit" >登陆</button>
+               
+            </div>
+            </form>
+        </div>
+		<div style="text-align:center;">
+
+</div>
+  <script type="text/javascript">
+    	 $(document).ready(function(){
+    	 	 $("#login_submit_id").click(function(){
+    	 	 if($("#login_name_id").val() ==""){
+    	 	 		alert("请输入手机号码");
+        		  	return false;
+    	 	}else if($("#login_name_id").val() !=""){
+        			var value = $("#login_name_id").val();
+        		 	var rex = /^1[3-9]+\d{9}$/;
+        		  	var rex2 = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+        		 	 if (rex.test(value) || rex2.test(value)) {
+        		  	}else{
+        		  		alert("请输入正确格式的手机号码");
+        		  		return false;
+        		  }
+        	 }
+        	 
+        	 if($("#password_id").val() ==""){
+        			alert("请输入密码");
+        		  	return false;
+        		}
+        		
+ 			 });
+    	 });
+    </script>
+    </body>
+</html>

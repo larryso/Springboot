@@ -7,6 +7,9 @@ import net.sf.ehcache.config.CacheConfiguration;
 
 public class EhCacheUtil {
 	public static final String CACHE_KEY_PROD="productList";
+	public static final String CACHE_KEY_SHOP_PROD_CAT="shopProductCategory";
+	public static final String CACHE_KEY_SHOP_PROD = "shopProduct";
+	public static final String CACHE_KEY_SHOP_PROD_MAP = "shopProductMap";
 	public static final String CACHE_KEY_HASHPROD = "hashProducts";
 	private static CacheManager cacheManager = null;
 	private static Cache cache = null;

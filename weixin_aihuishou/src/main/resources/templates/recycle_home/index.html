@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>讯收侠-首页</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" href="lib/weui.min.css"/>
+        <link rel="stylesheet" href="lib/jquery-weui.min.css"/>
+        <style type="text/css">
+        	 html,body,.page{width:100%; height:100%;overflow:hidden;}		
+ 				.top,.con,.bottom{position:absolute; left:0; right:0;}		
+ 				.top{top:0;z-index:1; height:180px;}		
+ 				.con{top:180px; bottom:50px; overflow:auto;}		
+ 				.bottom{bottom:0;z-index:1; height:50px;} 	
+        </style>
+        <style>
+      	.swiper-container {
+        width: 100%;
+      } 
+
+      .swiper-container img {
+        display: block;
+        width: 100%;
+      }
+    </style>
+     
+    </head>
+    <body>
+    <div class="wrap">
+    	<!--top banner or navigator-->
+    		<div class="top">
+    		 <div class="swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide"><img style="height:180px;width: 100%" src="images/recycle_home/banner01.png" /></div>
+        <div class="swiper-slide"><img style="height:180px;width: 100%" src="images/recycle_home/banner02.png" /></div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+			</div>
+		<!--END top banner or navigator-->
+  			<div class="con">
+  				<div class="weui-grids">
+  					<div>
+  					<a th:href="@{/paper}" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/paper.jpg"/>
+    					</div>
+    					<p class="weui-grid__label">纸质类废品</p>
+  					</a>
+  					<a th:href="@{/plastic}" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/plastic.jpg"/>
+    					</div>
+    					<p class="weui-grid__label">塑料类废品</p>
+  					</a>
+  					<a th:href="@{/metal}" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/metal.jpg"/>
+    					</div>
+    					<p class="weui-grid__label">金属类废品</p>
+  					</a>
+  					<a th:href="@{/phone}" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/phone.png"/>
+    					</div>
+    					<p class="weui-grid__label">废旧手机</p>
+  					</a>
+  					<a th:href="@{/elect}" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/elec.jpg"/>
+    					</div>
+    					<p class="weui-grid__label">废旧家电</p>
+  					</a>
+  					<a href="javascript:;" id="f_id" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/furniture.png"/>
+    					</div>
+    					<p class="weui-grid__label">废旧家具</p>
+  					</a>
+  					<a href="javascript:;" id="e_id" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/dianzi.png"/>
+    					</div>
+    					<p class="weui-grid__label">电子元件类</p>
+  					</a>
+  					<a href="javascript:;" id="d_id" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/dress.png"/>
+    					</div>
+    					<p class="weui-grid__label">织物类，旧衣服</p>
+  					</a>
+  					<ahref="javascript:;" id="o_id" class="weui-grid js_grid">
+    					<div class="weui-grid__icon">
+      						<img style="height:30px;width: 30px;vertical-align: middle;border-radius:250px;overflow: hidden;" src="images/recycle_home/others.png"/>
+    					</div>
+    					<p class="weui-grid__label">其他种类</p>
+  					</a>
+  					</div>
+				</div>
+				<div class="weui-footer">
+  				<p class="weui-footer__text">Copyright © 上饶市宸讯科技有限公司</p>
+			</div>
+			</div>
+			
+<!-- footer nav-->  
+			<div class="bottom">
+  				<div class="weui-tabbar">
+        		<a th:href="@{/index}" class="weui-tabbar__item weui-bar__item--on">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_home.png" alt="">
+          			</div>
+          			<p class="weui-tabbar__label">首页</p>
+        		</a>
+        		<a th:href="@{/my_order}" class="weui-tabbar__item">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_nav_form.png" alt="">
+          			</div>
+          			<p class="weui-tabbar__label">订单管理</p>
+        		</a>
+        		<a th:href="@{/my_point}" class="weui-tabbar__item">
+          			<div class="weui-tabbar__icon">
+            			<img src="images/recycle_home/icon_center.png" alt="">
+          			</div>
+         			<p class="weui-tabbar__label">个人中心</p>
+        		</a>
+      		</div>
+      	</div>
+<!--footer nav end-->
+     </div>
+     <script src="lib/jquery-2.1.4.js"></script>
+     <script src="lib/jquery-weui.js"></script>
+     <script src="lib/swiper.js"></script>
+       <script>
+      $(".swiper-container").swiper({
+        loop: true,
+        autoplay: 3000
+      });
+    </script>
+    <script>
+     $(document).ready(function(){
+    	 	 $("#f_id").click(function(){
+    	 	 $.toast("该业务暂未开放", "text");
+ 			 });
+ 			  $("#d_id").click(function(){
+    	 	 $.toast("该业务暂未开放", "text");
+ 			 });
+ 			  $("#e_id").click(function(){
+    	 	 $.toast("该业务暂未开放", "text");
+ 			 });
+ 			  $("#o_id").click(function(){
+    	 	 $.toast("该业务暂未开放", "text");
+ 			 });
+    	 });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+         <title>回收员后台系统</title>
+        <!-- 引入 WeUI -->
+        <link rel="stylesheet" th:href="@{/lib/weui.min.css}"/>
+        <link rel="stylesheet" th:href="@{/lib/jquery-weui.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/recycle_style.css}"/>
+    </head>
+    <body>
+ <header class='demos-header'>
+      <div style="background-color:orange;width:100%;height:40px; text-align:center;line-height:40px">订单详情</div>
+    </header>
+
+    <div class="weui-form-preview">
+    <div class="weui-cells" th:if="${address} != null">
+  		
+  		<a class="weui-cell weui-cell_access" href="#" >
+    		<div class="weui-cell__hd">
+      			<img  th:src="@{/images/recycle_home/location.png}" alt="" style="width:30px;margin-right:5px;display:block">
+    		</div>
+    		 <div class="weui-cell__bd weui-cell_primary">
+    		 <h3 class="weui-media-box__title" th:text="${address.name} + ${address.tel}"></h3>
+                  <p th:text="${address.address}"></p>
+    		 </div>   
+    	
+  		</a>
+	</div>
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">付款金额</label>
+          <em class="weui-form-preview__value">*</em>
+        </div>
+      </div>
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单编号：</label>
+          <span class="weui-form-preview__value" th:text="${order.order_number}"></span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单提交时间:</label>
+          <span class="weui-form-preview__value" th:text="${order.created_date}"></span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">订单种类：</label>
+          <span class="weui-form-preview__value" th:text="${order.productCat.name}"></span>
+        </div>
+         <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">预约回收时间：</label>
+          <span class="weui-form-preview__value"  th:text="${order.start_date}"></span>
+        </div>
+      
+         
+      </div>
+        <div class="weui-cells__title">明细：</div>
+        <div class="weui-cells">
+        <div th:each="item:${items}">
+          <div class="weui-cell">
+           
+            <div class="weui-cell__bd">
+              <p th:text="${item.product_name}"></p>
+            </div>
+            <div class="weui-cell__ft">*</div>
+          </div>
+          </div>
+        </div>
+        
+         <div class="weui-cells__title">客户要求：</div>
+		<div class="weui-cells weui-cells_form">
+  			<div class="weui-cell">
+    			<div class="weui-cell__bd">
+     			 <textarea class="weui-textarea" rows="3" disabled th:text="${order.comments}"></textarea>
+   			 </div>
+  		</div>
+		</div>
+		
+      <div class="weui-form-preview__ft">
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" th:href="@{/manager_main}">返回</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" th:href="@{/pick_order(orderId=${order.id})}">抢单</a>
+      </div>
+    </div>
+  <script src="lib/jquery-2.1.4.js"></script>
+     <script src="lib/jquery-weui.js"></script>
+ <script type="text/javascript" th:if="${errorMsg == 'order_taken'}" >
+    $.alert("抢单失败，订单已被处理");
+ </script>
+    </body>
+</html>
