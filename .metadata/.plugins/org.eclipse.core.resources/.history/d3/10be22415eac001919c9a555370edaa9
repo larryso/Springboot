@@ -1,8 +1,0 @@
-package com.larry.restful;
-
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class CustomWebService {
-
-}

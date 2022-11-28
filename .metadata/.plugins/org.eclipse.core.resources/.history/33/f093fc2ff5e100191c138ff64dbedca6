@@ -1,9 +1,0 @@
-package com.larry.utils;
-
-import net.sf.json.JSONObject;
-
-public class WeixinUtils {
-	public static JSONObject doGetStr(String url){
-		DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
-	}
-}

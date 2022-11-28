@@ -1,5 +1,0 @@
-package com.larry.java8Demo;
-@FunctionalInterface
-public interface DefaultMethod {
-
-}

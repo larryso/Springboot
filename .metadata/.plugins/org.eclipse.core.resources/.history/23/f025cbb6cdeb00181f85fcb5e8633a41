@@ -1,5 +1,0 @@
-package com.larry.controller;
-@RestController
-public class HelloWordController {
-
-}

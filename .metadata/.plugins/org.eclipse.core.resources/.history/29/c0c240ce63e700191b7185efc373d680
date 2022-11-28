@@ -1,9 +1,0 @@
-package com.larry.entity;
-
-import javax.persistence.Entity;
-
-@Entity
-@Table(name = "t_rec")
-public class ProductPO implements Serializable{
-
-}

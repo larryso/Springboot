@@ -1,7 +1,0 @@
-package com.larry.aop;
-
-@RunWith(SpringRunner.class)
-@ContextConfiguration(locations = { "classpath*:applicationContext.xml" })
-public class AOPTest {
-
-}

@@ -1,5 +1,0 @@
-package com.larry.repository;
-
-public interface LogRepository {
-
-}

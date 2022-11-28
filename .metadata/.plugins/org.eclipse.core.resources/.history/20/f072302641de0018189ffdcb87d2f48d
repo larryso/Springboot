@@ -1,6 +1,0 @@
-package com.larry.aop.security;
-@Aspect
-@Component
-public class SecurityAspect {
-
-}

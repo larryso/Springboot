@@ -1,7 +1,0 @@
-package com.larry.bean;
-@Data
-public class TextMessage extends BaseMessage {
-	private String Content;
-
-	private String MsgId;
-}

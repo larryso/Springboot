@@ -1,7 +1,0 @@
-package com.larry.bean;
-@Data
-@Component
-public class AccessToken {
-	private String token;
-	private int expireIn;
-}

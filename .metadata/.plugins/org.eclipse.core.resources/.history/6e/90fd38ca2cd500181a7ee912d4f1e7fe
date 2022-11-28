@@ -1,8 +1,0 @@
-package data.enumTest;
-
-public enum StatusEnum {
-	private String code;
-	private String content;
-	StatusEnum(String code, String content)
-
-}

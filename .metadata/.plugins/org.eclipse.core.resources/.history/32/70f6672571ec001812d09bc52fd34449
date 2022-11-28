@@ -1,5 +1,0 @@
-package com.larry.exception;
-
-public class MyException {
-
-}

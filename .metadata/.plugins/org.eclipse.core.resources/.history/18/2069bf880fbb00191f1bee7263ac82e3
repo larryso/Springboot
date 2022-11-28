@@ -1,5 +1,0 @@
-package com.larry.modules.security.utils;
-
-public class VerificationCodeUtils {
-
-}

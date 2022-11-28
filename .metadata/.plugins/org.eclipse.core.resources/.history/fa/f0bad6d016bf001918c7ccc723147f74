@@ -1,8 +1,0 @@
-package com.larry.domain;
-
-import java.io.Serializable;
-@Entity
-
-public class Log implements Serializable{
-
-}

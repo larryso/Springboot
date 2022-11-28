@@ -1,9 +1,0 @@
-package com.larry.java8Demo.stream;
-
-public class StreamTest {
-	public static void main(String... args) {
-		System.out.println("使用 Java 7: ");
-
-	}
-
-}

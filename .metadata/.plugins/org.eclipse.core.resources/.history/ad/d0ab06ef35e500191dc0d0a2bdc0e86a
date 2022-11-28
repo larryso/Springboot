@@ -1,7 +1,0 @@
-package com.larry.service.impl;
-
-import com.larry.service.OrderService;
-
-public class OrderServiceImpl implements OrderService{
-
-}

@@ -1,7 +1,0 @@
-package com.larry.service.impl;
-
-import com.larry.service.AuthUserService;
-
-public class AuthUserServiceImpl implements AuthUserService{
-
-}

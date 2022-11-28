@@ -1,5 +1,0 @@
-package collection.list;
-
-public class CopyOnWriteListTest {
-
-}

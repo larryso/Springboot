@@ -1,5 +1,0 @@
-package com.larry.modules.security.rest;
-
-public class AuthenticationController {
-
-}

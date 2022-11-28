@@ -1,7 +1,0 @@
-package com.larry.cache;
-
-public class EhCacheUtil {
-	private static CacheManager cacheManager = null;
-	private static Cache cache = null;
-
-}

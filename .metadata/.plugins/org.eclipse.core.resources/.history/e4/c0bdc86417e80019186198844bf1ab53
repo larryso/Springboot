@@ -1,9 +1,0 @@
-package com.larry.bean;
-@Data
-public class ProductBean {
-	private int id;
-	private String name;
-	private String price;
-	private String description;
-
-}

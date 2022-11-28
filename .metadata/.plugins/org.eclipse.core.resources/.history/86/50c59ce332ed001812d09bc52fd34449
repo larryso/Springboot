@@ -1,5 +1,0 @@
-package com.larry.service.impl;
-@Service
-public class UserServiceImpl {
-
-}

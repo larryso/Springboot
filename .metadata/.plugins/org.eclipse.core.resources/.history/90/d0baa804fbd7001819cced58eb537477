@@ -1,7 +1,0 @@
-package thread.threadPool;
-
-public class CustomThreadPoolExecutor {
-	ThreadPoolExecutor pool = null;
-	
-
-}

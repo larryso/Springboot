@@ -1,8 +1,0 @@
-package com.larry.aop.service;
-@Service
-public class ProductService {
-	public void delete(int id) {
-		System.out.println("delete product");
-	}
-
-}

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;eladmin_v2_system&apos;&#x0A;- Original project: &apos;eladmin_v2_system&apos;&#x0A;- Original element: &apos;eladmin_v2_system/src/main/java/com.larry.modules.security.utils&apos;" description="Delete element" element1="/src\/main\/java&lt;com.larry.modules.security.utils" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1565400921544" subPackages="false" version="1.0"/>
-</session>

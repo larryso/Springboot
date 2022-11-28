@@ -1,5 +1,0 @@
-package com.larry.entity;
-@Entity
-public class ProductCatPO {
-
-}

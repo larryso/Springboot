@@ -1,5 +1,0 @@
-package com.larry.annotation;
-
-public @interface Query {
-
-}

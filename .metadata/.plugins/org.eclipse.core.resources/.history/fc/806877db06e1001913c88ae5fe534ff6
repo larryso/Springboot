@@ -1,8 +1,0 @@
-package com.larry.controller;
-@Controller
-public class TestController {
-	public String sayHellow(Map<String, Object>map, Model model ) {
-		
-	}
-
-}

@@ -1,5 +1,0 @@
-package singleTon;
-
-public class SingletonEager {
-
-}

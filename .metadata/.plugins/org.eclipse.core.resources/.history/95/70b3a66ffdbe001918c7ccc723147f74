@@ -1,8 +1,0 @@
-package com.larry.aop.log;
-
-import java.lang.annotation.ElementType;
-
-@Target(ElementType.METHOD)
-public @interface Log {
-
-}

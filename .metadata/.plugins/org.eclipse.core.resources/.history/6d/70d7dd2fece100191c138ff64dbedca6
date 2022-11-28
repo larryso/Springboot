@@ -1,7 +1,0 @@
-package com.larry.utils;
-
-public class WeixinUtils {
-	public static JSONObject doGetStr(String url){
-		
-	}
-}

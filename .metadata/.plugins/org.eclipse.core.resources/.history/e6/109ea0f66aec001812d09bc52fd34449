@@ -1,5 +1,0 @@
-package com.larry.advice;
-
-public class MyControllerAdvice {
-
-}

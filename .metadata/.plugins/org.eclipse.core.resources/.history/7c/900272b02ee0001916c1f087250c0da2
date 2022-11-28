@@ -1,7 +1,0 @@
-package com.larry.servlet;
-
-import javax.servlet.http.HttpServlet;
-
-public class WeixinServlet extends HttpServlet{
-
-}

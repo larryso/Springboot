@@ -1,5 +1,0 @@
-package com.larry.aop.logger;
-
-public class LogAspect {
-
-}
