@@ -7,3 +7,4 @@ By default, SpringDoc automatically generates documentation in JSON/YAML formats
 
 SpringDoc supports most of the Spring modules out of the box. It is able to examine the code in runtime for all these modules and generate appropriate documentation for them.
 
+https://howtodoinjava.com/spring-boot/springdoc-openapi-rest-documentation/

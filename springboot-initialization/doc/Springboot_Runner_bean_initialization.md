@@ -33,3 +33,12 @@ public class App {
 
 [Spring Event handling for initialization](./spring-boot-listener_and_event.md)
 
+## SmartLifeCycle
+
+An extension of the Lifecycle interface for thoses objects that require to be started upon ApplicationContext refresh or shutdown in a particular order
+
+* isAuthoStartup() return value indicates whether this object should be started at the time of a context refresh
+
+* stop(Runnable) method is usefull for objects that have an asynchronous shutdown process
+
+* getPhase() methods return value indicates the phase within which the lifecyle component should be started and stopped

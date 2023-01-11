@@ -1,0 +1,6 @@
+rootProject.name = 'springboot-gradle'
+include 'system-api'
+include 'system-core'
+include 'system-dto'
+include 'system-tools'
+

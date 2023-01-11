@@ -1,0 +1,11 @@
+
+dependencies {
+    implementation project(':system-core')
+    implementation project(':system-dto')
+    implementation project(':system-tools')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+bootRun{
+    mainClass = 'com.larry.api.App'
+    args=['--spring.profiles.active=local']
+}

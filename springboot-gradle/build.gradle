@@ -1,0 +1,18 @@
+//https://plugins.gradle.org/plugin/org.springframework.boot
+plugins {
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "org.springframework.boot" version "2.3.12.RELEASE"
+}
+group 'com.larry'
+version '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java-library'
+
+    repositories {
+        mavenCentral()
+    }
+}

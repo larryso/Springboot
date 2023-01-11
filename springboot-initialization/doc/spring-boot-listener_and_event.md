@@ -165,4 +165,21 @@ Also, there's an alternative way of publishing events. If we return a non-null v
 This section is about using the @TransactionalEventListener annotation. To learn more about transaction management, check out Transactions With Spring and JPA.
 
 Since Spring 4.2, the framework provides a new @TransactionalEventListener annotation, which is an extension of @EventListener, that allows binding the listener of an event to a phase of the transaction.
+Binding is possible to the following transaction phases:
+
+* AFTER_COMMIT (default) is used to fire the event if the transaction has completed successfully.
+* AFTER_ROLLBACK – if the transaction has rolled back
+* AFTER_COMPLETION – if the transaction has completed (an alias for AFTER_COMMIT and AFTER_ROLLBACK)
+* BEFORE_COMMIT is used to fire the event right before transaction commit.
+Here's a quick example of a transactional event listener:
+
+``` java
+@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+public void handleCustom(CustomSpringEvent event) {
+    System.out.println("Handling event inside a transaction BEFORE COMMIT.");
+}
+```
+This listener will be invoked only if there's a transaction in which the event producer is running and it's about to be committed.
+
+And if no transaction is running, the event isn’t sent at all unless we override this by setting fallbackExecution attribute to true.
 
