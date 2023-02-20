@@ -23,4 +23,5 @@ dependencies {
     }
     annotationProcessor ("org.projectlombok:lombok:${lombokVersion}")
     compileOnly ("org.projectlombok:lombok:${lombokVersion}")
+    implementation 'org.apache.commons:commons-lang3:3.9'
 }

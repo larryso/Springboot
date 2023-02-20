@@ -1,9 +1,16 @@
 
 dependencies {
+    ext{
+        lombokVersion = '1.18.16'
+    }
     implementation project(':system-core')
     implementation project(':system-dto')
     implementation project(':system-tools')
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'javax.inject:javax.inject:1'
+
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 }
 bootRun{
     mainClass = 'com.larry.api.App'

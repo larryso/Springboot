@@ -65,7 +65,8 @@ bootRun{
 ```
  Note that we did not add a version number because the version is automatically resolved from the spring-boot-dependencies BOM in the parent build file. In this case, we’ll get the version that is compatible with Spring Boot 2.3.12.RELEASE.
 
+
  ## Reference
- [https://plugins.gradle.org/plugin/org.springframework.boot](https://plugins.gradle.org/plugin/org.springframework.boot)
- [https://docs.spring.io/spring-boot/docs/3.0.1/gradle-plugin/reference/htmlsingle/](https://docs.spring.io/spring-boot/docs/3.0.1/gradle-plugin/reference/htmlsingle/)
+ [https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/](https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/)
+
 

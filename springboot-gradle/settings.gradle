@@ -1,3 +1,33 @@
+//https://plugins.gradle.org/plugin/org.springframework.boot
+// https://docs.gradle.org/current/userguide/dependency_management.html
+
+pluginManagement{
+    repositories{
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+//        maven{
+//            url 'http://maven.aliyun.com/nexus/content/repositories/central'
+//        }
+    }
+    plugins{
+        id 'java-library'
+        id 'org.sonarqube' version '3.4.0.2513'
+        id "org.springframework.boot" version "2.3.8.RELEASE"
+        id "io.spring.dependency-management" version "1.0.11.RELEASE"
+        id 'jacoco'
+
+    }
+}
+// By default, repositories declared in setting will be override in build.gradle
+// you can change this by using repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+//dependencyResolutionManagement {
+//    repositories{
+//        mavenCentral()
+//    }
+//    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+//}
 rootProject.name = 'springboot-gradle'
 include 'system-api'
 include 'system-core'
