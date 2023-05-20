@@ -2,3 +2,12 @@ spring:
   jackson:
     default-property-inclusion: non_null
     date-format: java.text.SimpleDateFormat
+
+app:
+  task:
+    threadNamePrefix: Async-
+    poolCoreSize:5
+    poolMaxSize: 5
+    queueCapacity: 100000
+    batchSize: 1000
+    batchChunkDelay: 100
