@@ -14,7 +14,7 @@ public class Producer implements Runnable {
     }
     public void produce() {
         while (runFlag) {
-            Message message = generateMessage();
+           //Message message = generateMessage();
             while (dataQueue.isFull()) {
                 try {
                     dataQueue.waitOnFull();
@@ -25,10 +25,14 @@ public class Producer implements Runnable {
             if (!runFlag) {
                 break;
             }
-            dataQueue.add(message);
+            //dataQueue.add(message);
             dataQueue.notifyAllForEmpty();
         }
     }
+
+//    private Message generateMessage() {
+//    }
+
     public void stop(){
         this.runFlag = false;
     }

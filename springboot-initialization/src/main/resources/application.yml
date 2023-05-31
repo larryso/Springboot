@@ -6,7 +6,7 @@ spring:
 app:
   task:
     threadNamePrefix: Async-
-    poolCoreSize:5
+    poolCoreSize: 5
     poolMaxSize: 5
     queueCapacity: 100000
     batchSize: 1000
