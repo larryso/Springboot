@@ -25,6 +25,9 @@ public class IndexController {
     private final CustomSpeingEventPublisher customSpeingEventPublisher;
     @Autowired
     private AsyncService asyncService;
+    @Autowired
+    private DummyService dummyService;
+
     @GetMapping("/hellow")
     public ResponseEntity<String> index(){
         customSpeingEventPublisher.publishCustomEvent("");
@@ -43,6 +46,11 @@ public class IndexController {
        }catch (Exception e){
 
        }
+        return "OK";
+    }
+    @GetMapping("/auditTest")
+    public String auditTest(){
+        dummyService.auditedService();
         return "OK";
     }
 }
