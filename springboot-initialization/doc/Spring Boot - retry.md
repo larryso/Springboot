@@ -6,3 +6,7 @@ Spring Retry provides an ability to automatically re-invoke failed operation, th
 
 ## Dependencies
 
+···gradle
+    implementation 'org.springframework.retry:spring-retry'
+···
+
