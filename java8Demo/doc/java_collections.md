@@ -1,5 +1,19 @@
-# Java Collection - Map
-![](../../images/java.webp)
+# Java Collections
+
+Java Collections Framework is an importent part of java programming
+
+![](../images/java_collections.png)
+
+## Interfaces
+java.util.Collection is the root interface of Collections Framework, it contains some importent methods such as size(), iterator(), add(), remove(), clear(), etc.
+
+some other importent interfaces are:
+java.uitl.List
+java.util.Set
+java.util.Queue
+java.util.Map - Map interface does not inherit from The Collection interface, but it is part of Collections Framework
+
+
 
 ## Map
 ### HashMap
