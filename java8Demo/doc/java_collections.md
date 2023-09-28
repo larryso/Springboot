@@ -7,10 +7,10 @@ Java Collections Framework is an importent part of java programming
 ## Interfaces
 java.util.Collection is the root interface of Collections Framework, it contains some importent methods such as size(), iterator(), add(), remove(), clear(), etc.
 
-some other importent interfaces are:
-java.uitl.List
-java.util.Set
-java.util.Queue
+some other importent interfaces are:</br>
+java.uitl.List</br>
+java.util.Set</br>
+java.util.Queue</br>
 java.util.Map - Map interface does not inherit from The Collection interface, but it is part of Collections Framework
 
 
