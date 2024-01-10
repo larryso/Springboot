@@ -2,7 +2,7 @@
 
 ## Annotations for Web
 
-### @RequestParram/@RequestBoday/@RequestPart/@PathVariable
+### @RequestParram/@RequestBoday/@RequestPart/@PathVariable/@RequestHeader
 Before we get start about this part, let's first know content-type in http header
 For more knowledge, please refer to [https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
 
@@ -65,3 +65,14 @@ public Employee getEmployeeByIdAndName(@PathVariable String id, @PathVariable(re
     ....
 }
 ```
+@RequestHeader annotation was used to supply request headers to our controller method
+
+```java
+@GetMapping("/default")
+public ResposeEntity<String>evaluateDefaultHeaderValue(
+            @RequestHeader(value="optional-header", defaultValue="3600") int optionalHeader){
+    return new Responseentity<String>("Success", HttpStatus.OK);
+}
+```
+### @RequestMapping/@PostMapping/@PutMapping/PatchMapping/@GetMapping/@DepelteMapping
+

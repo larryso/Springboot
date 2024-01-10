@@ -48,7 +48,7 @@ public class App {
     @Primary
     public ObjectMapper objectMapper(){
         ObjectMapper objectMapper = ObjectMapperUtils.createObjectMapper();
-        objectMapper.deactivateDefaultTyping();
+        //objectMapper.deactivateDefaultTyping();
         SimpleModule module = new SimpleModule("initialization", new Version(0,1,0,"", "com.larry", "spring-boot-initialization"));
         module.addSerializer(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         objectMapper.registerModule(module);

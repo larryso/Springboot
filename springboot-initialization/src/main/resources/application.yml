@@ -3,6 +3,56 @@ spring:
     default-property-inclusion: non_null
     date-format: java.text.SimpleDateFormat
 
+  quartz:
+    job-store-type: JDBC
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+            triggerListener:
+              NAME:
+                class: com.larry.scheduler.quartz.listener.TigerListener
+            jobListener:
+              NAME:
+                class: com.larry.scheduler.quartz.listener.JobListener
+            scheduleListener:
+              NAME:
+                class: com.larry.scheduler.quartz.listener.ScheduleListener
+            threadPool:
+              threadCount: 10
+            jobStore:
+              driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+              tablePrefix: QRTZ_
+              isClustered: true
+              clusterCheckinInterval: 20000
+              maxMisfiresToHandleAtATime: 1
+              misfireThreshold: 1200000
+              txIsolationLevelSerializable: false
+              dataSource: appDataSource
+            plugin:
+              jobHistory:
+                class: org.quartz.plugins.history.LoggingJobHistoryPlugin
+              shutdownHook:
+                class: org.quartz.plugins.management.ShutdonwHookPlugin
+                cleanShutdown: true
+
+  jpa:
+    database: mysql
+    show-sql: false
+    open-in-view: false
+
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
 app:
   task:
     threadNamePrefix: Async-
@@ -11,3 +61,12 @@ app:
     queueCapacity: 100000
     batchSize: 1000
     batchChunkDelay: 100
+  app-datasource:
+    platform: mysql
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/demo
+    poolName: AppHikariPool
+    maximumPoolSize: 100
+    minimumIdle: 10
+    username: root
+    password: root
