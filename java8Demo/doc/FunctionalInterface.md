@@ -35,3 +35,19 @@ public class FunctionalInterfaceTest {
 }
 ```
 
+## Supplier functional interface
+
+Supplier is a functional interface that produces results without accepting any inputs. The results produces each time can be the same or different, the interace contains only one method get()
+```java
+
+public class SupplierTest {
+    public static void main(String[] args) {
+        Supplier<Integer> integerSupplier = () -> new Random().nextInt();
+
+        System.out.println(integerSupplier.get());
+        System.out.println(integerSupplier.get());
+        System.out.println(integerSupplier.get());
+    }
+}
+```
+
