@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <!--
+    TRUNCATE TABLE vs. DELETE vs. DROP TABLE: Removing tables and data in SQL
+    if you want to learn more skills about SQL - go to https://learnsql.com
+
+    DELETE
+    DELETE is a DML command which removes records from a table
+    DELETE from name_table
+    DELETE uses a row lock during execution and can be rolled back, every deleted row is locked, so it will require a lot of locks if you are working in large tables.
+    DELETE also keeps the auto-increment ID in the table
+
+    TRUNCATE TABLE
+    TRUNCATE is similar to DELETE, but this operation is a DDL (Data Definition Language)
+    It deletes records from a table without removing table structure
+    TRUNCATE TABLE table_name
+    Unlike DELETE, TRUNCATE does not return the number of rows deleted from the table, it also reset the table auto-increment value to the starting value(usually 1)
+
+    DROP TABLE
+    DROP table is another DDL, but it is not used for simply removing a table, it deletes the table structure from the database, along with any data stored in the table.
+    DROP TABLE table_name
+    DROP TABLE removes the table definition and data as well as indexes, constrains and triggers
+    The command frees the memory space.
+
+    -->
+    <changeSet id="clean-changesets" author="Larry.Song" runAlways="true" failOnError="true" runInTransaction="false">
+        <sql>DELETE FROM DATABASECHANGELOG</sql>
+    </changeSet>
+
+    <changeSet id="drop views -1" author="Larry.Song" runAlways="true" failOnError="false" runInTransaction="false">
+        <sql>
+            DECLARE @sql NVARCHAR(max)=''
+
+            SELECT @sql += ' Drop view ' + QUOTENAME(s.NAME) + '.' +QUOTENAME(t.NAME) + ';'
+            FROM sys.views t
+            JOIN sys.schemas s
+            on t.[schema_id] = s.[schema_id]
+            WHERE t.type='V'
+
+            Exec sp_executesql @sql
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -76,3 +76,23 @@ public ResposeEntity<String>evaluateDefaultHeaderValue(
 ```
 ### @RequestMapping/@PostMapping/@PutMapping/PatchMapping/@GetMapping/@DepelteMapping
 
+## Spring Boot Annotations
+Spring Boot is build on top of Spring and contains all the features of spring, it makes spring develop much  easier and avoid strugging with teh configurations and setup.
+* It avoids heavy configuration of XML which is present in Spring.
+* It provides easy maintenace and create of REST endpoints
+* It includes embedded Tomecat-Server
+* Deployment is very easy.
+* Annotations in Spring Boot provide suplemental information about Program.
+
+### @SpringBootApplication
+@SpringBootApplication annotation is used to mark a configuration class that declares one or more @Bean methods and also triggers auto-configuration and component scanning.
+It is the same as declaring a class with @configuration @EnableAutoConfiguration and @ComponentScan annotations.
+
+SpringApplication class is used to bootstrap and launch a Spring applications from java main method, this class automatically creates the ApplicationContext from the classpath, scan the configuration classes and launch the application.
+
+By default, SpringApplication scans the configuration class package and all it's sub-packages. so if our SpringBootApplication class is in the com.xxx.main package, then it won't scan com.xxx.spring package, we can fix this by using SprringBootApplication scanBasePackages properties.
+### @ComponentScan/@EntityScan/@ImportResource
+### @Bean/@Resource/
+
+
+

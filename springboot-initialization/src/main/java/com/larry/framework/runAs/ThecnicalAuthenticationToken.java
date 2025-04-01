@@ -1,2 +1,4 @@
-package com.larry.framework.runAs;public class ThecnicalAuthenticationToken {
+package com.larry.framework.runAs;
+
+public class ThecnicalAuthenticationToken {
 }

@@ -1,2 +1,5 @@
-package com.larry.framework.runAs;public interface RunAsAction {
+package com.larry.framework.runAs;
+@FunctionalInterface
+public interface RunAsAction<T>{
+     T execute();
 }

@@ -1,6 +1,7 @@
 package com.larry.configure.datasource;
 
 import com.zaxxer.hikari.HikariDataSource;
+import jakarta.persistence.EntityManagerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.quartz.QuartzDataSource;
@@ -10,15 +11,22 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Slf4j
 @Configuration
+@EnableJpaRepositories(
+        basePackages = {
+                "com.larry.security.persistence.repository"
+        },
+        entityManagerFactoryRef = "appEntityManagerFactory",
+        transactionManagerRef = "appTransactionManager"
+)
 public class AppDatasourceConfiguration {
     @Primary
     @QuartzDataSource
@@ -37,7 +45,7 @@ public class AppDatasourceConfiguration {
         log.info("MinimumIdle: "+((HikariDataSource) ds).getMinimumIdle());
         return builder.
                 dataSource(ds).
-                packages("com.larry.persistence").
+                packages("com.larry.persistence", "com.larry.security.persistence").
                 persistenceUnit("appPU").
                 build();
     }

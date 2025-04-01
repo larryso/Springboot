@@ -1,4 +1,8 @@
 package com.larry.framework.pipeline;
 
-public class Context {
+public interface Context {
+    Long getProcessId();
+    void setProcessId(Long processId);
+    Error getError();
+    void setError(Error error);
 }

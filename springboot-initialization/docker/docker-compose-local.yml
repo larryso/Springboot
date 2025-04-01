@@ -1,0 +1,12 @@
+version: '3'
+
+name: springboot-local-env
+
+services:
+  local-mssql-database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "docker123!"

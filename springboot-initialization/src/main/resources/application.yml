@@ -1,7 +1,11 @@
+server:
+  port: 8080
+
 spring:
-  jackson:
-    default-property-inclusion: non_null
-    date-format: java.text.SimpleDateFormat
+# replace this by customize ObjectMapper
+#  jackson:
+#    default-property-inclusion: non_null
+#    date-format: java.text.SimpleDateFormat
 
   quartz:
     job-store-type: JDBC
@@ -52,6 +56,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-url: https://login.microsoftonline.com/e3ab21b2-a7ce-4734-96a1-36c88d566618/v2.0
+          jwk-set-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
+          audience: 9b6500ba-66f3-481a-9e19-897f9ab785a1
+
 
 app:
   task:
@@ -70,3 +82,11 @@ app:
     minimumIdle: 10
     username: root
     password: root
+  security:
+    enabled: true
+    oauth2.resource.nimbus-jwt-decoder:
+      cache-refresh-timeout: 5m
+      cache-ttl: 24h
+      rate-limit-min-interval: 30s
+      refresh-ahead-time: 30s
+      refresh-ahead-scheduled: false

@@ -1,0 +1,26 @@
+spring:
+  liquibase:
+    enabled: false
+server:
+  port: 8080
+app:
+  app-datasource:
+    platform: sqlserver
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jdbcUrl: jdbc:sqlserver://localhost:1433;SelectMethod=cursor;databaseName=demo;encrypt=false
+    poolName: AppHikariPool
+    maximumPoolSize: 100
+    minimumIdle: 10
+    username: sa
+    password: docker123!
+
+springdoc:
+  packages-to-scan: com.larry
+  swagger-ui:
+    path: /public/swagger-ui.html
+#  group-configs:
+#    - group: Aplication-API
+#      paths-to-match: /api/v1/**
+#      ## paths-to-exclude
+#    - group: Agent-API
+#      paths-to-match: /public/api/v1/**

@@ -1,20 +1,49 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.15'
+    id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.3'
     id 'java'
+    id "com.adarshr.test-logger" version "2.0.0"
+    id "org.sonarqube" version "3.3"
+    id 'jacoco'
 }
 
 group 'com.larry'
 version '1.0-SNAPSHOT'
 
+sonarqube{
+    properties{
+        property 'sonar.host.url', 'http://http://localhost:9000/'
+        property "sonar.login", "admin"
+        property "sonar.password", "admin123"
+        property "sonar.projectKey", "springboot-initialization"
+        property "sonar.projectName", "springboot-initialization"
+        property "sonar.project.source", 17
+        //property "sonar.jacoco.reportPath", "{project.buildDir}/jacoco/test.exec"
+        property "sonar.coverage.jacoco.xmlReportPaths", "{project.buildDir}/reports/jacoco/jacocoTestReport.xml"
+    }
+}
 repositories {
     mavenCentral()
 }
-
+sourceSets{
+    integrationTesting {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+        java.srcDirs = ['src/integration-test/java']
+        resources.srcDirs = ['src/integration-test/resources']
+    }
+}
+configurations{
+    liquibase
+}
 dependencies {
     ext{
         lombokVersion = '1.18.20'
-        springDependencyVersion = "5.3.22"
+        springDependencyVersion = "6.1.11"
+        springStatemachinesVersion = '2.2.0.RELEASE'
+        junitVersion = '5.8.1'
+        cucumberVersion = '6.10.4'
+        seleniumVersion = '4.16.1'
     }
     //springboot
     implementation 'org.springframework.boot:spring-boot-starter'
@@ -30,7 +59,7 @@ dependencies {
     //spring
     implementation "org.springframework:spring-orm:${springDependencyVersion}"
 
-    implementation group:'org.apache.httpcomponents', name: 'httpclient', version: '4.3.4'
+    implementation("org.apache.httpcomponents.client5:httpclient5")
     implementation "org.springframework:spring-aop:${springDependencyVersion}"
     implementation 'org.springframework.retry:spring-retry'
     implementation "org.springframework:spring-beans:${springDependencyVersion}"
@@ -41,6 +70,16 @@ dependencies {
     implementation "org.springframework:spring-jdbc:${springDependencyVersion}"
     implementation "org.springframework:spring-web:${springDependencyVersion}"
     implementation "org.springframework:spring-webmvc:${springDependencyVersion}"
+
+    //Spring security
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    //https://connect2id.com/products/nimbus-jose-jwt
+    implementation 'com.nimbusds:nimbu-jose-jwt:9.40'
+
+    //spring statemachine
+    implementation("org.springframework.statemachine:spring-statemachine-starter:${springStatemachinesVersion}")
+    implementation("org.springframework.statemachine:spring-statemachine-kryo:${springStatemachinesVersion}")
 //    testImplementation('org.springframework.boot:spring-boot-starter-test') {
 //        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 //    }
@@ -50,20 +89,141 @@ dependencies {
     compileOnly ("org.projectlombok:lombok:${lombokVersion}")
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation ('org.springdoc:springdoc-openapi-ui:1.6.11')
-    implementation 'junit:junit:4.12'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.1'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.1'
+//    implementation 'junit:junit:4.12'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.2'
     //mysql driver
-    implementation 'mysql:mysql-connector-java:8.0.33'
+    //implementation 'mysql:mysql-connector-java:8.0.33'
+    //sqlserver driver
+    implementation 'com.microsoft.sqlserver:mssql-jdbc'
 
-    implementation "org.hibernate:hibernate-core:5.6.10.Final"
-    implementation "org.hibernate:hibernate-envers:5.6.10.Final"
-    implementation "org.hibernate:hibernate-jcache:5.6.10.Final"
-    implementation "org.hibernate:hibernate-jpamodelgen:5.6.10.Final"
+    implementation "org.hibernate:hibernate-core:6.4.4.Final"
+    implementation "org.hibernate:hibernate-envers:6.4.4.Final"
+    implementation "org.hibernate:hibernate-jcache:6.4.4.Final"
+    implementation "org.hibernate:hibernate-jpamodelgen:6.4.4.Final"
 
     implementation 'org.quartz-scheduler:quartz:2.3.2'
     implementation 'org.quartz-scheduler:quartz-jobs:2.3.2'
 
+    implementation 'com.google.guava:guava:latest.release'
+
+    //orika bean mapper
+    implementation('ma.glasnost.orika:orika-core:1.5.4')
+
+    //Junit5 for test
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junitVersion}"
+
+    //Selenium and cucumber
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+
+    //liquibase
+    implementation 'org.liquibase:liquibase-core:4.9.1'
+    liquibase 'org.liquibase:liquibase-core:4.9.1'
+    liquibase 'com.microsoft.sqlserver:mssql-jdbc:8.4.1.jre8'
 
 }
+
+test{
+    useJUnitPlatform()
+}
+tasks.withType(Test){
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+testlogger{
+    showStandardStreams true
+}
+task slowTest(type: Test){
+    useJUnitPlatform{
+        includeTags "Slow"
+    }
+}
+task FastTest(type: Test){
+    useJUnitPlatform{
+        includeTags "Fast"
+    }
+}
+task CucumberTest(type: Test){
+    useJUnitPlatform{
+        includeTags "web"
+    }
+}
+task jacocoReportTest(type: Test){
+    useJUnitPlatform{
+        includeTags "jacocoReport"
+    }
+}
+//bootRun {
+//    args = ['--spring.profiles.active=local']
+//}
+//task bootRunForDockerEnv(type: org.springframework.boot.gradle.tasks.run.BootRun, dependsOn: 'bootRun'){
+//    group = 'Application'
+//    args = ['--spring.profiles.active=local,docker-env']
+//    classpath = sourceSets.main.runtimeClasspath
+//}
+tasks.register("bootRunForDockerEnv"){
+    group = 'Application'
+    description = "run application with local and docker-env profiles"
+
+    doFirst {
+        tasks.bootRun.configure {
+            systemProperty("spring.profiles.active", "local, docker-env")
+            jvmArgs = ['--add-opens=java.base/java.text=ALL-UNNAMED',
+                       '--add-opens=java.base/java.util=ALL-UNNAMED',
+                       '--add-opens=java.base/java.lang=ALL-UNNAMED']
+        }
+    }
+    finalizedBy("bootRun")
+}
+task startLocalDockerEnv(type: Exec){
+    group = "Application"
+    workingDir = file('./docker')
+    commandLine 'cmd', '/c', 'start-local-docker-env.bat'
+}
+task buildLiquibase(type: Copy){
+    into "$buildDir/liquibase"
+    from(configurations.liquibase){
+        into "libs"
+    }
+
+    from('database/liquibase'){
+        into "changesets"
+    }
+}
+task updateLiquibase(type: Exec, dependsOn: 'buildLiquibase'){
+    workingDir = file('./docker')
+    commandLine 'cmd', '/c', 'update_liquibase.bat'
+}
+task unitTest(type: Test){
+    include '**/BeanMapperTest.class'
+    jvmArgs('--illegal-access=deny')
+    jvmArgs('--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED')
+}
+jacocoTestReport{
+//    println "in jacocTestReport"
+    executionData tasks.withType(Test).findAll{it.state.executed}
+    reports{
+        xml.required = true
+        csv.required = false
+        html.required = true
+        csv.destination file("${buildDir}/reports/jacoco/jacocoTestReport.csv")
+        html.destination file("${buildDir}/reports/jacoco/jacocoTestReport.html")
+        xml.destination file("${buildDir}/reports/jacoco/jacocoTestReport.xml")
+    }
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect{
+            fileTree(dir: it, includes: [
+                    'com/larry/test/**'
+            ])
+        })
+    }
+    dependsOn jacocoReportTest
+}
+tasks['sonarqube'].dependsOn jacocoTestReport
+processResources.dependsOn buildLiquibase
+

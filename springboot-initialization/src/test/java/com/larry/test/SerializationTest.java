@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.larry.dto.DocumentDTO;
 import com.larry.dto.StorageDTO;
 import com.larry.dto.enumeration.DocumentStatus;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 

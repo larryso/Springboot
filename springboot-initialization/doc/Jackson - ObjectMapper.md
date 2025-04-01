@@ -1,5 +1,4 @@
 # Intro to the Jackson ObjectMapper
-
 ## Setup
 Jackson is a JAVA  json library, need below dependecny:
 * jackson-core
@@ -12,7 +11,63 @@ implementation 'com.fasterxml.jackson.core:jackson-core:2.8.8'
  implementation 'com.fasterxml.jackson.core:jackson-annotation:2.8.8'
 ```
 
-## Customize Serialization and Deserialization
+## Customize the jackson ObjectMapper
+Spring Boot uses an ObjectMapper instance to serialize responses and deserialize requests.
+By default, the Spring Boot will disable the following:
+* MapperFeature.DEFAULT_VIEW_INCLUSION
+* DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
+* SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
+Let’s start with a quick example:
+```java
+public class Coffee {
+
+    private String name;
+    private String brand;
+    private LocalDateTime date;
+
+   //getters and setters
+}
+
+    @GetMapping("/coffee")
+    public Coffee getCoffee(
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String name) {
+        return new Coffee()
+                .setBrand(brand)
+                .setDate(FIXED_DATE)
+                .setName(name);
+    }
+```
+By default, this will be the response when calling GET http://lolcahost:8080/coffee?brand=Lavazza:
+```java
+{
+"name": null,
+"brand": "Lavazza",
+"date": "2020-11-16T10:21:35.974"
+}
+```
+We would like to exclude null value and to have a custom date format - dd-MM-yyyy HH:mm, when using Spring Boot, we have below options to customize the default ObjectMapper:
+
+1. Customizing in Application Properties
+```java
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    date-format: java.text.SimpleDateFormat
+```
+2. defined your own ObjectMapper Bean, and mark it as Primarry
+```java
+    @Bean
+    @Primary
+    public ObjectMapper objectMapper(){
+        ObjectMapper objectMapper = ObjectMapperUtils.createObjectMapper();
+        //objectMapper.deactivateDefaultTyping();
+        SimpleModule module = new SimpleModule("initialization", new Version(0,1,0,"", "com.larry", "spring-boot-initialization"));
+        module.addSerializer(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        objectMapper.registerModule(module);
+        return objectMapper;
+    }
+```
 
 
 ## Reference 
