@@ -43,7 +43,8 @@ public class SecurityConfig {
                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) //config cookie csrf token repository
                .authorizeHttpRequests(auth -> auth
                        .requestMatchers("/login").permitAll()
-                       //.requestMatchers("/public/api/**", "/error", "/api/index/**").permitAll()
+                       .requestMatchers("/api/v1/users").permitAll()
+                       .requestMatchers("/public/api/**", "/error", "/api/index/**").permitAll()
                        .anyRequest().authenticated())
                .formLogin(Customizer.withDefaults());
        return http.build();

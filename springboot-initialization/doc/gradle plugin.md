@@ -15,6 +15,35 @@ When you apply the io.spring.dependency-management plugin, Spring Boot's plugin 
 
 [For more Details, you can go to -> Gradle plugin](https://docs.spring.io/spring-boot/gradle-plugin/index.html)
 
+## Gradle Java plugin
 
+The Java plugin adds support for Java projects in Gradle. It provides tasks for compiling Java source code, running tests, and creating JAR files. The plugin also adds conventions for project structure, such as placing source code in `src/main/java` and test code in `src/test/java`.
 
+[For more Details, you can go to -> Gradle plugin](https://docs.gradle.org/current/userguide/java_plugin.html)
 
+when you apply the java plugin, Gradle automatically adds the following tasks to your project:
+- `compileJava`: Compiles the main Java source code.
+- `compileTestJava`: Compiles the test Java source code.
+- `processResources`: Copies resources from `src/main/resources` to the build directory.
+- `processTestResources`: Copies test resources from `src/test/resources` to the build directory.
+- `classes`: Assembles the main classes.
+- `testClasses`: Assembles the test classes.
+- `jar`: Creates a JAR file containing the main classes and resources.
+- `test`: Runs the tests in the project.
+- `check`: Runs all checks, including tests.
+- `build`: Assembles and tests the project.
+
+You can customize the lifecycle tasks:
+
+```xml
+task verifyStyle{
+    doLast {
+        println "Verifying code style..."
+        // Add your code style verification logic here
+    }
+}   
+check.dependsOn verifyStyle
+```
+2. change task execution order
+`compileJave.mustRunAfter verifyStyle`
+3. replace or disable task

@@ -2,19 +2,18 @@ plugins {
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.3'
     id 'java'
-    id "com.adarshr.test-logger" version "2.0.0"
-    id "org.sonarqube" version "3.3"
+    id "org.sonarqube" version "4.4.1.3373"
     id 'jacoco'
+    //Gradle Test logger plugin to enhance the output of test results in console
+    id 'com.adarshr.test-logger' version '4.0.0'
 }
 
 group 'com.larry'
 version '1.0-SNAPSHOT'
 
-sonarqube{
+sonar {
     properties{
-        property 'sonar.host.url', 'http://http://localhost:9000/'
-        property "sonar.login", "admin"
-        property "sonar.password", "admin123"
+        property 'sonar.host.url', 'http://localhost:9000/'
         property "sonar.projectKey", "springboot-initialization"
         property "sonar.projectName", "springboot-initialization"
         property "sonar.project.source", 17
@@ -33,6 +32,7 @@ sourceSets{
         resources.srcDirs = ['src/integration-test/resources']
     }
 }
+
 configurations{
     liquibase
 }
@@ -75,7 +75,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-security"
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     //https://connect2id.com/products/nimbus-jose-jwt
-    implementation 'com.nimbusds:nimbu-jose-jwt:9.40'
+//    implementation 'com.nimbusds:nimbu-jose-jwt:9.40'
 
     //spring statemachine
     implementation("org.springframework.statemachine:spring-statemachine-starter:${springStatemachinesVersion}")
@@ -129,15 +129,53 @@ dependencies {
 }
 
 test{
+    //config using junit5 also known as the jupiter platform
     useJUnitPlatform()
-}
-tasks.withType(Test){
-    useJUnitPlatform()
+    //tells gradle to continute the build even if some tests fail
+    ignoreFailures = true
+    //config gradle test logger plugin
+    testlogger {
+        theme 'mocha-parallel'
+    }
+    //this ensure when you run gradle test, it will use the local profile
+    systemProperty 'spring.profiles.active', 'local'
+    jacoco {
+        excludes = ['com.larry.audit.*' ,
+                    'com.larry.dto.*',
+                'com.larry.exception.*',
+                    'com.larry.mapper.*',
+                    'com.larry.model.*',
+                    'com.larry.repository.*',
+                    'com.larry.web.*'
+        ]
+    }
+    //report is always generated after tests run
     finalizedBy jacocoTestReport
 }
-testlogger{
-    showStandardStreams true
+//configure jacoco tst coverage report
+jacocoTestReport{
+    // all test task were executed
+    executionData tasks.withType(Test).findAll{it.state.executed}
+    reports{
+        xml.required = true
+        csv.required = false
+        html.required = true
+        csv.destination file("${buildDir}/reports/jacoco/jacocoTestReport.csv")
+        html.destination file("${buildDir}/reports/jacoco/jacocoTestReport.html")
+        xml.destination file("${buildDir}/reports/jacoco/jacocoTestReport.xml")
+    }
+    dependsOn test
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect{
+            fileTree(dir: it, includes: [
+                    'com/larry/controller/**',
+                    'com/larry/service/**'
+                     ])
+        })
+    }
+
 }
+
 task slowTest(type: Test){
     useJUnitPlatform{
         includeTags "Slow"
@@ -153,11 +191,7 @@ task CucumberTest(type: Test){
         includeTags "web"
     }
 }
-task jacocoReportTest(type: Test){
-    useJUnitPlatform{
-        includeTags "jacocoReport"
-    }
-}
+
 //bootRun {
 //    args = ['--spring.profiles.active=local']
 //}
@@ -204,26 +238,7 @@ task unitTest(type: Test){
     jvmArgs('--illegal-access=deny')
     jvmArgs('--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED')
 }
-jacocoTestReport{
-//    println "in jacocTestReport"
-    executionData tasks.withType(Test).findAll{it.state.executed}
-    reports{
-        xml.required = true
-        csv.required = false
-        html.required = true
-        csv.destination file("${buildDir}/reports/jacoco/jacocoTestReport.csv")
-        html.destination file("${buildDir}/reports/jacoco/jacocoTestReport.html")
-        xml.destination file("${buildDir}/reports/jacoco/jacocoTestReport.xml")
-    }
-    afterEvaluate {
-        classDirectories.from = files(classDirectories.files.collect{
-            fileTree(dir: it, includes: [
-                    'com/larry/test/**'
-            ])
-        })
-    }
-    dependsOn jacocoReportTest
-}
+
 tasks['sonarqube'].dependsOn jacocoTestReport
 processResources.dependsOn buildLiquibase
 
