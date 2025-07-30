@@ -12,5 +12,5 @@ stages:
   - template: pipelines/stages/build-java.yml@ado-templates
     parameters:
       sonarqube_scan: true
-      sourceRepositories: self
+      sourceRepositories: [self]
 
