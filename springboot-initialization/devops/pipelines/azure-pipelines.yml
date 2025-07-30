@@ -13,4 +13,8 @@ stages:
     parameters:
       sonarqube_scan: true
       sourceRepositories: [self]
+      sonar_service_connection: local_sonar_server
+      sonar_project_key: springboot-initialization
+      sonar_project_name: springboot-initialization
+      working_directory: $(Agent.BuildDirectory)/s/springboot-initialization
 
