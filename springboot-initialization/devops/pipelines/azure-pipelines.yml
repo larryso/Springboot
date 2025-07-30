@@ -1,2 +1,16 @@
 trigger: none
 
+resources:
+  repositories:
+    - repository: ado-templates
+      endpoint: GithubServiceConnection
+      type: github
+      name: larryso/ado-template
+      ref: master
+
+stages:
+  - template: pipelines/stages/build-java.yml@ado-templates
+    parameters:
+      sonarqube_scan: true
+      sourceRepositories: self
+
