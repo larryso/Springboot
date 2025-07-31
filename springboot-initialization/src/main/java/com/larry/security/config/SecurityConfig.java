@@ -24,8 +24,6 @@ public class SecurityConfig {
         // ensure the passwords are encoded properly
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("USER","ADMIN").build());
         return manager;
     }
     //2. The SecurityFilterChain bean defines with URL paths should be secured and which should not
