@@ -240,6 +240,6 @@ task unitTest(type: Test){
     jvmArgs('--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED')
 }
 
-tasks['sonarqube'].dependsOn jacocoTestReport
+tasks['sonar'].dependsOn jacocoTestReport
 processResources.dependsOn buildLiquibase
 
