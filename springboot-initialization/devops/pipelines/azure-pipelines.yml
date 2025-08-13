@@ -17,4 +17,5 @@ stages:
       sonar_project_key: springboot-initialization
       sonar_project_name: springboot-initialization
       working_directory: $(Agent.BuildDirectory)/s/springboot-initialization
+      docker_build: true
 

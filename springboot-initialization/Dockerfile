@@ -1,4 +1,4 @@
-ARG FROM_IMAGE
+ARG FROM_IMAGE=eclipse-temurin:17-jre-alpine
 FROM ${FROM_IMAGE} as jre
 
 RUN apk update && \

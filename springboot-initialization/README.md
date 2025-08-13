@@ -16,7 +16,13 @@ Code quality is monitored by SonarQube
 Github copilot is an AI code assistant that helps developer with code suggestions and auto-complete code snippets while working in code editor
 1. Go t Settings -> Plugins and search for GitHub Copilot and install
 2. Sign in GitHub to authorize your account with GitHub copilot
+
+## start azure devops local agent
+go to F:\soft\vsts-agent-win-x64-4.258.1
+run  run.cmd to start the agent
+
 ## Change History
-|Date          | Change Log                                                                           |
-|--------------|--------------------------------------------------------------------------------------|
-|2024-08-15| 1. upgrade Springboot version to 3.3.2 <br/> 2. update Spring Security configuration |
+| Date       | Change Log                                                                     |
+|------------|--------------------------------------------------------------------------------|
+| 2024-08-15 | 1. upgrade Springboot version to 3.3.2 <br/> 2. update Spring Security configuration |
+| 2025-08-13 | 1. azure devops pipeline for build app docker image <br/>                      |
