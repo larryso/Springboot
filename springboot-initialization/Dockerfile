@@ -1,19 +1,19 @@
 ARG FROM_IMAGE=eclipse-temurin:17-jre-alpine
-FROM ${FROM_IMAGE} as jre
+FROM ${FROM_IMAGE} AS jre
 
 RUN apk update && \
     apk upgrade && \
-    apk add -no-cache ca-certificates openssl && \
+    apk add --no-cache ca-certificates openssl && \
     rm -rf /var/cache/apk/*
 
-FROM jre as builder
+FROM jre AS builder
 ARG JRE_FILE
 COPY ${JRE_FILE} ${JRE_FILE}
 # extract the JAR into its layers:
 RUN java -Djarmode=layertools -jar ${JRE_FILE} extract && \
     rm -rf ${JRE_FILE}
 
-FROM jre as app
+FROM jre AS app
 
 RUN adduser -S appuser
 
