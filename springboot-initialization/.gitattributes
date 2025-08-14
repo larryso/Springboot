@@ -1,0 +1,18 @@
+# A .gitattributes file defines attributes for paths in your Git repository, controlling how Git handles specific files (line endings, diff behavior, merge strategies, etc.)
+# This file is used to ensure consistent behavior across different environments and platforms.
+
+#1. Normalize Line Endings (Cross-Platform Compatibility)
+# Set default behavior for all files
+* text=auto
+
+# Force specific line endings for certain file types
+*.sh text eol=lf
+*.bat text eol=crlf
+
+#2. Binary Files (Prevent Git from treating them as text)
+# Treat these as binary (no line-ending conversion, no diff)
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary
+

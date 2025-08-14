@@ -9,7 +9,8 @@ plugins {
 }
 
 group 'com.larry'
-version '1.0-SNAPSHOT'
+//should not set version, use bootJar basename as final name
+version ''
 
 sonar {
     properties{
@@ -191,6 +192,9 @@ task CucumberTest(type: Test){
     useJUnitPlatform{
         includeTags "web"
     }
+}
+bootJar{
+    archiveBaseName='springboot-initialization'
 }
 
 //bootRun {

@@ -18,4 +18,5 @@ stages:
       sonar_project_name: springboot-initialization
       working_directory: $(Agent.BuildDirectory)/s/springboot-initialization
       docker_build: true
+      arguments: "--build-arg JRE_FILE=springboot-initialization.jar --build-arg FROM_IMAGE=eclipse-temurin:17-jre-alpine"
 

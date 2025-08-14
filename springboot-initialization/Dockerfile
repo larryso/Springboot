@@ -1,4 +1,4 @@
-ARG FROM_IMAGE=eclipse-temurin:17-jre-alpine
+ARG FROM_IMAGE
 FROM ${FROM_IMAGE} AS jre
 
 RUN apk update && \
@@ -8,7 +8,7 @@ RUN apk update && \
 
 FROM jre AS builder
 ARG JRE_FILE
-COPY ${JRE_FILE} ${JRE_FILE}
+COPY ./build/libs/${JRE_FILE} ${JRE_FILE}
 # extract the JAR into its layers:
 RUN java -Djarmode=layertools -jar ${JRE_FILE} extract && \
     rm -rf ${JRE_FILE}
