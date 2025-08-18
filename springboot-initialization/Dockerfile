@@ -7,7 +7,6 @@ RUN apk update && \
     rm -rf /var/cache/apk/*
 
 FROM jre AS builder
-RUN Java -version
 ARG JRE_FILE
 COPY build/libs/${JRE_FILE} ${JRE_FILE}
 # extract the JAR into its layers:
