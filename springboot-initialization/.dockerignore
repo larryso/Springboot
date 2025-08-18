@@ -3,7 +3,7 @@
 .idea
 logs
 build
-!springboot-initialization.jar
+!build/libs/springboot-initialization.jar
 doc
 devops
 database
